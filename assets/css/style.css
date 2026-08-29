@@ -1,18 +1,18 @@
 /* Baloch Sahab Technologies (SMC-Private) Limited — site stylesheet */
 
 :root {
-  --bg: #0a0e14;
-  --surface: #121826;
-  --surface-2: #171f30;
-  --border: #232b3a;
-  --text: #e8ecf3;
-  --text-muted: #8892a4;
-  --gold: #f0b90b;
-  --gold-soft: #f7d358;
-  --green: #22c55e;
+  --bg: #ffffff;
+  --surface: #f7f6fa;
+  --surface-2: #efeef5;
+  --border: #e4e2ec;
+  --blue: #2e2e92;
+  --pink: #ed178f;
+  --purple: #952375;
+  --text: #1a1a1a;
+  --text-muted: rgba(26, 26, 26, 0.62);
   --radius: 14px;
   --max-width: 1160px;
-  --shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.6);
+  --shadow: 0 20px 50px -20px rgba(26, 26, 26, 0.18);
 }
 
 * { box-sizing: border-box; }
@@ -43,7 +43,7 @@ a { color: inherit; text-decoration: none; }
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(10, 14, 20, 0.85);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
 }
@@ -67,18 +67,15 @@ a { color: inherit; text-decoration: none; }
 .brand .mark {
   width: 36px;
   height: 36px;
-  border-radius: 9px;
-  background: linear-gradient(135deg, var(--gold), var(--gold-soft));
-  color: #14110a;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 900;
-  font-size: 1rem;
+  flex-shrink: 0;
 }
+.brand .mark img { width: 100%; height: 100%; object-fit: contain; display: block; }
 
-.brand .name-full { color: var(--text); }
-.brand .name-full b { color: var(--gold); }
+.brand .name-full { color: var(--blue); }
+.brand .name-full b { color: var(--text); }
 
 .nav-links {
   display: flex;
@@ -96,8 +93,8 @@ a { color: inherit; text-decoration: none; }
 .nav-links a:hover, .nav-links a.active { color: var(--text); }
 
 .nav-cta {
-  background: var(--gold);
-  color: #14110a !important;
+  background: var(--pink);
+  color: #ffffff !important;
   padding: 9px 18px;
   border-radius: 999px;
   font-weight: 700;
@@ -142,20 +139,20 @@ a { color: inherit; text-decoration: none; }
   padding: 96px 0 72px;
   text-align: center;
   background:
-    radial-gradient(600px 300px at 50% -10%, rgba(240, 185, 11, 0.12), transparent 70%);
+    radial-gradient(600px 300px at 50% -10%, rgba(237, 23, 143, 0.12), transparent 70%);
 }
 
 .eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: var(--gold);
+  color: var(--pink);
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  background: rgba(240, 185, 11, 0.1);
-  border: 1px solid rgba(240, 185, 11, 0.25);
+  background: rgba(237, 23, 143, 0.1);
+  border: 1px solid rgba(237, 23, 143, 0.25);
   padding: 6px 14px;
   border-radius: 999px;
   margin-bottom: 22px;
@@ -169,7 +166,7 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: -0.02em;
 }
 
-.hero h1 span { color: var(--gold); }
+.hero h1 span { color: var(--pink); }
 
 .hero p.lead {
   max-width: 640px;
@@ -200,7 +197,7 @@ a { color: inherit; text-decoration: none; }
 
 .btn:hover { transform: translateY(-1px); }
 
-.btn-primary { background: var(--gold); color: #14110a; }
+.btn-primary { background: var(--pink); color: #ffffff; }
 .btn-secondary { background: var(--surface); color: var(--text); border-color: var(--border); }
 
 /* Sections */
@@ -240,8 +237,8 @@ section.tight { padding: 48px 0; }
   margin-bottom: 18px;
 }
 
-.icon.gold { background: rgba(240, 185, 11, 0.12); color: var(--gold); }
-.icon.green { background: rgba(34, 197, 94, 0.12); color: var(--green); }
+.icon.gold { background: rgba(237, 23, 143, 0.1); color: var(--pink); }
+.icon.green { background: rgba(149, 35, 117, 0.08); color: var(--purple); }
 
 .card h3 { margin: 0 0 10px; font-size: 1.15rem; font-weight: 700; }
 .card p { margin: 0; color: var(--text-muted); font-size: 0.95rem; }
@@ -267,9 +264,9 @@ section.tight { padding: 48px 0; }
   letter-spacing: 0.05em;
 }
 
-.status.live { background: rgba(34, 197, 94, 0.12); color: var(--green); }
-.status.moving { background: rgba(240, 185, 11, 0.12); color: var(--gold); }
-.status.available { background: rgba(96, 165, 250, 0.12); color: #60a5fa; }
+.status.live { background: rgba(237, 23, 143, 0.1); color: var(--pink); }
+.status.moving { background: rgba(149, 35, 117, 0.08); color: var(--purple); }
+.status.available { background: rgba(149, 35, 117, 0.08); color: var(--purple); }
 
 .project-card h3 { margin: 0; font-size: 1.3rem; }
 .project-card p { color: var(--text-muted); margin: 0; }
@@ -277,7 +274,7 @@ section.tight { padding: 48px 0; }
 .tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
 .tag { font-size: 0.78rem; color: var(--text-muted); border: 1px solid var(--border); padding: 4px 10px; border-radius: 999px; }
 
-.project-link { margin-top: 10px; color: var(--gold); font-weight: 700; font-size: 0.92rem; display: inline-flex; align-items: center; gap: 6px; }
+.project-link { margin-top: 10px; color: var(--pink); font-weight: 700; font-size: 0.92rem; display: inline-flex; align-items: center; gap: 6px; }
 
 /* Stats strip */
 .stats {
@@ -287,7 +284,7 @@ section.tight { padding: 48px 0; }
   text-align: center;
 }
 @media (max-width: 700px) { .stats { grid-template-columns: repeat(2, 1fr); } }
-.stats .num { font-size: 2rem; font-weight: 800; color: var(--gold); }
+.stats .num { font-size: 2rem; font-weight: 800; color: var(--blue); }
 .stats .label { color: var(--text-muted); font-size: 0.9rem; margin-top: 4px; }
 
 /* Team */
@@ -306,8 +303,8 @@ section.tight { padding: 48px 0; }
   width: 96px;
   height: 96px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--gold), var(--gold-soft));
-  color: #14110a;
+  background: linear-gradient(135deg, var(--pink), var(--purple));
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -317,7 +314,7 @@ section.tight { padding: 48px 0; }
 }
 
 .team-card h3 { margin: 0 0 4px; font-size: 1.3rem; }
-.team-card .role { color: var(--gold); font-weight: 600; font-size: 0.92rem; margin-bottom: 10px; }
+.team-card .role { color: var(--pink); font-weight: 600; font-size: 0.92rem; margin-bottom: 10px; }
 .team-card p { color: var(--text-muted); margin: 0; max-width: 560px; }
 
 /* Company facts / About */
@@ -352,12 +349,12 @@ section.tight { padding: 48px 0; }
 .contact-card .icon { margin-bottom: 0; flex-shrink: 0; }
 .contact-card h4 { margin: 0 0 4px; font-size: 1rem; }
 .contact-card a, .contact-card span.value { color: var(--text-muted); font-size: 0.92rem; }
-.contact-card a:hover { color: var(--gold); }
+.contact-card a:hover { color: var(--pink); }
 
 /* CTA banner */
 .cta-banner {
-  background: linear-gradient(135deg, rgba(240, 185, 11, 0.12), rgba(34, 197, 94, 0.08));
-  border: 1px solid rgba(240, 185, 11, 0.25);
+  background: rgba(237, 23, 143, 0.06);
+  border: 1px solid rgba(237, 23, 143, 0.25);
   border-radius: 20px;
   padding: 48px;
   text-align: center;
@@ -373,7 +370,7 @@ section.tight { padding: 48px 0; }
 .footer-grid h5 { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin: 0 0 16px; }
 .footer-grid ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
 .footer-grid a { color: var(--text-muted); font-size: 0.92rem; }
-.footer-grid a:hover { color: var(--gold); }
+.footer-grid a:hover { color: var(--pink); }
 .footer-grid p { color: var(--text-muted); font-size: 0.9rem; max-width: 320px; }
 
 .footer-bottom {
@@ -389,6 +386,7 @@ section.tight { padding: 48px 0; }
 }
 
 .footer-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.footer-brand strong { color: var(--blue); }
 
 /* Utility */
 .mt-0 { margin-top: 0; }
