@@ -1,0 +1,130 @@
+{
+  "_help": "Edit this file to add, edit, publish/unpublish or delete projects, then run: node tools/build.mjs. See CONTENT-GUIDE.md.",
+  "projects": [
+    {
+      "slug": "baloch-sahab-earning-platform",
+      "kind": "product",
+      "published": true,
+      "featured": true,
+      "order": 1,
+      "name": "Baloch Sahab Earning Platform",
+      "category": "Web Platform",
+      "status": "live",
+      "tagline": "A web-based earning platform with real wallet balances and withdrawals.",
+      "summary": "Our flagship product: a web-based earning platform where users earn through PTC ads, offerwalls, a daily faucet, spin & win, daily check-ins, and a referral program.",
+      "overview": [
+        "The Baloch Sahab Earning Platform is where the company started. It is a reward-based web platform that lets everyday users earn small amounts by completing tasks, viewing ads and engaging daily.",
+        "The platform is built, operated and supported in-house by Baloch Sahab Technologies, including payouts and user support."
+      ],
+      "features": [
+        "PTC (paid-to-click) ads",
+        "Offerwalls",
+        "Daily faucet",
+        "Spin & win",
+        "Daily check-ins",
+        "Referral program",
+        "Real wallet balances and withdrawals"
+      ],
+      "technologies": [],
+      "platforms": ["Web"],
+      "images": [],
+      "links": [
+        { "label": "Visit earn.balochsahab.com", "url": "https://earn.balochsahab.com", "primary": true }
+      ],
+      "notes": []
+    },
+    {
+      "slug": "earnbox",
+      "kind": "product",
+      "published": true,
+      "featured": true,
+      "order": 2,
+      "name": "EarnBox",
+      "category": "Mobile App",
+      "status": "live",
+      "tagline": "Our Android earning app: rewarded ads, offers, daily bonus and real withdrawals.",
+      "summary": "An Android earning application that brings our reward model to a native app: watch rewarded ads, complete offers, claim a daily bonus, and withdraw real earnings.",
+      "overview": [
+        "EarnBox is our first step into mobile. It brings the reward model of the Baloch Sahab Earning Platform to a native Android application.",
+        "Users can watch rewarded ads, complete offers and claim a daily bonus, then withdraw their earnings to JazzCash, Easypaisa, bank transfer or USDT."
+      ],
+      "features": [
+        "Rewarded ads",
+        "Offer completion",
+        "Daily bonus",
+        "Withdrawals to JazzCash, Easypaisa, bank transfer or USDT"
+      ],
+      "technologies": ["Android"],
+      "platforms": ["Android"],
+      "images": [],
+      "links": [
+        { "label": "Download EarnBox", "url": "https://earnbox.balochsahab.com/download", "primary": true }
+      ],
+      "notes": []
+    },
+    {
+      "slug": "xnaksview",
+      "kind": "product",
+      "published": true,
+      "featured": true,
+      "order": 3,
+      "name": "XnaksView",
+      "category": "Mobile App",
+      "status": "in-development",
+      "tagline": "A short-video and LIVE streaming social app for creators and their audiences.",
+      "summary": "A short-video and LIVE streaming social app with virtual gifts, creator earnings, direct messages and group chats.",
+      "overview": [
+        "XnaksView is a social video app for Android. Viewers scroll a feed of short videos and join creators in LIVE rooms, where they can chat and send virtual gifts.",
+        "Creators can go LIVE, invite guests on stage and earn from gifts received. The app also includes one-to-one direct messages and group chats.",
+        "XnaksView is currently in development and has not yet been publicly released on Google Play."
+      ],
+      "features": [
+        "Short-video feed with comments",
+        "LIVE streaming with multi-guest rooms",
+        "Virtual gifts and in-app coins (Google Play Billing)",
+        "Creator earnings with identity verification (KYC) before withdrawal",
+        "Direct messages and group chats with GIFs and stickers",
+        "Follow system, profiles and notifications"
+      ],
+      "technologies": ["Kotlin", "Jetpack Compose", "Firebase Authentication", "Cloud Firestore", "Cloud Functions", "Cloud Storage", "Real-time video (RTC)", "Google Play Billing"],
+      "platforms": ["Android"],
+      "images": [],
+      "links": [],
+      "notes": ["Not yet available to download. Public release on Google Play is planned."]
+    },
+    {
+      "slug": "f88-ai-auto-trading-bot",
+      "kind": "product",
+      "published": true,
+      "featured": true,
+      "order": 4,
+      "name": "F88 AI Auto Trading Bot",
+      "category": "Trading Software",
+      "status": "in-development",
+      "tagline": "An automated, risk-managed trading assistant for MetaTrader 5 accounts.",
+      "summary": "An app plus backend service that connects to MetaTrader 5 accounts, runs a signal engine and places risk-managed Buy/Sell orders automatically.",
+      "overview": [
+        "F88 AI Auto Trading Bot pairs a Flutter app with a Python/FastAPI backend that connects to real MetaTrader 5 (MT5) broker accounts, such as Exness.",
+        "A confluence signal engine produces Buy, Sell or Hold signals with a confidence score and reasons. Every automatic trade passes through a single risk-management gate before it is sent.",
+        "F88 is in development and is currently self-hosted by its operator. It is not offered as a public or multi-customer service."
+      ],
+      "features": [
+        "Connect one or more MetaTrader 5 accounts, each in its own isolated terminal",
+        "Signal engine: Buy / Sell / Hold with confidence and reasons",
+        "Position sizing from real symbol tick values (risk % per trade)",
+        "Every trade sent with stop-loss and take-profit (ATR-based or fixed pips)",
+        "Daily loss limit, max open trades and minimum-confidence guards",
+        "Explicit confirmation required before auto-trading on a live (non-demo) account",
+        "Live balance, equity, positions and trade history with win-rate stats",
+        "Broker passwords encrypted at rest"
+      ],
+      "technologies": ["Flutter", "Python", "FastAPI", "SQLAlchemy", "MetaTrader 5", "WebSockets", "JWT authentication"],
+      "platforms": ["Windows (backend)", "Flutter app"],
+      "images": [],
+      "links": [],
+      "notes": [
+        "Risk warning: trading foreign exchange, metals and CFDs carries a high level of risk and may not be suitable for everyone. Automated trading does not guarantee profit and you can lose all of your capital. Nothing on this website is financial advice."
+      ]
+    }
+  ]
+}
