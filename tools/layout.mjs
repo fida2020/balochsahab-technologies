@@ -45,6 +45,7 @@ export function layout(page, cssVersion) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="facebook-domain-verification" content="lgj2duxwjfz8lwnwr22ekxneuftn7o" />
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(page.description)}">${robots}
 <link rel="canonical" href="${canonical}">
