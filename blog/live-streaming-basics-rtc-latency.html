@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="facebook-domain-verification" content="lgj2duxwjfz8lwnwr22ekxneuftn7o" />
+<title>Live Streaming Basics: RTC, HLS and Where Latency Comes From | Baloch Sahab Technologies</title>
+<meta name="description" content="A plain-English guide to live streaming technology, comparing WebRTC, RTMP and HLS, explaining latency, SFUs and jitter buffers, and when real-time matters.">
+<link rel="canonical" href="https://balochsahab.com/blog/live-streaming-basics-rtc-latency.html">
+<meta name="theme-color" content="#14144a">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Baloch Sahab Technologies">
+<meta property="og:title" content="Live Streaming Basics: RTC, HLS and Where Latency Comes From | Baloch Sahab Technologies">
+<meta property="og:description" content="A plain-English guide to live streaming technology, comparing WebRTC, RTMP and HLS, explaining latency, SFUs and jitter buffers, and when real-time matters.">
+<meta property="og:url" content="https://balochsahab.com/blog/live-streaming-basics-rtc-latency.html">
+<meta property="og:image" content="https://balochsahab.com/assets/img/logo-mark-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Live Streaming Basics: RTC, HLS and Where Latency Comes From | Baloch Sahab Technologies">
+<meta name="twitter:description" content="A plain-English guide to live streaming technology, comparing WebRTC, RTMP and HLS, explaining latency, SFUs and jitter buffers, and when real-time matters.">
+<meta name="twitter:image" content="https://balochsahab.com/assets/img/logo-mark-512.png">
+<link rel="icon" href="/assets/img/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/img/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/assets/img/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/style.css?v=ee872eb8">
+<script async data-cfasync="false" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6831828383879093"
+     crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://balochsahab.com/#organization","name":"Baloch Sahab Technologies","legalName":"Baloch Sahab Technologies (SMC-Private) Limited","url":"https://balochsahab.com/","logo":"https://balochsahab.com/assets/img/logo-mark-512.png","email":"info@balochsahab.com","telephone":"+923218818909","foundingDate":"2026-08-27","address":{"@type":"PostalAddress","addressLocality":"Mandi Bahauddin","addressRegion":"Punjab","addressCountry":"PK"},"identifier":{"@type":"PropertyValue","propertyID":"SECP CUIN","value":"0352600"},"sameAs":["https://leap.secp.gov.pk/#/verify-company-info/0352600"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://balochsahab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://balochsahab.com/blog/"},{"@type":"ListItem","position":3,"name":"Live Streaming Basics: RTC, HLS and Where Latency Comes From","item":"https://balochsahab.com/blog/live-streaming-basics-rtc-latency.html"}]},{"@type":"BlogPosting","headline":"Live Streaming Basics: RTC, HLS and Where Latency Comes From","description":"A plain-English guide to live streaming technology, comparing WebRTC, RTMP and HLS, explaining latency, SFUs and jitter buffers, and when real-time matters.","datePublished":"2026-10-15","dateModified":"2026-10-15","articleSection":"Video & Streaming","wordCount":1226,"author":{"@type":"Organization","name":"Baloch Sahab Technologies team","url":"https://balochsahab.com/about.html"},"publisher":{"@id":"https://balochsahab.com/#organization"},"mainEntityOfPage":"https://balochsahab.com/blog/live-streaming-basics-rtc-latency.html","image":"https://balochsahab.com/assets/img/logo-mark-512.png"}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container nav">
+    <a href="/index.html" class="brand" aria-label="Baloch Sahab Technologies home">
+      <span class="mark"><img src="/assets/img/logo-mark-256.png" alt="" width="108" height="108"></span>
+      <span class="name-stack"><span class="name-main">BALOCH SAHAB</span><span class="name-sub">Technologies (SMC-Private) Limited</span></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+    <nav class="nav-links" id="site-nav" aria-label="Main">
+      <a href="/index.html">Home</a>
+      <a href="/about.html">About</a>
+      <a href="/projects.html">Products</a>
+      <a href="/client-work.html">Client Work</a>
+      <a href="/team.html">Team</a>
+      <a href="/blog/" class="active" aria-current="page">Blog</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/quote.html" class="nav-cta">Request a Quote</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero hero-page hero-detail">
+  <div class="container narrow">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/index.html">Home</a> <span aria-hidden="true">/</span> <a href="/blog/">Blog</a> <span aria-hidden="true">/</span> <span aria-current="page">Video &amp; Streaming</span></nav>
+    <div class="detail-meta"><span class="tag tag-dark">Video &amp; Streaming</span></div>
+    <h1 class="article-title">Live Streaming Basics: RTC, HLS and Where Latency Comes From</h1>
+    <p class="article-byline">By Baloch Sahab Technologies team &middot; <time datetime="2026-10-15">15 October 2026</time> &middot; 6 min read</p>
+  </div>
+</section>
+
+<section>
+  <div class="container narrow">
+    <article class="prose article-body">
+<p>&quot;Live&quot; can mean very different things. A sports broadcast that reaches viewers half a minute late still feels live to most people. A video call with a one-second delay feels broken. When you add live streaming to an app, the first decision is how live it needs to be, because that choice drives the technology, the cost and the experience.</p>
+<p>This article explains the main approaches in plain language: what RTMP, HLS and WebRTC-style real-time communication are, where latency actually comes from, and how to decide which one your product needs.</p>
+<h2>The three common building blocks</h2>
+<h3>RTMP for ingest</h3>
+<p>RTMP is an older protocol that is still widely used to send a stream from a broadcaster to a server. Streaming software and many encoders support it, which is why platforms often accept RTMP as the way in. It is rarely used to deliver video to viewers today, because browsers no longer play it directly. Newer alternatives such as SRT are also used for ingest, especially over unreliable networks.</p>
+<h3>HLS and DASH for large audiences</h3>
+<p>HLS and DASH deliver video as a sequence of small files, called segments, listed in a playlist. Viewers download the segments over ordinary HTTP, which means the stream can be served through a normal CDN to a very large audience at a low cost per viewer.</p>
+<p>The downside is delay. A player typically waits for a few segments to be available before it starts, and each segment is several seconds long, so classic HLS often sits many seconds behind real time. Low-latency variants such as LL-HLS split segments into smaller parts and reduce this significantly, but they are still generally slower than real-time protocols.</p>
+<h3>Real-time communication (RTC)</h3>
+<p>Real-time communication, most commonly based on WebRTC, is designed for conversations. Media is sent continuously over UDP, packets that arrive too late are dropped rather than waited for, and the system adapts quality constantly to the network. The goal is a delay low enough for people to talk to each other naturally. The <a href="https://webrtc.org/" target="_blank" rel="noopener noreferrer">WebRTC project site</a> is a good starting point for the underlying technology.</p>
+<p>RTC costs more per viewer than HLS, because servers must handle every connection in real time instead of handing out cached files.</p>
+<h2>Where latency comes from</h2>
+<p>End-to-end latency is the sum of many small delays. Knowing them helps you understand why a stream is slow and what can be improved.</p>
+<ol>
+  <li><strong>Capture and processing.</strong> The camera produces frames, and filters or beauty effects may add a little processing time.</li>
+  <li><strong>Encoding.</strong> The encoder compresses video. Settings that look ahead at future frames improve quality but add delay, so real-time encoders avoid them.</li>
+  <li><strong>Network upload.</strong> The broadcaster&#39;s connection, often a mobile network, is frequently the weakest link.</li>
+  <li><strong>Server processing.</strong> Routing, transcoding to multiple qualities, or packaging into segments all take time. Segment packaging is the biggest contributor in HLS.</li>
+  <li><strong>Delivery.</strong> Distance between the server and the viewer, and the quality of the viewer&#39;s network.</li>
+  <li><strong>Player buffering.</strong> Every player keeps a buffer to absorb network hiccups. A bigger buffer means fewer stalls but more delay.</li>
+  <li><strong>Decoding and display.</strong> Usually small, but not zero.</li>
+</ol>
+<p>In HLS-based streaming, steps 4 and 6 dominate. In RTC, the network itself and the jitter buffer are usually the main factors.</p>
+<h2>SFUs and jitter buffers</h2>
+<p>Two terms come up constantly in real-time streaming.</p>
+<p>An <strong>SFU</strong>, or selective forwarding unit, is a server that receives each participant&#39;s stream and forwards it to the others without decoding and re-encoding it. This keeps delay low and lets one broadcaster reach many viewers. Broadcasters often send the same video at several qualities at once, a technique called simulcast, so the SFU can forward a lower quality to viewers on weak connections.</p>
+<p>A <strong>jitter buffer</strong> sits in the receiver. Packets on the internet do not arrive at perfectly even intervals; some are early, some late, some lost. The jitter buffer holds packets briefly so they can be played back smoothly. Real-time systems make this buffer adaptive: small when the network is steady, larger when it is unstable. That is why a call can have very low delay on good Wi-Fi and noticeably more on a congested mobile network.</p>
+<h2>Codecs in a nutshell</h2>
+<p>The codec determines how video and audio are compressed. For video, H.264 remains the most widely compatible choice, with hardware encoding and decoding on almost every phone. VP8 is the traditional WebRTC alternative, and newer codecs such as VP9, H.265 and AV1 offer better compression but uneven hardware support, especially for encoding on older or cheaper phones.</p>
+<p>For audio in real-time systems, Opus is the standard. It handles speech and music well and copes gracefully with packet loss. When in doubt, choose the codec that has hardware support on the devices your audience actually uses, because software encoding drains battery and heats the phone during long broadcasts.</p>
+<h2>When you really need sub-second latency</h2>
+<p>Not every live feature needs RTC. Ask what the audience does while watching.</p>
+<ul>
+  <li><strong>Watching only</strong>, such as a concert or a lecture: HLS or LL-HLS is usually enough and much cheaper at scale.</li>
+  <li><strong>Live chat</strong>: a few seconds of delay is tolerable, though it can be awkward when the host replies to comments the audience sent a while ago. LL-HLS often works.</li>
+  <li><strong>Interactive moments</strong>, such as reacting to a viewer&#39;s gift, answering questions or running live polls: lower latency makes the host&#39;s reaction feel connected to the viewer&#39;s action. RTC or a low-latency live product is a better fit.</li>
+  <li><strong>Co-hosting, guests and battles</strong>, where two or more people talk on stream: you need real-time communication between the people on screen. Viewers can sometimes receive a slightly delayed version, but the speakers cannot.</li>
+</ul>
+<p>In our own short-video and LIVE app, co-hosting and real-time interaction were the reasons to build on RTC rather than segment-based streaming. Many platforms use a hybrid: RTC among the people on stage, and a cheaper delivery method for large passive audiences.</p>
+<h2>Practical tips before you build</h2>
+<ul>
+  <li><strong>Test on the networks your users have.</strong> A stream that is perfect on office fibre can struggle on a busy mobile cell. Test with real phones, ideally in the regions you serve.</li>
+  <li><strong>Design for poor uplink.</strong> Broadcasters on mobile data need sensible starting bitrates and fast adaptation downward.</li>
+  <li><strong>Handle interruptions.</strong> Phone calls, app switching and network changes will happen mid-stream. Reconnect automatically and show the viewer a clear &quot;reconnecting&quot; state.</li>
+  <li><strong>Watch audio first.</strong> Viewers forgive soft video far more readily than choppy or echoing audio. Echo cancellation and noise suppression matter.</li>
+  <li><strong>Plan for moderation.</strong> Live content cannot be reviewed before it airs, so reporting tools and fast response matter more than on recorded video.</li>
+</ul>
+<p>Our follow-up article on <a href="/blog/choosing-real-time-video-provider.html">choosing a real-time video provider</a> covers how to evaluate the services that provide this infrastructure.</p>
+<h2>Conclusion</h2>
+<p>Live streaming is a spectrum, from cheap and scalable segment-based delivery with a delay of several seconds or more, to real-time communication that feels like a conversation but costs more to run. Understand where latency comes from, match the technology to what your audience actually does during a stream, and test on real devices and networks. That choice, made early, will shape everything else about your live features.</p>
+    </article>
+    <div class="back-row"><a href="/blog/" class="btn btn-secondary">&larr; All articles</a></div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="container">
+    <div class="section-head"><span class="kicker">Keep reading</span><h2>More from the blog</h2></div>
+    <div class="grid grid-3">
+<article class="project-card post-card">
+  <div class="post-meta"><span class="tag">Video &amp; Streaming</span><time datetime="2026-10-24">24 October 2026</time></div>
+  <h3><a href="/blog/choosing-real-time-video-provider.html" class="stretched">How to Choose a Real-Time Video Provider for a Live App</a></h3>
+  <p>Criteria for evaluating real-time video SDKs for a live streaming app, from network coverage and SDK size to pricing models, plus how to stay able to switch.</p>
+  <span class="project-link">Read article <span aria-hidden="true">&rarr;</span></span>
+</article>
+<article class="project-card post-card">
+  <div class="post-meta"><span class="tag">Video &amp; Streaming</span><time datetime="2026-10-11">11 October 2026</time></div>
+  <h3><a href="/blog/data-saver-mode-video-apps.html" class="stretched">Designing a Data Saver Mode for a Video App</a></h3>
+  <p>How to build a data saver mode for a video app using adaptive bitrate, resolution caps, metered network detection and Wi-Fi-only preloading.</p>
+  <span class="project-link">Read article <span aria-hidden="true">&rarr;</span></span>
+</article>
+<article class="project-card post-card">
+  <div class="post-meta"><span class="tag">Video &amp; Streaming</span><time datetime="2026-10-04">4 October 2026</time></div>
+  <h3><a href="/blog/short-video-instant-playback.html" class="stretched">How Short-Video Feeds Start Playback Instantly</a></h3>
+  <p>Player pooling, preloading, buffer tuning and caching techniques that make a vertical video feed start playing the moment a user swipes.</p>
+  <span class="project-link">Read article <span aria-hidden="true">&rarr;</span></span>
+</article>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <span class="mark"><img src="/assets/img/logo-mark-128.png" alt="" width="64" height="64" loading="lazy"></span>
+          <strong>BALOCH SAHAB TECHNOLOGIES (SMC-PRIVATE) LIMITED</strong>
+        </div>
+        <p>An SECP-registered software company in Pakistan building its own digital products and engineering software for clients.</p>
+      </div>
+      <div>
+        <h2 class="footer-h">Company</h2>
+        <ul>
+          <li><a href="/about.html">About Us</a></li>
+          <li><a href="/team.html">Team</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Work</h2>
+        <ul>
+          <li><a href="/projects.html">Our Products</a></li>
+          <li><a href="/client-work.html">Client Work</a></li>
+          <li><a href="/quote.html">Request a Quote</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Contact</h2>
+        <ul>
+          <li><a href="mailto:info@balochsahab.com">info@balochsahab.com</a></li>
+          <li><a href="mailto:sales@balochsahab.com">sales@balochsahab.com</a></li>
+          <li><a href="tel:+923218818909">+92 321 8818909</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Baloch Sahab Technologies (SMC-Private) Limited. All rights reserved.</span>
+      <span class="footer-legal"><a href="/privacy.html">Privacy Policy</a> &middot; <a href="/terms.html">Terms</a> &middot; CUIN 0352600 &middot; <a href="https://leap.secp.gov.pk/#/verify-company-info/0352600" target="_blank" rel="noopener noreferrer">Verify with SECP &#8599;</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/nav.js?v=ee872eb8" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="facebook-domain-verification" content="lgj2duxwjfz8lwnwr22ekxneuftn7o" />
+<title>Writing Firestore Security Rules That Actually Protect Your Data | Baloch Sahab Technologies</title>
+<meta name="description" content="A practical guide to Cloud Firestore security rules covering default deny, ownership checks, field validation, server-only fields and emulator testing.">
+<link rel="canonical" href="https://balochsahab.com/blog/firestore-security-rules-guide.html">
+<meta name="theme-color" content="#14144a">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Baloch Sahab Technologies">
+<meta property="og:title" content="Writing Firestore Security Rules That Actually Protect Your Data | Baloch Sahab Technologies">
+<meta property="og:description" content="A practical guide to Cloud Firestore security rules covering default deny, ownership checks, field validation, server-only fields and emulator testing.">
+<meta property="og:url" content="https://balochsahab.com/blog/firestore-security-rules-guide.html">
+<meta property="og:image" content="https://balochsahab.com/assets/img/logo-mark-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Writing Firestore Security Rules That Actually Protect Your Data | Baloch Sahab Technologies">
+<meta name="twitter:description" content="A practical guide to Cloud Firestore security rules covering default deny, ownership checks, field validation, server-only fields and emulator testing.">
+<meta name="twitter:image" content="https://balochsahab.com/assets/img/logo-mark-512.png">
+<link rel="icon" href="/assets/img/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/img/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/assets/img/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/style.css?v=ee872eb8">
+<script async data-cfasync="false" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6831828383879093"
+     crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://balochsahab.com/#organization","name":"Baloch Sahab Technologies","legalName":"Baloch Sahab Technologies (SMC-Private) Limited","url":"https://balochsahab.com/","logo":"https://balochsahab.com/assets/img/logo-mark-512.png","email":"info@balochsahab.com","telephone":"+923218818909","foundingDate":"2026-08-27","address":{"@type":"PostalAddress","addressLocality":"Mandi Bahauddin","addressRegion":"Punjab","addressCountry":"PK"},"identifier":{"@type":"PropertyValue","propertyID":"SECP CUIN","value":"0352600"},"sameAs":["https://leap.secp.gov.pk/#/verify-company-info/0352600"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://balochsahab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://balochsahab.com/blog/"},{"@type":"ListItem","position":3,"name":"Writing Firestore Security Rules That Actually Protect Your Data","item":"https://balochsahab.com/blog/firestore-security-rules-guide.html"}]},{"@type":"BlogPosting","headline":"Writing Firestore Security Rules That Actually Protect Your Data","description":"A practical guide to Cloud Firestore security rules covering default deny, ownership checks, field validation, server-only fields and emulator testing.","datePublished":"2026-10-28","dateModified":"2026-10-28","articleSection":"Firebase","wordCount":1089,"author":{"@type":"Organization","name":"Baloch Sahab Technologies team","url":"https://balochsahab.com/about.html"},"publisher":{"@id":"https://balochsahab.com/#organization"},"mainEntityOfPage":"https://balochsahab.com/blog/firestore-security-rules-guide.html","image":"https://balochsahab.com/assets/img/logo-mark-512.png"}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container nav">
+    <a href="/index.html" class="brand" aria-label="Baloch Sahab Technologies home">
+      <span class="mark"><img src="/assets/img/logo-mark-256.png" alt="" width="108" height="108"></span>
+      <span class="name-stack"><span class="name-main">BALOCH SAHAB</span><span class="name-sub">Technologies (SMC-Private) Limited</span></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+    <nav class="nav-links" id="site-nav" aria-label="Main">
+      <a href="/index.html">Home</a>
+      <a href="/about.html">About</a>
+      <a href="/projects.html">Products</a>
+      <a href="/client-work.html">Client Work</a>
+      <a href="/team.html">Team</a>
+      <a href="/blog/" class="active" aria-current="page">Blog</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/quote.html" class="nav-cta">Request a Quote</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero hero-page hero-detail">
+  <div class="container narrow">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/index.html">Home</a> <span aria-hidden="true">/</span> <a href="/blog/">Blog</a> <span aria-hidden="true">/</span> <span aria-current="page">Firebase</span></nav>
+    <div class="detail-meta"><span class="tag tag-dark">Firebase</span></div>
+    <h1 class="article-title">Writing Firestore Security Rules That Actually Protect Your Data</h1>
+    <p class="article-byline">By Baloch Sahab Technologies team &middot; <time datetime="2026-10-28">28 October 2026</time> &middot; 5 min read</p>
+  </div>
+</section>
+
+<section>
+  <div class="container narrow">
+    <article class="prose article-body">
+<p>With Cloud Firestore, your app talks to the database directly. There is no server in between checking every request, which is what makes Firestore fast to build with. It also means that your security rules are the only thing standing between your data and anyone who extracts your project configuration from the app, which is not difficult to do. Rules are not an optional extra; they are your backend&#39;s access control.</p>
+<p>This guide walks through how to write rules that hold up: start from deny, require sign-in, check ownership, validate data, keep sensitive fields server-only, and test everything. The full language reference is in the <a href="https://firebase.google.com/docs/firestore/security/get-started" target="_blank" rel="noopener noreferrer">Firebase documentation</a>.</p>
+<h2>Start from default deny</h2>
+<p>Rules are evaluated per request. If no rule allows a request, it is denied. Make that explicit and build up from nothing, rather than starting with open access and trying to close holes later.</p>
+<pre><code class="language-js">rules_version = &#39;2&#39;;
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}</code></pre>
+<p>Be careful with that wildcard match in a real ruleset. Rules combine with OR: if any matching rule allows a request, it is allowed. A broad <code>allow</code> on a wildcard path will override every careful rule you write below it. The safe pattern is to have no broad allow at all and to write a specific <code>match</code> block for each collection.</p>
+<p>A common and dangerous mistake is leaving test-mode rules in production, where everything is allowed until a date. When that date passes the app breaks, and until then the database is open to everyone.</p>
+<h2>Require authentication, then check ownership</h2>
+<p>Most data should only be accessible to signed-in users. In rules, <code>request.auth</code> is null for anonymous requests and contains the user&#39;s ID in <code>request.auth.uid</code> otherwise. Signing in is not enough on its own, though: any user can create an account. You must also check that the user is allowed to touch this particular document.</p>
+<pre><code class="language-js">match /users/{userId} {
+  allow read: if request.auth != null;
+  allow create, update: if request.auth != null
+                        &amp;&amp; request.auth.uid == userId;
+  allow delete: if false;
+}
+match /posts/{postId} {
+  allow read: if true;
+  allow create: if request.auth != null
+                &amp;&amp; request.resource.data.authorId == request.auth.uid;
+  allow update, delete: if request.auth != null
+                        &amp;&amp; resource.data.authorId == request.auth.uid;
+}</code></pre>
+<p>Notice the two different variables. <code>resource.data</code> is the document as it currently exists in the database. <code>request.resource.data</code> is what the document will look like if the write succeeds. For creating, check the new data; for updating or deleting, check the existing owner, and also make sure an update cannot change the owner field to someone else.</p>
+<p>Split <code>write</code> into <code>create</code>, <code>update</code> and <code>delete</code> whenever they need different conditions. It makes the rules clearer and avoids accidentally allowing deletes.</p>
+<h2>Validate the data being written</h2>
+<p>Rules can and should check the shape of incoming data. Without validation, a user can write any fields with any values, such as a huge string, an unexpected type, or a field your app treats as trusted.</p>
+<pre><code class="language-js">function validPost() {
+  let d = request.resource.data;
+  return d.keys().hasOnly([&#39;authorId&#39;, &#39;text&#39;, &#39;createdAt&#39;])
+      &amp;&amp; d.text is string
+      &amp;&amp; d.text.size() &gt; 0 &amp;&amp; d.text.size() &lt;= 2000
+      &amp;&amp; d.createdAt == request.time;
+}</code></pre>
+<p>Useful checks include:</p>
+<ul>
+  <li><strong>Allowed fields</strong> with <code>keys().hasOnly(...)</code>, so clients cannot add unexpected fields.</li>
+  <li><strong>Types</strong>, such as <code>is string</code>, <code>is int</code> or <code>is timestamp</code>.</li>
+  <li><strong>Sizes and ranges</strong>, to block oversized text or negative numbers.</li>
+  <li><strong>Server timestamps</strong>, by comparing to <code>request.time</code>, so clients cannot backdate content.</li>
+  <li><strong>Changed fields</strong> on update, using <code>request.resource.data.diff(resource.data).affectedKeys()</code> to allow only specific fields to change.</li>
+</ul>
+<h2>Keep sensitive fields server-only</h2>
+<p>Some data must never be written by the client at all: coin or credit balances, roles such as moderator or admin, verification status, payment records, counters that affect ranking. If the app can write them, a modified app can write them too.</p>
+<p>The pattern is to deny client writes to those fields or documents completely and change them only from trusted server code. Cloud Functions using the Firebase Admin SDK bypass security rules, because they run with service credentials. So the server can enforce your business logic, such as checking a purchase receipt before adding credit, while the rules simply refuse clients.</p>
+<pre><code class="language-js">match /wallets/{userId} {
+  allow read: if request.auth != null &amp;&amp; request.auth.uid == userId;
+  allow write: if false; // only Cloud Functions (Admin SDK) write here
+}</code></pre>
+<p>For a document that mixes user-editable and server-only fields, use the <code>affectedKeys()</code> check to make sure an update never touches the protected ones. Often it is simpler to put protected data in a separate document or collection.</p>
+<p>Roles can be handled with custom claims set by the Admin SDK, which appear in rules as <code>request.auth.token</code>. Custom claims are suited to a small number of stable roles, because they are only refreshed when the user&#39;s token is refreshed.</p>
+<h2>Remember: rules are not filters</h2>
+<p>A frequent surprise is that a query fails even though the user can read some of the matching documents. Firestore does not filter results by your rules. Instead, it checks whether the query could possibly return a document the user is not allowed to read, and rejects the entire query if so.</p>
+<p>The fix is to make your queries match your rules. If the rule says users can only read their own orders, the query must include a condition such as <code>where(&quot;ownerId&quot;, &quot;==&quot;, currentUserId)</code>. This is a feature: it means a rule cannot be bypassed simply by asking for everything.</p>
+<p>Also remember that reading a document returns all of its fields. Rules cannot hide individual fields, so private data such as an email address or phone number should live in a separate document with stricter rules, not alongside public profile fields.</p>
+<h2>Test rules with the emulator</h2>
+<p>Rules are code and deserve tests. The Firebase Local Emulator Suite runs Firestore and your rules on your own computer, and the <code>@firebase/rules-unit-testing</code> library lets you write tests that act as different users.</p>
+<p>A good test suite checks both directions:</p>
+<ol>
+  <li>A signed-in owner can create, read and update their own document.</li>
+  <li>Another signed-in user cannot update or delete it.</li>
+  <li>An anonymous user cannot write anything.</li>
+  <li>Writes with extra fields, wrong types or oversized values are rejected.</li>
+  <li>No client can write server-only fields, even on their own documents.</li>
+</ol>
+<p>Run these tests before every deployment of rules, ideally in your continuous integration. The rules playground in the Firebase console is useful for quick checks, but it is not a substitute for automated tests.</p>
+<h2>Common mistakes to avoid</h2>
+<ul>
+  <li>Allowing everything with <code>if request.auth != null</code>, which gives every user access to every other user&#39;s data.</li>
+  <li>A broad wildcard rule that silently overrides specific restrictions.</li>
+  <li>Trusting a field such as <code>isAdmin</code> or <code>balance</code> that the client itself can write.</li>
+  <li>Forgetting subcollections; rules for a document do not automatically apply to its subcollections.</li>
+  <li>Forgetting Cloud Storage, which has its own separate rules.</li>
+  <li>Updating rules without tests, then discovering in production that a screen no longer loads.</li>
+</ul>
+<h2>Conclusion</h2>
+<p>Good Firestore security rules follow a simple philosophy: deny by default, allow narrowly, validate everything clients send, and keep anything valuable under server control. Write them early, keep queries consistent with them, and test them like any other critical code. Combined with App Check and the setup described in our <a href="/blog/firebase-for-startups.html">Firebase for startups</a> guide, they give a small team a backend that is both fast to build and genuinely secure.</p>
+    </article>
+    <div class="back-row"><a href="/blog/" class="btn btn-secondary">&larr; All articles</a></div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="container">
+    <div class="section-head"><span class="kicker">Keep reading</span><h2>More from the blog</h2></div>
+    <div class="grid grid-3">
+<article class="project-card post-card">
+  <div class="post-meta"><span class="tag">Firebase</span><time datetime="2026-10-19">19 October 2026</time></div>
+  <h3><a href="/blog/firebase-for-startups.html" class="stretched">Firebase for Startups: What to Use on Day One</a></h3>
+  <p>Which Firebase services a startup app really needs at launch, how to keep costs predictable, and the signs that it is time to add other tools.</p>
+  <span class="project-link">Read article <span aria-hidden="true">&rarr;</span></span>
+</article>
+<article class="project-card post-card">
+  <div class="post-meta"><span class="tag">Google Play</span><time datetime="2026-11-06">6 November 2026</time></div>
+  <h3><a href="/blog/app-privacy-policy-play-data-safety.html" class="stretched">Writing an App Privacy Policy and the Google Play Data Safety Form</a></h3>
+  <p>How to inventory your app&#39;s data, write a clear privacy policy, complete Google Play&#39;s Data safety form and meet the account deletion rules.</p>
+  <span class="project-link">Read article <span aria-hidden="true">&rarr;</span></span>
+</article>
+<article class="project-card post-card">
+  <div class="post-meta"><span class="tag">Web Development</span><time datetime="2026-11-04">4 November 2026</time></div>
+  <h3><a href="/blog/static-site-github-pages-cloudflare.html" class="stretched">Hosting a Fast Static Website With GitHub Pages and Cloudflare</a></h3>
+  <p>How we host a company website as static HTML on GitHub Pages behind Cloudflare: domain, DNS, HTTPS, caching, build script and rollbacks.</p>
+  <span class="project-link">Read article <span aria-hidden="true">&rarr;</span></span>
+</article>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <span class="mark"><img src="/assets/img/logo-mark-128.png" alt="" width="64" height="64" loading="lazy"></span>
+          <strong>BALOCH SAHAB TECHNOLOGIES (SMC-PRIVATE) LIMITED</strong>
+        </div>
+        <p>An SECP-registered software company in Pakistan building its own digital products and engineering software for clients.</p>
+      </div>
+      <div>
+        <h2 class="footer-h">Company</h2>
+        <ul>
+          <li><a href="/about.html">About Us</a></li>
+          <li><a href="/team.html">Team</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Work</h2>
+        <ul>
+          <li><a href="/projects.html">Our Products</a></li>
+          <li><a href="/client-work.html">Client Work</a></li>
+          <li><a href="/quote.html">Request a Quote</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Contact</h2>
+        <ul>
+          <li><a href="mailto:info@balochsahab.com">info@balochsahab.com</a></li>
+          <li><a href="mailto:sales@balochsahab.com">sales@balochsahab.com</a></li>
+          <li><a href="tel:+923218818909">+92 321 8818909</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Baloch Sahab Technologies (SMC-Private) Limited. All rights reserved.</span>
+      <span class="footer-legal"><a href="/privacy.html">Privacy Policy</a> &middot; <a href="/terms.html">Terms</a> &middot; CUIN 0352600 &middot; <a href="https://leap.secp.gov.pk/#/verify-company-info/0352600" target="_blank" rel="noopener noreferrer">Verify with SECP &#8599;</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/nav.js?v=ee872eb8" defer></script>
+
+</body>
+</html>

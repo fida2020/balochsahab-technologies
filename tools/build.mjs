@@ -5,16 +5,19 @@ import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync, unlink
 import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { SITE, validateProjects, sortProjects } from "./lib.mjs";
+import { SITE, validateProjects, sortProjects, parseArticle, validateArticles, sortArticles } from "./lib.mjs";
 import { layout, canonicalFor } from "./layout.mjs";
-import { staticPages, detailPage } from "./pages.mjs";
+import { staticPages, detailPage, blogIndexPage, articlePage } from "./pages.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const check = process.argv.includes("--check");
-const GENERATED_DIRS = ["products", "work"];
+const GENERATED_DIRS = ["products", "work", "blog"];
 
 const data = JSON.parse(readFileSync(join(ROOT, "content/projects.json"), "utf8"));
-const errors = validateProjects(data, p => existsSync(join(ROOT, p)));
+const ARTICLE_DIR = join(ROOT, "content/articles");
+const articles = sortArticles(readdirSync(ARTICLE_DIR).filter(f => f.endsWith(".md"))
+  .map(f => parseArticle(f.slice(0, -3), readFileSync(join(ARTICLE_DIR, f), "utf8"))));
+const errors = [...validateProjects(data, p => existsSync(join(ROOT, p))), ...validateArticles(articles)];
 if (errors.length) {
   console.error("Content validation failed:\n- " + errors.join("\n- "));
   process.exit(1);
@@ -26,7 +29,7 @@ const assetVersion = createHash("sha1")
     .map(f => readFileSync(join(ROOT, f), "utf8")).join("\n"))
   .digest("hex").slice(0, 8);
 
-const pages = [...staticPages(published), ...published.map(detailPage)];
+const pages = [...staticPages(published), ...published.map(detailPage), blogIndexPage(articles), ...articles.map(a => articlePage(a, articles))];
 const out = new Map();
 for (const page of pages) out.set(page.path.slice(1), layout(page, assetVersion));
 
@@ -64,5 +67,5 @@ if (check) {
     writeFileSync(join(ROOT, f), html);
   }
   for (const s of stale) unlinkSync(join(ROOT, s));
-  console.log(`Built ${out.size} files (${published.length} published projects)${stale.length ? `, removed ${stale.length} stale page(s)` : ""}.`);
+  console.log(`Built ${out.size} files (${published.length} published projects, ${articles.length} articles)${stale.length ? `, removed ${stale.length} stale page(s)` : ""}.`);
 }

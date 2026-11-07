@@ -2,7 +2,7 @@
 import { readFileSync, existsSync, readdirSync, statSync } from "node:fs";
 import { join, dirname, posix } from "node:path";
 import { fileURLToPath } from "node:url";
-import { validateProjects, SITE } from "./lib.mjs";
+import { validateProjects, SITE, parseArticle, validateArticles, wordCount, ARTICLE_AUTHOR, ARTICLE_MIN_WORDS, ARTICLE_MAX_WORDS } from "./lib.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 let pass = 0, fail = 0;
@@ -52,7 +52,7 @@ for (const f of pages) {
     assert(html.includes('property="og:title"') && html.includes('property="og:image"'), "missing og tags");
     assert((html.match(/<h1[\s>]/g) || []).length === 1, "must have exactly one h1");
     assert(desc[0].length >= 50 && desc[0].length <= 170, `description length ${desc[0].length}`);
-    const expected = SITE.origin + (f === "index.html" ? "/" : "/" + f);
+    const expected = SITE.origin + "/" + f.replace(/(^|\/)index\.html$/, "$1");
     assert(canon[0] === expected, `canonical ${canon[0]} != ${expected}`);
     if (titles.has(title[0])) throw new Error("duplicate title with " + titles.get(title[0]));
     if (descs.has(desc[0])) throw new Error("duplicate description with " + descs.get(desc[0]));
@@ -79,6 +79,48 @@ for (const f of pages) {
     assert(blanks.every(a => a.includes("noopener")), "target=_blank without noopener");
   });
 }
+
+// ---- blog ----
+const ARTICLE_DIR = join(ROOT, "content/articles");
+const articles = readdirSync(ARTICLE_DIR).filter(f => f.endsWith(".md"))
+  .map(f => parseArticle(f.slice(0, -3), readFileSync(join(ARTICLE_DIR, f), "utf8")));
+const today = new Date().toISOString().slice(0, 10);
+t("article validator accepts current articles", () => { const e = validateArticles(articles); assert(e.length === 0, e.join("; ")); });
+t("article validator rejects future date, short body, raw HTML, missing description", () => {
+  const a = articles[0];
+  assert(validateArticles([{ ...a, date: "2999-01-01" }]).some(e => e.includes("future")), "future date not rejected");
+  assert(validateArticles([{ ...a, body: "Too short." }]).some(e => e.includes("words")), "short body not rejected");
+  assert(validateArticles([{ ...a, body: a.body + "\n\n<script>x</script>" }]).some(e => e.includes("HTML")), "raw HTML not rejected");
+  assert(validateArticles([{ ...a, description: "" }]).some(e => e.includes("description")), "missing description not rejected");
+});
+t("blog has at least 18 articles", () => assert(articles.length >= 18, `only ${articles.length}`));
+t("blog index lists every article and is linked from main nav and footer on every page", () => {
+  const idx = read("blog/index.html");
+  for (const a of articles) assert(idx.includes(`href="/blog/${a.slug}.html"`), `${a.slug} missing from blog index`);
+  for (const f of pages) {
+    const html = read(f);
+    assert(/<nav class="nav-links"[\s\S]*?href="\/blog\/"[\s\S]*?<\/nav>/.test(html), `${f}: Blog missing from nav`);
+    assert(/<footer[\s\S]*href="\/blog\/"[\s\S]*<\/footer>/.test(html), `${f}: Blog missing from footer`);
+  }
+});
+for (const a of articles) {
+  t(`blog/${a.slug}.html: article page, BlogPosting, author, date, length`, () => {
+    const f = `blog/${a.slug}.html`;
+    assert(existsSync(join(ROOT, f)), "page missing");
+    const html = read(f);
+    const ld = JSON.parse(attr(html, /<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)[0]);
+    const post = ld["@graph"].find(x => x["@type"] === "BlogPosting");
+    assert(post && post.headline === a.title && post.datePublished === a.date, "BlogPosting missing or wrong");
+    assert(post.author && post.author.name === ARTICLE_AUTHOR, "author missing");
+    assert(a.date <= today, "date in the future");
+    assert(html.includes(`<time datetime="${a.date}">`) && html.includes(ARTICLE_AUTHOR), "byline missing");
+    assert(html.includes('<meta property="og:type" content="article">'), "og:type not article");
+    const n = wordCount(a.body);
+    assert(n >= ARTICLE_MIN_WORDS && n <= ARTICLE_MAX_WORDS, `${n} words`);
+    assert(read("sitemap.xml").includes(`<loc>${SITE.origin}/${f}</loc>`), "not in sitemap");
+  });
+}
+t("sitemap lists the blog index", () => assert(read("sitemap.xml").includes(`<loc>${SITE.origin}/blog/</loc>`), "blog index missing"));
 
 // ---- legacy URLs kept ----
 for (const u of ["index.html", "about.html", "projects.html", "client-work.html", "team.html", "contact.html", "ads.txt", "CNAME"]) {
@@ -111,7 +153,8 @@ t("sitemap.xml is valid and every URL maps to an indexable page with matching ca
   assert(locs.length > 0 && new Set(locs).size === locs.length, "empty or duplicate locs");
   for (const loc of locs) {
     assert(loc.startsWith(SITE.origin + "/"), "wrong origin " + loc);
-    const f = loc === SITE.origin + "/" ? "index.html" : loc.slice(SITE.origin.length + 1);
+    const rel = loc.slice(SITE.origin.length + 1);
+    const f = rel === "" || rel.endsWith("/") ? rel + "index.html" : rel;
     assert(existsSync(join(ROOT, f)), "no file for " + loc);
     const html = read(f);
     assert(html.includes(`<link rel="canonical" href="${loc}">`), "canonical mismatch for " + loc);
@@ -138,7 +181,7 @@ for (const [f, endpoint] of [["contact.html", SITE.forms.contact], ["quote.html"
   });
 }
 t("no secrets in repository files", () => {
-  const files = [...pages, "assets/js/forms.js", "assets/js/nav.js", "content/projects.json", "tools/lib.mjs"];
+  const files = [...pages, "assets/js/forms.js", "assets/js/nav.js", "content/projects.json", "tools/lib.mjs", ...articles.map(a => `content/articles/${a.slug}.md`)];
   for (const f of files) assert(!/(sk_live|AIza[0-9A-Za-z_-]{30}|-----BEGIN|password\s*=)/.test(read(f)), "suspicious secret in " + f);
 });
 

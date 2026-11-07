@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="facebook-domain-verification" content="lgj2duxwjfz8lwnwr22ekxneuftn7o" />
+<title>Reducing Crashes and ANRs: A Practical Android Vitals Checklist | Baloch Sahab Technologies</title>
+<meta name="description" content="A step-by-step checklist for cutting crashes and ANRs in Android apps - main-thread work, StrictMode, lifecycle, process death, R8 mappings, rollouts.">
+<link rel="canonical" href="https://balochsahab.com/blog/reduce-android-crashes-anrs.html">
+<meta name="theme-color" content="#14144a">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Baloch Sahab Technologies">
+<meta property="og:title" content="Reducing Crashes and ANRs: A Practical Android Vitals Checklist | Baloch Sahab Technologies">
+<meta property="og:description" content="A step-by-step checklist for cutting crashes and ANRs in Android apps - main-thread work, StrictMode, lifecycle, process death, R8 mappings, rollouts.">
+<meta property="og:url" content="https://balochsahab.com/blog/reduce-android-crashes-anrs.html">
+<meta property="og:image" content="https://balochsahab.com/assets/img/logo-mark-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Reducing Crashes and ANRs: A Practical Android Vitals Checklist | Baloch Sahab Technologies">
+<meta name="twitter:description" content="A step-by-step checklist for cutting crashes and ANRs in Android apps - main-thread work, StrictMode, lifecycle, process death, R8 mappings, rollouts.">
+<meta name="twitter:image" content="https://balochsahab.com/assets/img/logo-mark-512.png">
+<link rel="icon" href="/assets/img/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/img/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/assets/img/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/style.css?v=ee872eb8">
+<script async data-cfasync="false" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6831828383879093"
+     crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://balochsahab.com/#organization","name":"Baloch Sahab Technologies","legalName":"Baloch Sahab Technologies (SMC-Private) Limited","url":"https://balochsahab.com/","logo":"https://balochsahab.com/assets/img/logo-mark-512.png","email":"info@balochsahab.com","telephone":"+923218818909","foundingDate":"2026-08-27","address":{"@type":"PostalAddress","addressLocality":"Mandi Bahauddin","addressRegion":"Punjab","addressCountry":"PK"},"identifier":{"@type":"PropertyValue","propertyID":"SECP CUIN","value":"0352600"},"sameAs":["https://leap.secp.gov.pk/#/verify-company-info/0352600"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://balochsahab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://balochsahab.com/blog/"},{"@type":"ListItem","position":3,"name":"Reducing Crashes and ANRs: A Practical Android Vitals Checklist","item":"https://balochsahab.com/blog/reduce-android-crashes-anrs.html"}]},{"@type":"BlogPosting","headline":"Reducing Crashes and ANRs: A Practical Android Vitals Checklist","description":"A step-by-step checklist for cutting crashes and ANRs in Android apps - main-thread work, StrictMode, lifecycle, process death, R8 mappings, rollouts.","datePublished":"2026-10-13","dateModified":"2026-10-13","articleSection":"Android Development","wordCount":1082,"author":{"@type":"Organization","name":"Baloch Sahab Technologies team","url":"https://balochsahab.com/about.html"},"publisher":{"@id":"https://balochsahab.com/#organization"},"mainEntityOfPage":"https://balochsahab.com/blog/reduce-android-crashes-anrs.html","image":"https://balochsahab.com/assets/img/logo-mark-512.png"}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container nav">
+    <a href="/index.html" class="brand" aria-label="Baloch Sahab Technologies home">
+      <span class="mark"><img src="/assets/img/logo-mark-256.png" alt="" width="108" height="108"></span>
+      <span class="name-stack"><span class="name-main">BALOCH SAHAB</span><span class="name-sub">Technologies (SMC-Private) Limited</span></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+    <nav class="nav-links" id="site-nav" aria-label="Main">
+      <a href="/index.html">Home</a>
+      <a href="/about.html">About</a>
+      <a href="/projects.html">Products</a>
+      <a href="/client-work.html">Client Work</a>
+      <a href="/team.html">Team</a>
+      <a href="/blog/" class="active" aria-current="page">Blog</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/quote.html" class="nav-cta">Request a Quote</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero hero-page hero-detail">
+  <div class="container narrow">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/index.html">Home</a> <span aria-hidden="true">/</span> <a href="/blog/">Blog</a> <span aria-hidden="true">/</span> <span aria-current="page">Android Development</span></nav>
+    <div class="detail-meta"><span class="tag tag-dark">Android Development</span></div>
+    <h1 class="article-title">Reducing Crashes and ANRs: A Practical Android Vitals Checklist</h1>
+    <p class="article-byline">By Baloch Sahab Technologies team &middot; <time datetime="2026-10-13">13 October 2026</time> &middot; 5 min read</p>
+  </div>
+</section>
+
+<section>
+  <div class="container narrow">
+    <article class="prose article-body">
+<p>Crashes and &quot;App Not Responding&quot; (ANR) errors are the two quality problems users notice most, and the two that Google Play watches most closely. Play Console&#39;s Android vitals section reports the share of users who experience them, and apps that exceed Play&#39;s bad behaviour thresholds can be shown less prominently in the store and may display a warning on their listing. More importantly, every crash is a person who gave up on your app.</p>
+<p>This checklist collects the practices we apply to our own apps before every release. None of them are exotic. Together they remove most of the crashes and ANRs that real apps ship with.</p>
+<h2>Understand what Play measures</h2>
+<p>Start in Play Console under <strong>Quality, then Android vitals</strong>. The overview shows the user-perceived crash rate and ANR rate, broken down by app version, Android version and device. A few points are worth knowing:</p>
+<ul>
+  <li><strong>Rates are per user, per day</strong>, not per session. One user who crashes ten times counts once for that day, so a fix for a crash that hits many users matters more than one that hits a few users repeatedly.</li>
+  <li><strong>User-perceived</strong> issues are those that happen while the user is interacting with the app, such as a crash in the foreground. These are what the thresholds use.</li>
+  <li><strong>Thresholds apply overall and per device model.</strong> An app can be fine overall and still have a problem on one popular phone.</li>
+</ul>
+<p>The exact threshold values are published in the Android vitals documentation on <a href="https://developer.android.com/" target="_blank" rel="noopener noreferrer">developer.android.com</a>. Check them there rather than relying on numbers you remember.</p>
+<h2>Keep the main thread free</h2>
+<p>An ANR happens when the main thread is blocked long enough that the system decides the app has stopped responding, for example when an input event is not handled within a few seconds. Almost every ANR is caused by work that should not be on the main thread:</p>
+<ul>
+  <li><strong>Disk access</strong>: reading files, SharedPreferences commits, database queries.</li>
+  <li><strong>Network calls</strong>, which Android already blocks on the main thread, but sometimes reached indirectly through a library.</li>
+  <li><strong>Heavy computation</strong>: parsing large JSON, decoding big images, sorting long lists.</li>
+  <li><strong>Waiting on locks</strong> held by a background thread, or using <code>runBlocking</code> on the main thread.</li>
+  <li><strong>Slow work in <code>BroadcastReceiver.onReceive</code></strong> or in a service&#39;s start, which have their own time limits.</li>
+</ul>
+<p>In Kotlin, use coroutines with the right dispatcher. Do I/O in <code>withContext(Dispatchers.IO)</code> and computation in <code>Dispatchers.Default</code>, and launch from <code>viewModelScope</code> or <code>lifecycleScope</code> so work is cancelled when no longer needed.</p>
+<h3>Turn on StrictMode in debug builds</h3>
+<p>StrictMode reports disk and network access on the main thread while you develop, so problems show up before users see them:</p>
+<pre><code class="language-kotlin">if (BuildConfig.DEBUG) {
+    StrictMode.setThreadPolicy(
+        StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().build()
+    )
+    StrictMode.setVmPolicy(
+        StrictMode.VmPolicy.Builder().detectLeakedClosableObjects().penaltyLog().build()
+    )
+}</code></pre>
+<p>Put this in your <code>Application.onCreate</code>. Review the log regularly; some third-party SDKs will appear there too, which tells you where to look.</p>
+<h2>Make startup light</h2>
+<p>Startup is a common source of both ANRs and crashes because so much happens at once. Audit what runs in <code>Application.onCreate</code> and in content providers that libraries register. Initialise SDKs lazily when the feature that uses them is opened, or move their setup to a background thread if the SDK allows it. The App Startup library helps you control the order and timing of initialisers.</p>
+<h2>Respect the lifecycle</h2>
+<p>Many crashes come from code that runs after a screen is gone:</p>
+<ul>
+  <li><strong>Updating UI after the view is destroyed</strong>, for example in a callback that arrives after the user navigated away. Collect flows with <code>repeatOnLifecycle</code> or <code>collectAsStateWithLifecycle</code> so collection stops when the screen is not visible.</li>
+  <li><strong>Fragment transactions after state is saved</strong>, which throw an IllegalStateException. Avoid committing transactions from asynchronous callbacks.</li>
+  <li><strong>Leaked listeners and callbacks</strong> registered in <code>onStart</code> but never removed in <code>onStop</code>.</li>
+  <li><strong>Dialogs shown on a finishing activity.</strong> Check that the activity is still alive before showing one.</li>
+</ul>
+<h2>Survive process death</h2>
+<p>Android can kill your app&#39;s process in the background to free memory, then recreate it when the user returns. If your app assumes that singletons or in-memory caches still hold data, it will crash with null values or show broken screens.</p>
+<p>To test, put the app in the background, then run:</p>
+<pre><code class="language-bash">adb shell am kill com.example.app</code></pre>
+<p>Then return to the app from the recents screen. Every screen should restore correctly. Keep small UI state in <code>SavedStateHandle</code> in your ViewModels, store important data in a database or DataStore, and reload anything else from its source.</p>
+<h2>Use Kotlin&#39;s null-safety honestly</h2>
+<p>Kotlin prevents many null pointer exceptions, but only if you let it. Treat every <code>!!</code> as a possible crash and replace it with a safe call, an early return or a clear default. Be careful at the boundaries with Java code and JSON parsing, where values declared non-null can still arrive as null. Validate data from the network before it reaches the UI.</p>
+<h2>Make crash reports readable</h2>
+<p>Release builds are usually shrunk and obfuscated with R8, so stack traces show short meaningless names. To read them:</p>
+<ul>
+  <li><strong>Upload the R8 mapping file</strong> for every release. If you publish an app bundle with Play, the mapping file can be included in the bundle, and Play Console uses it to deobfuscate crash reports.</li>
+  <li><strong>Upload native debug symbols</strong> if your app includes native libraries, so native crashes show function names.</li>
+  <li><strong>Use a crash reporting tool</strong> such as Firebase Crashlytics, which groups crashes, shows affected versions and devices, and lets you attach custom keys for context, such as the current screen.</li>
+  <li><strong>Keep R8 rules for reflection</strong>. If a crash only happens in release builds, a missing keep rule for a class used through reflection or serialization is a likely cause.</li>
+</ul>
+<h2>Release in stages</h2>
+<p>Even with all of the above, some problems only appear on real devices at scale. Play&#39;s <strong>staged rollout</strong> releases an update to a percentage of users first. Start small, watch crash and ANR rates in Android vitals and your crash tool for a day or two, and only then increase the rollout. If a serious problem appears, halt the rollout and fix it before it reaches everyone. Before any rollout, use the testing tracks and the <a href="/blog/google-play-pre-launch-reports.html">pre-launch report</a> to catch problems on a range of devices.</p>
+<h2>Conclusion</h2>
+<p>Most crashes and ANRs come from a short list of causes: work on the main thread, heavy startup, code that ignores the lifecycle, assumptions that break after process death, unsafe null handling, and native library problems such as the <a href="/blog/android-16kb-page-size.html">16 KB page size change</a>. Use StrictMode during development, test process death, upload mapping files, and release in stages while watching Android vitals. Make this checklist part of every release, and stability becomes a habit rather than an emergency.</p>
+    </article>
+    <div class="back-row"><a href="/blog/" class="btn btn-secondary">&larr; All articles</a></div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="container">
+    <div class="section-head"><span class="kicker">Keep reading</span><h2>More from the blog</h2></div>
+    <div class="grid grid-3">
+<article class="project-card post-card">
+  <div class="post-meta"><span class="tag">Android Development</span><time datetime="2026-10-09">9 October 2026</time></div>
+  <h3><a href="/blog/android-16kb-page-size.html" class="stretched">Preparing Your Android App for 16 KB Memory Page Sizes</a></h3>
+  <p>What the move to 16 KB memory pages means for Android apps, who is affected, and how to check, fix and test native libraries before Play rejects an update.</p>
+  <span class="project-link">Read article <span aria-hidden="true">&rarr;</span></span>
+</article>
+<article class="project-card post-card">
+  <div class="post-meta"><span class="tag">Android Development</span><time datetime="2026-10-06">6 October 2026</time></div>
+  <h3><a href="/blog/jetpack-compose-performance.html" class="stretched">Keeping Jetpack Compose Fast: Recomposition, Stability and Lists</a></h3>
+  <p>Practical techniques to keep Jetpack Compose screens smooth, from stable types and LazyColumn keys to derivedStateOf, deferred reads and baseline profiles.</p>
+  <span class="project-link">Read article <span aria-hidden="true">&rarr;</span></span>
+</article>
+<article class="project-card post-card">
+  <div class="post-meta"><span class="tag">Android Development</span><time datetime="2026-10-02">2 October 2026</time></div>
+  <h3><a href="/blog/kotlin-jetpack-compose-first-screen.html" class="stretched">Building Your First Screen with Kotlin and Jetpack Compose</a></h3>
+  <p>A hands-on introduction to Jetpack Compose, covering composables, state, remember, previews, a simple list screen and Material 3 theming.</p>
+  <span class="project-link">Read article <span aria-hidden="true">&rarr;</span></span>
+</article>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <span class="mark"><img src="/assets/img/logo-mark-128.png" alt="" width="64" height="64" loading="lazy"></span>
+          <strong>BALOCH SAHAB TECHNOLOGIES (SMC-PRIVATE) LIMITED</strong>
+        </div>
+        <p>An SECP-registered software company in Pakistan building its own digital products and engineering software for clients.</p>
+      </div>
+      <div>
+        <h2 class="footer-h">Company</h2>
+        <ul>
+          <li><a href="/about.html">About Us</a></li>
+          <li><a href="/team.html">Team</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Work</h2>
+        <ul>
+          <li><a href="/projects.html">Our Products</a></li>
+          <li><a href="/client-work.html">Client Work</a></li>
+          <li><a href="/quote.html">Request a Quote</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Contact</h2>
+        <ul>
+          <li><a href="mailto:info@balochsahab.com">info@balochsahab.com</a></li>
+          <li><a href="mailto:sales@balochsahab.com">sales@balochsahab.com</a></li>
+          <li><a href="tel:+923218818909">+92 321 8818909</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Baloch Sahab Technologies (SMC-Private) Limited. All rights reserved.</span>
+      <span class="footer-legal"><a href="/privacy.html">Privacy Policy</a> &middot; <a href="/terms.html">Terms</a> &middot; CUIN 0352600 &middot; <a href="https://leap.secp.gov.pk/#/verify-company-info/0352600" target="_blank" rel="noopener noreferrer">Verify with SECP &#8599;</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/nav.js?v=ee872eb8" defer></script>
+
+</body>
+</html>

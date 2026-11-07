@@ -26,6 +26,23 @@ Field rules (checked by the build — it refuses invalid content):
 
 Only publish verified information.
 
+## Blog articles
+
+Articles live in `content/articles/<slug>.md` (the file name is the URL: `/blog/<slug>.html`). The build lists them newest-first on `/blog/`, adds each to `sitemap.xml`, and gives every article page the same header, footer and AdSense tag as the rest of the site.
+
+Each file starts with front matter:
+
+```
+---
+title: Writing Firestore security rules that actually protect data
+description: One or two sentences, 50-160 characters, used as the meta description.
+date: 2026-10-28
+category: Firebase
+---
+```
+
+The body uses a small Markdown subset: `## ` / `### ` headings, paragraphs separated by a blank line, `- ` and `1. ` lists (one item per line), `**bold**`, `` `code` ``, `[links](https://...)` or `[links](/blog/other-slug.html)`, and fenced code blocks with no blank lines inside. Raw HTML is not allowed. The build refuses an article with a missing field, a duplicate title, a date in the future, or a body outside 900-1400 words (code not counted). Author is always "Baloch Sahab Technologies team". To unpublish an article, delete (or move out) its file. Write original, useful, accurate content only: no copied text, invented statistics, testimonials or financial claims.
+
 ## Editing other pages
 
 Page text is in `tools/pages.mjs`; the shared header/footer/SEO tags are in `tools/layout.mjs`; site-wide settings (emails, phone, form endpoints, AdSense id) are in `tools/lib.mjs`. **Do not hand-edit the generated `.html` files, `sitemap.xml` or `robots.txt`** — they are overwritten by the build.

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="facebook-domain-verification" content="lgj2duxwjfz8lwnwr22ekxneuftn7o" />
+<title>Keeping Jetpack Compose Fast: Recomposition, Stability and Lists | Baloch Sahab Technologies</title>
+<meta name="description" content="Practical techniques to keep Jetpack Compose screens smooth, from stable types and LazyColumn keys to derivedStateOf, deferred reads and baseline profiles.">
+<link rel="canonical" href="https://balochsahab.com/blog/jetpack-compose-performance.html">
+<meta name="theme-color" content="#14144a">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Baloch Sahab Technologies">
+<meta property="og:title" content="Keeping Jetpack Compose Fast: Recomposition, Stability and Lists | Baloch Sahab Technologies">
+<meta property="og:description" content="Practical techniques to keep Jetpack Compose screens smooth, from stable types and LazyColumn keys to derivedStateOf, deferred reads and baseline profiles.">
+<meta property="og:url" content="https://balochsahab.com/blog/jetpack-compose-performance.html">
+<meta property="og:image" content="https://balochsahab.com/assets/img/logo-mark-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Keeping Jetpack Compose Fast: Recomposition, Stability and Lists | Baloch Sahab Technologies">
+<meta name="twitter:description" content="Practical techniques to keep Jetpack Compose screens smooth, from stable types and LazyColumn keys to derivedStateOf, deferred reads and baseline profiles.">
+<meta name="twitter:image" content="https://balochsahab.com/assets/img/logo-mark-512.png">
+<link rel="icon" href="/assets/img/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/img/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/assets/img/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/style.css?v=ee872eb8">
+<script async data-cfasync="false" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6831828383879093"
+     crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://balochsahab.com/#organization","name":"Baloch Sahab Technologies","legalName":"Baloch Sahab Technologies (SMC-Private) Limited","url":"https://balochsahab.com/","logo":"https://balochsahab.com/assets/img/logo-mark-512.png","email":"info@balochsahab.com","telephone":"+923218818909","foundingDate":"2026-08-27","address":{"@type":"PostalAddress","addressLocality":"Mandi Bahauddin","addressRegion":"Punjab","addressCountry":"PK"},"identifier":{"@type":"PropertyValue","propertyID":"SECP CUIN","value":"0352600"},"sameAs":["https://leap.secp.gov.pk/#/verify-company-info/0352600"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://balochsahab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://balochsahab.com/blog/"},{"@type":"ListItem","position":3,"name":"Keeping Jetpack Compose Fast: Recomposition, Stability and Lists","item":"https://balochsahab.com/blog/jetpack-compose-performance.html"}]},{"@type":"BlogPosting","headline":"Keeping Jetpack Compose Fast: Recomposition, Stability and Lists","description":"Practical techniques to keep Jetpack Compose screens smooth, from stable types and LazyColumn keys to derivedStateOf, deferred reads and baseline profiles.","datePublished":"2026-10-06","dateModified":"2026-10-06","articleSection":"Android Development","wordCount":1179,"author":{"@type":"Organization","name":"Baloch Sahab Technologies team","url":"https://balochsahab.com/about.html"},"publisher":{"@id":"https://balochsahab.com/#organization"},"mainEntityOfPage":"https://balochsahab.com/blog/jetpack-compose-performance.html","image":"https://balochsahab.com/assets/img/logo-mark-512.png"}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container nav">
+    <a href="/index.html" class="brand" aria-label="Baloch Sahab Technologies home">
+      <span class="mark"><img src="/assets/img/logo-mark-256.png" alt="" width="108" height="108"></span>
+      <span class="name-stack"><span class="name-main">BALOCH SAHAB</span><span class="name-sub">Technologies (SMC-Private) Limited</span></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+    <nav class="nav-links" id="site-nav" aria-label="Main">
+      <a href="/index.html">Home</a>
+      <a href="/about.html">About</a>
+      <a href="/projects.html">Products</a>
+      <a href="/client-work.html">Client Work</a>
+      <a href="/team.html">Team</a>
+      <a href="/blog/" class="active" aria-current="page">Blog</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/quote.html" class="nav-cta">Request a Quote</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero hero-page hero-detail">
+  <div class="container narrow">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/index.html">Home</a> <span aria-hidden="true">/</span> <a href="/blog/">Blog</a> <span aria-hidden="true">/</span> <span aria-current="page">Android Development</span></nav>
+    <div class="detail-meta"><span class="tag tag-dark">Android Development</span></div>
+    <h1 class="article-title">Keeping Jetpack Compose Fast: Recomposition, Stability and Lists</h1>
+    <p class="article-byline">By Baloch Sahab Technologies team &middot; <time datetime="2026-10-06">6 October 2026</time> &middot; 6 min read</p>
+  </div>
+</section>
+
+<section>
+  <div class="container narrow">
+    <article class="prose article-body">
+<p>Jetpack Compose is fast by default for most screens, but it is easy to write code that does far more work than needed. The symptoms are familiar: a feed that stutters while scrolling, a text field that lags behind typing, or an animation that drops frames on mid-range phones. In a short-video app, where the main screen is a full-screen scrolling feed with overlays, we learned to treat these as bugs rather than polish.</p>
+<p>This guide explains how Compose decides what to redraw and gives a set of concrete techniques, in rough order of how often they help. The most important rule comes first: measure before and after every change, on a real device, in a release build.</p>
+<h2>How recomposition works</h2>
+<p>Compose runs in three phases for every frame that needs updating:</p>
+<ol>
+  <li><strong>Composition</strong> runs your composable functions and builds a description of the UI.</li>
+  <li><strong>Layout</strong> measures and places each element.</li>
+  <li><strong>Drawing</strong> renders the elements to the screen.</li>
+</ol>
+<p>When a state value changes, Compose re-runs only the composables that read that value. This is recomposition. If a composable&#39;s parameters have not changed since the last run, Compose can <strong>skip</strong> it entirely. Most performance work in Compose comes down to two goals: make sure unchanged composables can be skipped, and make sure state is read in the latest phase possible, so a change triggers layout or drawing work instead of a full recomposition.</p>
+<h2>Measure in release builds</h2>
+<p>Debug builds of Compose are much slower than release builds, because the code is interpreted with extra checks and is not optimised by R8. Judging performance from a debug build will mislead you in both directions. Before optimising anything:</p>
+<ul>
+  <li><strong>Build a release variant</strong> (or a dedicated benchmark build type that is minified and not debuggable) and install it on a mid-range physical device, not only on a flagship.</li>
+  <li><strong>Use Layout Inspector&#39;s recomposition counts</strong> in Android Studio to see which composables recompose and how often they are skipped. A count that climbs on every scroll frame for a component whose data did not change is a strong hint.</li>
+  <li><strong>Record a system trace</strong> with the Android Studio profiler or Perfetto to see where frame time actually goes.</li>
+  <li><strong>Automate the important paths</strong> with the Macrobenchmark library, measuring startup and scrolling frame timing, so regressions are caught later.</li>
+</ul>
+<h2>Stability: helping Compose skip work</h2>
+<p>Compose can only skip a composable if it can tell that the parameters are unchanged. For that it needs to know a type is <strong>stable</strong>: that its public properties will not change without Compose being notified. Primitive types, strings, lambdas and data classes made of stable types with <code>val</code> properties are treated as stable.</p>
+<p>Common causes of unstable parameters:</p>
+<ul>
+  <li><strong>Standard collection interfaces</strong> like <code>List</code> are treated as possibly mutable. Use the immutable collections from kotlinx.collections.immutable, or wrap the list in a class annotated with <code>@Immutable</code>.</li>
+  <li><strong>Classes from other modules</strong> that the Compose compiler did not process, such as domain models in a plain Kotlin module.</li>
+  <li><strong><code>var</code> properties</strong> in data classes passed to the UI.</li>
+</ul>
+<p>Recent versions of the Compose compiler enable <strong>strong skipping mode</strong> by default, which lets composables with unstable parameters still be skipped when the instances are identical. This removes many of the old problems, but it compares unstable values by reference. If you create a new list object on every state emission, even with the same contents, the composable still recomposes. Keep UI models simple, immutable and created only when data really changes.</p>
+<p>The Compose compiler can generate reports listing each composable and whether it is skippable. Turning these on for a module is a quick way to find surprises.</p>
+<h2>Lists: keys, content types and item cost</h2>
+<p><code>LazyColumn</code> and <code>LazyRow</code> are where most scrolling problems live. Three habits prevent most of them:</p>
+<pre><code class="language-kotlin">LazyColumn {
+    items(
+        items = posts,
+        key = { it.id },
+        contentType = { it.type }
+    ) { post -&gt;
+        PostRow(post)
+    }
+}</code></pre>
+<ul>
+  <li><strong>Always provide a stable <code>key</code>.</strong> Without keys, items are identified by position. Inserting one item at the top then forces every visible item to recompose with new data, and remembered state inside items moves to the wrong rows.</li>
+  <li><strong>Provide <code>contentType</code></strong> when the list mixes different layouts, such as posts and ads. Compose can then reuse compositions only between items of the same type.</li>
+  <li><strong>Keep each item cheap.</strong> Avoid sorting, filtering, date formatting or parsing inside the item composable. Do that work once in the ViewModel and pass ready-to-display values.</li>
+</ul>
+<p>Images deserve special attention. Use an image loading library that decodes at the displayed size, set a fixed size or aspect ratio so loading an image does not trigger a new layout pass, and avoid huge placeholder bitmaps.</p>
+<h2>derivedStateOf and remember</h2>
+<p>Sometimes a value changes very often but the UI only cares when it crosses a threshold. The classic example is showing a &quot;scroll to top&quot; button once the user has scrolled past the first item. Reading <code>listState.firstVisibleItemIndex</code> directly would recompose the button on every scroll change. <code>derivedStateOf</code> turns the frequent changes into a value that only changes when the result changes:</p>
+<pre><code class="language-kotlin">val listState = rememberLazyListState()
+val showScrollToTop by remember {
+    derivedStateOf { listState.firstVisibleItemIndex &gt; 0 }
+}</code></pre>
+<p>Use <code>derivedStateOf</code> only when the output changes less often than the input. Wrapping a simple calculation that changes as often as its input adds overhead without benefit.</p>
+<p>Similarly, use <code>remember</code> with keys for expensive calculations that depend on parameters, such as <code>remember(items) { items.sortedBy { it.name } }</code>, so the work runs only when the input changes rather than on every recomposition.</p>
+<h2>Defer state reads to later phases</h2>
+<p>If a value changes on every frame, such as a scroll offset or an animation, reading it during composition forces recomposition on every frame. Many modifiers offer a lambda version that reads the value during layout or drawing instead:</p>
+<pre><code class="language-kotlin">// Recomposes every frame
+Box(Modifier.offset(y = scrollOffset.dp))
+// Only re-runs layout placement
+Box(Modifier.offset { IntOffset(0, scrollOffset) })
+// Only redraws
+Box(Modifier.graphicsLayer { alpha = fadeProgress })</code></pre>
+<p>The same idea applies to <code>drawBehind</code> for custom drawing. Another useful trick is to pass a lambda such as <code>scrollProvider: () -&gt; Int</code> to a child instead of the raw value, so only the child that actually reads it is invalidated.</p>
+<h2>Baseline profiles</h2>
+<p>The first launches of an app, and the first time each screen opens, can feel slower because code is not yet compiled ahead of time. <strong>Baseline profiles</strong> tell the Android runtime which classes and methods to compile when the app is installed. Compose libraries ship their own profiles, but generating one for your app&#39;s startup and main journeys can noticeably improve startup and early scrolling.</p>
+<p>The Baseline Profile Gradle plugin and a Macrobenchmark module make this routine: you write a test that launches the app and scrolls the main screens, the plugin generates the profile, and it is packaged with your release build. Regenerate it when your main flows change. Check the current setup steps on <a href="https://developer.android.com/" target="_blank" rel="noopener noreferrer">developer.android.com</a>, as the tooling continues to improve.</p>
+<h2>Conclusion</h2>
+<p>Compose performance is mostly about avoiding unnecessary work. Measure in release builds on real devices, keep UI models immutable so composables can be skipped, give lazy list items keys and content types, use <code>derivedStateOf</code> for high-frequency values, defer frequently changing reads to the layout or drawing phase, and ship a baseline profile. Apply one change at a time and confirm each with a trace or benchmark. If you are just starting with Compose, read our introduction to <a href="/blog/kotlin-jetpack-compose-first-screen.html">building your first screen</a> first, and for app-wide quality signals see our <a href="/blog/reduce-android-crashes-anrs.html">Android vitals checklist</a>.</p>
+    </article>
+    <div class="back-row"><a href="/blog/" class="btn btn-secondary">&larr; All articles</a></div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="container">
+    <div class="section-head"><span class="kicker">Keep reading</span><h2>More from the blog</h2></div>
+    <div class="grid grid-3">
+<article class="project-card post-card">
+  <div class="post-meta"><span class="tag">Android Development</span><time datetime="2026-10-13">13 October 2026</time></div>
+  <h3><a href="/blog/reduce-android-crashes-anrs.html" class="stretched">Reducing Crashes and ANRs: A Practical Android Vitals Checklist</a></h3>
+  <p>A step-by-step checklist for cutting crashes and ANRs in Android apps - main-thread work, StrictMode, lifecycle, process death, R8 mappings, rollouts.</p>
+  <span class="project-link">Read article <span aria-hidden="true">&rarr;</span></span>
+</article>
+<article class="project-card post-card">
+  <div class="post-meta"><span class="tag">Android Development</span><time datetime="2026-10-09">9 October 2026</time></div>
+  <h3><a href="/blog/android-16kb-page-size.html" class="stretched">Preparing Your Android App for 16 KB Memory Page Sizes</a></h3>
+  <p>What the move to 16 KB memory pages means for Android apps, who is affected, and how to check, fix and test native libraries before Play rejects an update.</p>
+  <span class="project-link">Read article <span aria-hidden="true">&rarr;</span></span>
+</article>
+<article class="project-card post-card">
+  <div class="post-meta"><span class="tag">Android Development</span><time datetime="2026-10-02">2 October 2026</time></div>
+  <h3><a href="/blog/kotlin-jetpack-compose-first-screen.html" class="stretched">Building Your First Screen with Kotlin and Jetpack Compose</a></h3>
+  <p>A hands-on introduction to Jetpack Compose, covering composables, state, remember, previews, a simple list screen and Material 3 theming.</p>
+  <span class="project-link">Read article <span aria-hidden="true">&rarr;</span></span>
+</article>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <span class="mark"><img src="/assets/img/logo-mark-128.png" alt="" width="64" height="64" loading="lazy"></span>
+          <strong>BALOCH SAHAB TECHNOLOGIES (SMC-PRIVATE) LIMITED</strong>
+        </div>
+        <p>An SECP-registered software company in Pakistan building its own digital products and engineering software for clients.</p>
+      </div>
+      <div>
+        <h2 class="footer-h">Company</h2>
+        <ul>
+          <li><a href="/about.html">About Us</a></li>
+          <li><a href="/team.html">Team</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Work</h2>
+        <ul>
+          <li><a href="/projects.html">Our Products</a></li>
+          <li><a href="/client-work.html">Client Work</a></li>
+          <li><a href="/quote.html">Request a Quote</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Contact</h2>
+        <ul>
+          <li><a href="mailto:info@balochsahab.com">info@balochsahab.com</a></li>
+          <li><a href="mailto:sales@balochsahab.com">sales@balochsahab.com</a></li>
+          <li><a href="tel:+923218818909">+92 321 8818909</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Baloch Sahab Technologies (SMC-Private) Limited. All rights reserved.</span>
+      <span class="footer-legal"><a href="/privacy.html">Privacy Policy</a> &middot; <a href="/terms.html">Terms</a> &middot; CUIN 0352600 &middot; <a href="https://leap.secp.gov.pk/#/verify-company-info/0352600" target="_blank" rel="noopener noreferrer">Verify with SECP &#8599;</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/nav.js?v=ee872eb8" defer></script>
+
+</body>
+</html>

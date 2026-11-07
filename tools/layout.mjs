@@ -6,11 +6,12 @@ const NAV = [
   ["/projects.html", "Products"],
   ["/client-work.html", "Client Work"],
   ["/team.html", "Team"],
+  ["/blog/", "Blog"],
   ["/contact.html", "Contact"]
 ];
 
 export function canonicalFor(path) {
-  return SITE.origin + (path === "/index.html" ? "/" : path);
+  return SITE.origin + path.replace(/(^|\/)index\.html$/, "$1");
 }
 
 function orgJsonLd() {
@@ -107,6 +108,7 @@ ${page.body.trim()}
         <ul>
           <li><a href="/about.html">About Us</a></li>
           <li><a href="/team.html">Team</a></li>
+          <li><a href="/blog/">Blog</a></li>
           <li><a href="/contact.html">Contact</a></li>
         </ul>
       </div>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="facebook-domain-verification" content="lgj2duxwjfz8lwnwr22ekxneuftn7o" />
+<title>Building Your First Screen with Kotlin and Jetpack Compose | Baloch Sahab Technologies</title>
+<meta name="description" content="A hands-on introduction to Jetpack Compose, covering composables, state, remember, previews, a simple list screen and Material 3 theming.">
+<link rel="canonical" href="https://balochsahab.com/blog/kotlin-jetpack-compose-first-screen.html">
+<meta name="theme-color" content="#14144a">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Baloch Sahab Technologies">
+<meta property="og:title" content="Building Your First Screen with Kotlin and Jetpack Compose | Baloch Sahab Technologies">
+<meta property="og:description" content="A hands-on introduction to Jetpack Compose, covering composables, state, remember, previews, a simple list screen and Material 3 theming.">
+<meta property="og:url" content="https://balochsahab.com/blog/kotlin-jetpack-compose-first-screen.html">
+<meta property="og:image" content="https://balochsahab.com/assets/img/logo-mark-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Building Your First Screen with Kotlin and Jetpack Compose | Baloch Sahab Technologies">
+<meta name="twitter:description" content="A hands-on introduction to Jetpack Compose, covering composables, state, remember, previews, a simple list screen and Material 3 theming.">
+<meta name="twitter:image" content="https://balochsahab.com/assets/img/logo-mark-512.png">
+<link rel="icon" href="/assets/img/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/img/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/assets/img/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/style.css?v=ee872eb8">
+<script async data-cfasync="false" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6831828383879093"
+     crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://balochsahab.com/#organization","name":"Baloch Sahab Technologies","legalName":"Baloch Sahab Technologies (SMC-Private) Limited","url":"https://balochsahab.com/","logo":"https://balochsahab.com/assets/img/logo-mark-512.png","email":"info@balochsahab.com","telephone":"+923218818909","foundingDate":"2026-08-27","address":{"@type":"PostalAddress","addressLocality":"Mandi Bahauddin","addressRegion":"Punjab","addressCountry":"PK"},"identifier":{"@type":"PropertyValue","propertyID":"SECP CUIN","value":"0352600"},"sameAs":["https://leap.secp.gov.pk/#/verify-company-info/0352600"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://balochsahab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://balochsahab.com/blog/"},{"@type":"ListItem","position":3,"name":"Building Your First Screen with Kotlin and Jetpack Compose","item":"https://balochsahab.com/blog/kotlin-jetpack-compose-first-screen.html"}]},{"@type":"BlogPosting","headline":"Building Your First Screen with Kotlin and Jetpack Compose","description":"A hands-on introduction to Jetpack Compose, covering composables, state, remember, previews, a simple list screen and Material 3 theming.","datePublished":"2026-10-02","dateModified":"2026-10-02","articleSection":"Android Development","wordCount":1114,"author":{"@type":"Organization","name":"Baloch Sahab Technologies team","url":"https://balochsahab.com/about.html"},"publisher":{"@id":"https://balochsahab.com/#organization"},"mainEntityOfPage":"https://balochsahab.com/blog/kotlin-jetpack-compose-first-screen.html","image":"https://balochsahab.com/assets/img/logo-mark-512.png"}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container nav">
+    <a href="/index.html" class="brand" aria-label="Baloch Sahab Technologies home">
+      <span class="mark"><img src="/assets/img/logo-mark-256.png" alt="" width="108" height="108"></span>
+      <span class="name-stack"><span class="name-main">BALOCH SAHAB</span><span class="name-sub">Technologies (SMC-Private) Limited</span></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+    <nav class="nav-links" id="site-nav" aria-label="Main">
+      <a href="/index.html">Home</a>
+      <a href="/about.html">About</a>
+      <a href="/projects.html">Products</a>
+      <a href="/client-work.html">Client Work</a>
+      <a href="/team.html">Team</a>
+      <a href="/blog/" class="active" aria-current="page">Blog</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/quote.html" class="nav-cta">Request a Quote</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero hero-page hero-detail">
+  <div class="container narrow">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/index.html">Home</a> <span aria-hidden="true">/</span> <a href="/blog/">Blog</a> <span aria-hidden="true">/</span> <span aria-current="page">Android Development</span></nav>
+    <div class="detail-meta"><span class="tag tag-dark">Android Development</span></div>
+    <h1 class="article-title">Building Your First Screen with Kotlin and Jetpack Compose</h1>
+    <p class="article-byline">By Baloch Sahab Technologies team &middot; <time datetime="2026-10-02">2 October 2026</time> &middot; 6 min read</p>
+  </div>
+</section>
+
+<section>
+  <div class="container narrow">
+    <article class="prose article-body">
+<p>Jetpack Compose is now the standard way to build Android user interfaces. Instead of describing screens in XML layouts and then wiring them up from Kotlin, you write Kotlin functions that describe what the screen should look like for the current data. When the data changes, Compose redraws only the parts that depend on it.</p>
+<p>If you have built Android apps with views before, the change in thinking takes a few days to settle. If you are new to Android, Compose is actually the easier place to start. This guide walks through the ideas you need for a first real screen: composable functions, state, <code>remember</code>, previews, a scrolling list and Material 3 theming. It is the same foundation we use when we start a new screen in our own apps.</p>
+<h2>Setting up the project</h2>
+<p>The quickest route is Android Studio&#39;s <strong>New Project</strong> wizard with the <strong>Empty Activity</strong> template. Current templates create a Compose project by default, with the Compose compiler plugin, the Compose Bill of Materials (BOM) and Material 3 already added to the module&#39;s build file.</p>
+<p>The BOM is worth understanding. Compose is split into many libraries (runtime, foundation, material3, ui-tooling and so on), and the BOM pins them to versions that are tested together. You declare the BOM once and then add the individual libraries without version numbers:</p>
+<pre><code class="language-kotlin">dependencies {
+    val composeBom = platform(&quot;androidx.compose:compose-bom:VERSION&quot;)
+    implementation(composeBom)
+    implementation(&quot;androidx.compose.material3:material3&quot;)
+    implementation(&quot;androidx.compose.ui:ui-tooling-preview&quot;)
+    debugImplementation(&quot;androidx.compose.ui:ui-tooling&quot;)
+}</code></pre>
+<p>Replace <code>VERSION</code> with the current BOM release listed on the <a href="https://developer.android.com/" target="_blank" rel="noopener noreferrer">Android Developers</a> site. Upgrading Compose later then becomes a one-line change.</p>
+<h2>Composable functions</h2>
+<p>A composable is a normal Kotlin function marked with the <code>@Composable</code> annotation. It does not return a view. Instead it emits UI by calling other composables:</p>
+<pre><code class="language-kotlin">@Composable
+fun Greeting(name: String) {
+    Text(text = &quot;Hello, $name&quot;)
+}</code></pre>
+<p>A few rules make composables behave well:</p>
+<ul>
+  <li><strong>Name them like nouns, in PascalCase.</strong> <code>ProfileHeader</code>, not <code>showProfileHeader</code>. They describe a piece of UI, not an action.</li>
+  <li><strong>Pass data in as parameters.</strong> A composable should draw what it is given. That makes it reusable and easy to preview.</li>
+  <li><strong>Keep them free of side effects.</strong> Compose may call a composable many times, in any order, or skip it. Do not start network requests or write to databases directly in the function body.</li>
+  <li><strong>Accept a <code>modifier</code> parameter.</strong> By convention, reusable composables take <code>modifier: Modifier = Modifier</code> and apply it to their outer element, so callers can control padding, size and click behaviour.</li>
+</ul>
+<p>Layout is done with a small set of building blocks. <code>Column</code> stacks children vertically, <code>Row</code> places them horizontally, and <code>Box</code> layers them on top of each other. Modifiers such as <code>padding</code>, <code>fillMaxWidth</code>, <code>size</code> and <code>clickable</code> adjust each element. Modifier order matters: padding applied before a background is outside the coloured area, while padding applied after it is inside.</p>
+<h2>State and remember</h2>
+<p>A screen that never changes is not very useful. In Compose, UI is a function of state. When a state value that a composable reads changes, Compose schedules that composable to run again with the new value. This is called recomposition.</p>
+<p>The simplest state holder is <code>mutableStateOf</code>, wrapped in <code>remember</code> so the value survives recomposition:</p>
+<pre><code class="language-kotlin">@Composable
+fun Counter(modifier: Modifier = Modifier) {
+    var count by remember { mutableStateOf(0) }
+    Button(onClick = { count++ }, modifier = modifier) {
+        Text(&quot;Tapped $count times&quot;)
+    }
+}</code></pre>
+<p>Without <code>remember</code>, the value would be reset to zero every time the function ran again. <code>remember</code> keeps the value while the composable stays on screen, but it is lost when the activity is recreated, for example after a screen rotation. For small values that should survive that, use <code>rememberSaveable</code> instead.</p>
+<h3>State hoisting</h3>
+<p>As screens grow, you will want state to live higher up. The pattern is called <strong>state hoisting</strong>: a composable receives the current value and a callback to change it, instead of owning the state itself.</p>
+<pre><code class="language-kotlin">@Composable
+fun SearchBox(query: String, onQueryChange: (String) -&gt; Unit) {
+    OutlinedTextField(value = query, onValueChange = onQueryChange, label = { Text(&quot;Search&quot;) })
+}</code></pre>
+<p>The parent decides where the state lives. For anything beyond trivial UI state, that place is usually a <code>ViewModel</code>, which exposes state as a <code>StateFlow</code> and survives configuration changes. In the composable you collect it with <code>collectAsStateWithLifecycle()</code> from the lifecycle-runtime-compose library, which stops collecting when the screen is not visible.</p>
+<h2>Previews</h2>
+<p>Previews let you see a composable in Android Studio without running the app. Add a separate function annotated with <code>@Preview</code>:</p>
+<pre><code class="language-kotlin">@Preview(showBackground = true)
+@Composable
+fun GreetingPreview() {
+    MyAppTheme { Greeting(name = &quot;Android&quot;) }
+}</code></pre>
+<p>You can add several previews for the same component, for example one for dark mode and one with a large font scale, using parameters of the <code>@Preview</code> annotation. This is one of the best habits to build early. When every component has a preview, you catch layout problems like clipped text or poor contrast long before a user does. Previews work best when composables take plain data, which is another reason to hoist state rather than reading a ViewModel deep inside a component.</p>
+<h2>Building a list screen</h2>
+<p>Most apps have at least one scrolling list. In Compose you do not need an adapter or view holders. <code>LazyColumn</code> only composes the items currently visible, so it handles long lists efficiently:</p>
+<pre><code class="language-kotlin">data class Note(val id: Long, val title: String, val body: String)
+@Composable
+fun NoteList(notes: List&lt;Note&gt;, onNoteClick: (Note) -&gt; Unit) {
+    LazyColumn(contentPadding = PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+        items(notes, key = { it.id }) { note -&gt;
+            NoteCard(note = note, onClick = { onNoteClick(note) })
+        }
+    }
+}
+@Composable
+fun NoteCard(note: Note, onClick: () -&gt; Unit) {
+    Card(onClick = onClick, modifier = Modifier.fillMaxWidth()) {
+        Column(Modifier.padding(16.dp)) {
+            Text(note.title, style = MaterialTheme.typography.titleMedium)
+            Text(note.body, style = MaterialTheme.typography.bodyMedium, maxLines = 2)
+        }
+    }
+}</code></pre>
+<p>Two details in this example matter more than they look. The <code>key</code> parameter gives each item a stable identity, so when the list changes Compose can move items instead of rebuilding them, and scroll position stays correct. And <code>contentPadding</code> adds space around the list without clipping items as they scroll, which a plain padding modifier would do.</p>
+<p>To complete the screen, wrap the list in a <code>Scaffold</code>. It provides slots for a top app bar, a floating action button and a snackbar host, and passes inner padding that you apply to the content so it does not sit under the bars.</p>
+<h2>Material 3 theming</h2>
+<p>The project template generates a theme function, usually named after your app, that wraps <code>MaterialTheme</code> with a colour scheme, typography and shapes. Every Material component reads from it, so you change the look of the whole app in one place.</p>
+<p>Good practices for theming:</p>
+<ul>
+  <li><strong>Read colours from the theme</strong>, such as <code>MaterialTheme.colorScheme.primary</code>, rather than hard-coding values in components. Dark mode then works automatically.</li>
+  <li><strong>Support dynamic colour</strong> on Android 12 and later, where the theme can follow the user&#39;s wallpaper, but keep a branded fallback scheme for older devices and for when you prefer brand colours.</li>
+  <li><strong>Use the typography scale</strong>, such as <code>titleMedium</code> and <code>bodyLarge</code>, instead of setting font sizes on each <code>Text</code>. Text then respects the user&#39;s font size setting consistently.</li>
+  <li><strong>Follow the system theme by default.</strong> Use <code>isSystemInDarkTheme()</code> to pick the light or dark scheme, and only add an in-app override if users ask for one.</li>
+</ul>
+<h2>Conclusion</h2>
+<p>Your first Compose screen needs only a handful of ideas: composable functions that draw what they are given, state that triggers recomposition, <code>remember</code> to keep values between runs, previews to check your work, <code>LazyColumn</code> for lists, and a Material 3 theme to keep everything consistent. Once these feel natural, move on to navigation between screens and to performance. Our guide to <a href="/blog/jetpack-compose-performance.html">keeping Jetpack Compose fast</a> covers what to watch as your screens grow, and the official Compose documentation on <a href="https://developer.android.com/" target="_blank" rel="noopener noreferrer">developer.android.com</a> is the best reference for every API used here.</p>
+    </article>
+    <div class="back-row"><a href="/blog/" class="btn btn-secondary">&larr; All articles</a></div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="container">
+    <div class="section-head"><span class="kicker">Keep reading</span><h2>More from the blog</h2></div>
+    <div class="grid grid-3">
+<article class="project-card post-card">
+  <div class="post-meta"><span class="tag">Android Development</span><time datetime="2026-10-13">13 October 2026</time></div>
+  <h3><a href="/blog/reduce-android-crashes-anrs.html" class="stretched">Reducing Crashes and ANRs: A Practical Android Vitals Checklist</a></h3>
+  <p>A step-by-step checklist for cutting crashes and ANRs in Android apps - main-thread work, StrictMode, lifecycle, process death, R8 mappings, rollouts.</p>
+  <span class="project-link">Read article <span aria-hidden="true">&rarr;</span></span>
+</article>
+<article class="project-card post-card">
+  <div class="post-meta"><span class="tag">Android Development</span><time datetime="2026-10-09">9 October 2026</time></div>
+  <h3><a href="/blog/android-16kb-page-size.html" class="stretched">Preparing Your Android App for 16 KB Memory Page Sizes</a></h3>
+  <p>What the move to 16 KB memory pages means for Android apps, who is affected, and how to check, fix and test native libraries before Play rejects an update.</p>
+  <span class="project-link">Read article <span aria-hidden="true">&rarr;</span></span>
+</article>
+<article class="project-card post-card">
+  <div class="post-meta"><span class="tag">Android Development</span><time datetime="2026-10-06">6 October 2026</time></div>
+  <h3><a href="/blog/jetpack-compose-performance.html" class="stretched">Keeping Jetpack Compose Fast: Recomposition, Stability and Lists</a></h3>
+  <p>Practical techniques to keep Jetpack Compose screens smooth, from stable types and LazyColumn keys to derivedStateOf, deferred reads and baseline profiles.</p>
+  <span class="project-link">Read article <span aria-hidden="true">&rarr;</span></span>
+</article>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <span class="mark"><img src="/assets/img/logo-mark-128.png" alt="" width="64" height="64" loading="lazy"></span>
+          <strong>BALOCH SAHAB TECHNOLOGIES (SMC-PRIVATE) LIMITED</strong>
+        </div>
+        <p>An SECP-registered software company in Pakistan building its own digital products and engineering software for clients.</p>
+      </div>
+      <div>
+        <h2 class="footer-h">Company</h2>
+        <ul>
+          <li><a href="/about.html">About Us</a></li>
+          <li><a href="/team.html">Team</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Work</h2>
+        <ul>
+          <li><a href="/projects.html">Our Products</a></li>
+          <li><a href="/client-work.html">Client Work</a></li>
+          <li><a href="/quote.html">Request a Quote</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Contact</h2>
+        <ul>
+          <li><a href="mailto:info@balochsahab.com">info@balochsahab.com</a></li>
+          <li><a href="mailto:sales@balochsahab.com">sales@balochsahab.com</a></li>
+          <li><a href="tel:+923218818909">+92 321 8818909</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Baloch Sahab Technologies (SMC-Private) Limited. All rights reserved.</span>
+      <span class="footer-legal"><a href="/privacy.html">Privacy Policy</a> &middot; <a href="/terms.html">Terms</a> &middot; CUIN 0352600 &middot; <a href="https://leap.secp.gov.pk/#/verify-company-info/0352600" target="_blank" rel="noopener noreferrer">Verify with SECP &#8599;</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/nav.js?v=ee872eb8" defer></script>
+
+</body>
+</html>

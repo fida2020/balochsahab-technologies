@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="facebook-domain-verification" content="lgj2duxwjfz8lwnwr22ekxneuftn7o" />
+<title>How Short-Video Feeds Start Playback Instantly | Baloch Sahab Technologies</title>
+<meta name="description" content="Player pooling, preloading, buffer tuning and caching techniques that make a vertical video feed start playing the moment a user swipes.">
+<link rel="canonical" href="https://balochsahab.com/blog/short-video-instant-playback.html">
+<meta name="theme-color" content="#14144a">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Baloch Sahab Technologies">
+<meta property="og:title" content="How Short-Video Feeds Start Playback Instantly | Baloch Sahab Technologies">
+<meta property="og:description" content="Player pooling, preloading, buffer tuning and caching techniques that make a vertical video feed start playing the moment a user swipes.">
+<meta property="og:url" content="https://balochsahab.com/blog/short-video-instant-playback.html">
+<meta property="og:image" content="https://balochsahab.com/assets/img/logo-mark-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="How Short-Video Feeds Start Playback Instantly | Baloch Sahab Technologies">
+<meta name="twitter:description" content="Player pooling, preloading, buffer tuning and caching techniques that make a vertical video feed start playing the moment a user swipes.">
+<meta name="twitter:image" content="https://balochsahab.com/assets/img/logo-mark-512.png">
+<link rel="icon" href="/assets/img/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/img/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/assets/img/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/style.css?v=ee872eb8">
+<script async data-cfasync="false" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6831828383879093"
+     crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://balochsahab.com/#organization","name":"Baloch Sahab Technologies","legalName":"Baloch Sahab Technologies (SMC-Private) Limited","url":"https://balochsahab.com/","logo":"https://balochsahab.com/assets/img/logo-mark-512.png","email":"info@balochsahab.com","telephone":"+923218818909","foundingDate":"2026-08-27","address":{"@type":"PostalAddress","addressLocality":"Mandi Bahauddin","addressRegion":"Punjab","addressCountry":"PK"},"identifier":{"@type":"PropertyValue","propertyID":"SECP CUIN","value":"0352600"},"sameAs":["https://leap.secp.gov.pk/#/verify-company-info/0352600"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://balochsahab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://balochsahab.com/blog/"},{"@type":"ListItem","position":3,"name":"How Short-Video Feeds Start Playback Instantly","item":"https://balochsahab.com/blog/short-video-instant-playback.html"}]},{"@type":"BlogPosting","headline":"How Short-Video Feeds Start Playback Instantly","description":"Player pooling, preloading, buffer tuning and caching techniques that make a vertical video feed start playing the moment a user swipes.","datePublished":"2026-10-04","dateModified":"2026-10-04","articleSection":"Video & Streaming","wordCount":1274,"author":{"@type":"Organization","name":"Baloch Sahab Technologies team","url":"https://balochsahab.com/about.html"},"publisher":{"@id":"https://balochsahab.com/#organization"},"mainEntityOfPage":"https://balochsahab.com/blog/short-video-instant-playback.html","image":"https://balochsahab.com/assets/img/logo-mark-512.png"}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container nav">
+    <a href="/index.html" class="brand" aria-label="Baloch Sahab Technologies home">
+      <span class="mark"><img src="/assets/img/logo-mark-256.png" alt="" width="108" height="108"></span>
+      <span class="name-stack"><span class="name-main">BALOCH SAHAB</span><span class="name-sub">Technologies (SMC-Private) Limited</span></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+    <nav class="nav-links" id="site-nav" aria-label="Main">
+      <a href="/index.html">Home</a>
+      <a href="/about.html">About</a>
+      <a href="/projects.html">Products</a>
+      <a href="/client-work.html">Client Work</a>
+      <a href="/team.html">Team</a>
+      <a href="/blog/" class="active" aria-current="page">Blog</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/quote.html" class="nav-cta">Request a Quote</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero hero-page hero-detail">
+  <div class="container narrow">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/index.html">Home</a> <span aria-hidden="true">/</span> <a href="/blog/">Blog</a> <span aria-hidden="true">/</span> <span aria-current="page">Video &amp; Streaming</span></nav>
+    <div class="detail-meta"><span class="tag tag-dark">Video &amp; Streaming</span></div>
+    <h1 class="article-title">How Short-Video Feeds Start Playback Instantly</h1>
+    <p class="article-byline">By Baloch Sahab Technologies team &middot; <time datetime="2026-10-04">4 October 2026</time> &middot; 6 min read</p>
+  </div>
+</section>
+
+<section>
+  <div class="container narrow">
+    <article class="prose article-body">
+<p>In a vertical short-video feed, people decide within a moment whether a clip is worth watching. If they swipe and see a spinner, many of them simply swipe again, and the clip never gets a fair chance. That makes startup speed one of the most important qualities of the whole app, more important than many visible features.</p>
+<p>This guide explains the techniques we use and recommend for Android apps built on ExoPlayer, which is now part of the Jetpack Media3 library. The same ideas apply on iOS with AVPlayer, even though the APIs differ.</p>
+<h2>Why a feed is different from a normal video player</h2>
+<p>A classic video app plays one long video. The user waits a second or two, then watches for minutes, so a little startup delay is acceptable. A short-video feed is the opposite: dozens of short clips per session, each one watched for seconds, with the next one always predictable. The user is going to swipe down, so the app knows what they will watch next before they do.</p>
+<p>That predictability is the key. Almost every technique below is about doing work for the next clip while the current clip is playing, so that when the swipe happens there is nothing left to wait for.</p>
+<h2>Reuse players instead of creating them</h2>
+<p>Creating an ExoPlayer instance is not free. It allocates renderers, codec resources and buffers, and on lower-end phones hardware video decoders are a limited resource. If every page in the feed creates and releases its own player, you pay that cost on every swipe and you risk running out of decoders when the user swipes quickly.</p>
+<p>A better pattern is a small <strong>player pool</strong>: two or three players that are created once and moved between pages. A common arrangement is one player for the visible clip, one already prepared with the next clip, and optionally one holding the previous clip so a quick swipe back is also instant.</p>
+<ul>
+  <li>When a page becomes visible, take the player that is already prepared for it and attach it to that page&#39;s surface.</li>
+  <li>When a page leaves the screen, pause its player and either keep it for the previous clip or reassign it to a clip further down.</li>
+  <li>Release all players when the feed screen itself is destroyed, not on every swipe.</li>
+</ul>
+<p>Keep the pool small. Each prepared player holds buffered video in memory and may hold a hardware decoder, so a pool of ten players will cause more problems than it solves.</p>
+<h2>Preload the next clips</h2>
+<p>Preparing a player for the next clip means it starts downloading and buffering immediately, while the user is still watching the current one. By the time they swipe, the first second or two of video is already in memory and the first frame can be rendered straight away.</p>
+<p>Preloading has a cost: it uses bandwidth for clips the user may never watch. A reasonable balance for most feeds is to fully prepare only the next clip and, at most, download a small amount of the one after it into a disk cache. Recent Media3 versions also include a preload manager designed for exactly this list-style use case; check the current <a href="https://developer.android.com/media/media3" target="_blank" rel="noopener noreferrer">Media3 documentation</a> to see what your version supports.</p>
+<p>If the user is on a metered connection or has turned on a data saver setting, reduce preloading further. We cover that trade-off in our guide to <a href="/blog/data-saver-mode-video-apps.html">designing a data saver mode</a>.</p>
+<h2>Tune the buffer for short clips</h2>
+<p>ExoPlayer&#39;s default buffer settings are designed for general playback, where avoiding stalls during a long video matters more than starting quickly. For short clips you can safely ask the player to start once a smaller amount of media is buffered. The relevant settings live in <code>DefaultLoadControl</code>.</p>
+<pre><code class="language-kotlin">val loadControl = DefaultLoadControl.Builder()
+    .setBufferDurationsMs(
+        /* minBufferMs = */ 2_500,
+        /* maxBufferMs = */ 15_000,
+        /* bufferForPlaybackMs = */ 500,
+        /* bufferForPlaybackAfterRebufferMs = */ 1_500
+    )
+    .build()
+val player = ExoPlayer.Builder(context)
+    .setLoadControl(loadControl)
+    .build()</code></pre>
+<p>The value that matters most for startup is <code>bufferForPlaybackMs</code>: how much media must be buffered before playback begins. Lowering it makes playback start sooner, at the risk of an early stall on a slow network. The numbers above are an example starting point, not a recommendation for every app. Test them on real phones and real networks used by your audience, and adjust.</p>
+<h2>Cache what you have already downloaded</h2>
+<p>A disk cache means a clip that has been preloaded, or watched once, does not need to be downloaded again. Media3 provides <code>SimpleCache</code> with a size-limited eviction policy, and <code>CacheDataSource</code> to read through it.</p>
+<pre><code class="language-kotlin">val cache = SimpleCache(
+    File(context.cacheDir, &quot;video&quot;),
+    LeastRecentlyUsedCacheEvictor(200L * 1024 * 1024),
+    StandaloneDatabaseProvider(context)
+)
+val cacheFactory = CacheDataSource.Factory()
+    .setCache(cache)
+    .setUpstreamDataSourceFactory(DefaultHttpDataSource.Factory())</code></pre>
+<p>Create the cache once for the whole app, because only one <code>SimpleCache</code> instance may use a given folder at a time. Put it in the cache directory so the system can reclaim space if the device runs low, and choose a size limit that is respectful of users with small storage.</p>
+<h2>Choose a delivery format that starts fast</h2>
+<p>How you encode and serve your videos affects startup as much as player settings do.</p>
+<ul>
+  <li><strong>Progressive MP4</strong> is simple and works well for short clips. Make sure the <code>moov</code> atom (the index of the file) is at the start of the file, often called &quot;fast start&quot;. If it sits at the end, the player has to fetch the end of the file before it can play anything.</li>
+  <li><strong>HLS or DASH</strong> split the video into short segments at several quality levels. They allow adaptive bitrate, which helps on unstable networks, but the player must fetch a playlist before the first segment, adding a round trip. For very short clips the benefit may not justify the extra step; for longer clips it usually does.</li>
+  <li>Keep the first segment or the first part of the file small and use a sensible bitrate for phone screens. Very high bitrates make the first second slower to arrive without a visible gain on a small display.</li>
+  <li>Serve videos from a CDN close to your users, so each request travels a short distance.</li>
+</ul>
+<h2>Show something useful before the first frame</h2>
+<p>Even with all of the above, there will be cases where the first frame takes a moment. Instead of a black screen or a spinner, show a <strong>cover image</strong>: a still frame from the start of the video, generated when the video is uploaded. Display it immediately, then hide it when the player reports that the first frame has rendered.</p>
+<pre><code class="language-kotlin">player.addListener(object : Player.Listener {
+    override fun onRenderedFirstFrame() {
+        coverImage.visibility = View.GONE
+    }
+})</code></pre>
+<p>Because the cover matches the first frame, the transition is almost invisible, and the user perceives the clip as starting instantly. Load cover images for the next few clips ahead of time too; they are small compared with video.</p>
+<h2>Measure time to first frame</h2>
+<p>You cannot improve what you do not measure. The most useful metric for a feed is <strong>time to first frame</strong>: the time between the page becoming visible and <code>onRenderedFirstFrame</code> being called. Record it per clip, along with the network type and whether the clip was preloaded or served from cache.</p>
+<p>Look at the slow end of the distribution, not only the average. A feed that is fast for most users but slow for people on weak mobile networks will still feel broken to them. Also track how often playback stalls after it has started, because overly aggressive buffer settings can trade startup time for stalls.</p>
+<h2>Conclusion</h2>
+<p>Instant playback in a short-video feed is not one trick but a set of small decisions working together: a small pool of reused players, preloading the next clip, buffer settings tuned for short media, a disk cache, files encoded to start quickly, and a cover image that hides the last few milliseconds. In our own short-video app these are the areas we revisit whenever playback feels slow. Measure time to first frame on real devices, change one thing at a time, and keep the user&#39;s data plan in mind while you do it.</p>
+    </article>
+    <div class="back-row"><a href="/blog/" class="btn btn-secondary">&larr; All articles</a></div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="container">
+    <div class="section-head"><span class="kicker">Keep reading</span><h2>More from the blog</h2></div>
+    <div class="grid grid-3">
+<article class="project-card post-card">
+  <div class="post-meta"><span class="tag">Video &amp; Streaming</span><time datetime="2026-10-24">24 October 2026</time></div>
+  <h3><a href="/blog/choosing-real-time-video-provider.html" class="stretched">How to Choose a Real-Time Video Provider for a Live App</a></h3>
+  <p>Criteria for evaluating real-time video SDKs for a live streaming app, from network coverage and SDK size to pricing models, plus how to stay able to switch.</p>
+  <span class="project-link">Read article <span aria-hidden="true">&rarr;</span></span>
+</article>
+<article class="project-card post-card">
+  <div class="post-meta"><span class="tag">Video &amp; Streaming</span><time datetime="2026-10-15">15 October 2026</time></div>
+  <h3><a href="/blog/live-streaming-basics-rtc-latency.html" class="stretched">Live Streaming Basics: RTC, HLS and Where Latency Comes From</a></h3>
+  <p>A plain-English guide to live streaming technology, comparing WebRTC, RTMP and HLS, explaining latency, SFUs and jitter buffers, and when real-time matters.</p>
+  <span class="project-link">Read article <span aria-hidden="true">&rarr;</span></span>
+</article>
+<article class="project-card post-card">
+  <div class="post-meta"><span class="tag">Video &amp; Streaming</span><time datetime="2026-10-11">11 October 2026</time></div>
+  <h3><a href="/blog/data-saver-mode-video-apps.html" class="stretched">Designing a Data Saver Mode for a Video App</a></h3>
+  <p>How to build a data saver mode for a video app using adaptive bitrate, resolution caps, metered network detection and Wi-Fi-only preloading.</p>
+  <span class="project-link">Read article <span aria-hidden="true">&rarr;</span></span>
+</article>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <span class="mark"><img src="/assets/img/logo-mark-128.png" alt="" width="64" height="64" loading="lazy"></span>
+          <strong>BALOCH SAHAB TECHNOLOGIES (SMC-PRIVATE) LIMITED</strong>
+        </div>
+        <p>An SECP-registered software company in Pakistan building its own digital products and engineering software for clients.</p>
+      </div>
+      <div>
+        <h2 class="footer-h">Company</h2>
+        <ul>
+          <li><a href="/about.html">About Us</a></li>
+          <li><a href="/team.html">Team</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Work</h2>
+        <ul>
+          <li><a href="/projects.html">Our Products</a></li>
+          <li><a href="/client-work.html">Client Work</a></li>
+          <li><a href="/quote.html">Request a Quote</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Contact</h2>
+        <ul>
+          <li><a href="mailto:info@balochsahab.com">info@balochsahab.com</a></li>
+          <li><a href="mailto:sales@balochsahab.com">sales@balochsahab.com</a></li>
+          <li><a href="tel:+923218818909">+92 321 8818909</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Baloch Sahab Technologies (SMC-Private) Limited. All rights reserved.</span>
+      <span class="footer-legal"><a href="/privacy.html">Privacy Policy</a> &middot; <a href="/terms.html">Terms</a> &middot; CUIN 0352600 &middot; <a href="https://leap.secp.gov.pk/#/verify-company-info/0352600" target="_blank" rel="noopener noreferrer">Verify with SECP &#8599;</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/nav.js?v=ee872eb8" defer></script>
+
+</body>
+</html>

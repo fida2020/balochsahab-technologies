@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="facebook-domain-verification" content="lgj2duxwjfz8lwnwr22ekxneuftn7o" />
+<title>Preparing Your Android App for 16 KB Memory Page Sizes | Baloch Sahab Technologies</title>
+<meta name="description" content="What the move to 16 KB memory pages means for Android apps, who is affected, and how to check, fix and test native libraries before Play rejects an update.">
+<link rel="canonical" href="https://balochsahab.com/blog/android-16kb-page-size.html">
+<meta name="theme-color" content="#14144a">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Baloch Sahab Technologies">
+<meta property="og:title" content="Preparing Your Android App for 16 KB Memory Page Sizes | Baloch Sahab Technologies">
+<meta property="og:description" content="What the move to 16 KB memory pages means for Android apps, who is affected, and how to check, fix and test native libraries before Play rejects an update.">
+<meta property="og:url" content="https://balochsahab.com/blog/android-16kb-page-size.html">
+<meta property="og:image" content="https://balochsahab.com/assets/img/logo-mark-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Preparing Your Android App for 16 KB Memory Page Sizes | Baloch Sahab Technologies">
+<meta name="twitter:description" content="What the move to 16 KB memory pages means for Android apps, who is affected, and how to check, fix and test native libraries before Play rejects an update.">
+<meta name="twitter:image" content="https://balochsahab.com/assets/img/logo-mark-512.png">
+<link rel="icon" href="/assets/img/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/img/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/assets/img/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/style.css?v=ee872eb8">
+<script async data-cfasync="false" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6831828383879093"
+     crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://balochsahab.com/#organization","name":"Baloch Sahab Technologies","legalName":"Baloch Sahab Technologies (SMC-Private) Limited","url":"https://balochsahab.com/","logo":"https://balochsahab.com/assets/img/logo-mark-512.png","email":"info@balochsahab.com","telephone":"+923218818909","foundingDate":"2026-08-27","address":{"@type":"PostalAddress","addressLocality":"Mandi Bahauddin","addressRegion":"Punjab","addressCountry":"PK"},"identifier":{"@type":"PropertyValue","propertyID":"SECP CUIN","value":"0352600"},"sameAs":["https://leap.secp.gov.pk/#/verify-company-info/0352600"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://balochsahab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://balochsahab.com/blog/"},{"@type":"ListItem","position":3,"name":"Preparing Your Android App for 16 KB Memory Page Sizes","item":"https://balochsahab.com/blog/android-16kb-page-size.html"}]},{"@type":"BlogPosting","headline":"Preparing Your Android App for 16 KB Memory Page Sizes","description":"What the move to 16 KB memory pages means for Android apps, who is affected, and how to check, fix and test native libraries before Play rejects an update.","datePublished":"2026-10-09","dateModified":"2026-10-09","articleSection":"Android Development","wordCount":1179,"author":{"@type":"Organization","name":"Baloch Sahab Technologies team","url":"https://balochsahab.com/about.html"},"publisher":{"@id":"https://balochsahab.com/#organization"},"mainEntityOfPage":"https://balochsahab.com/blog/android-16kb-page-size.html","image":"https://balochsahab.com/assets/img/logo-mark-512.png"}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container nav">
+    <a href="/index.html" class="brand" aria-label="Baloch Sahab Technologies home">
+      <span class="mark"><img src="/assets/img/logo-mark-256.png" alt="" width="108" height="108"></span>
+      <span class="name-stack"><span class="name-main">BALOCH SAHAB</span><span class="name-sub">Technologies (SMC-Private) Limited</span></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+    <nav class="nav-links" id="site-nav" aria-label="Main">
+      <a href="/index.html">Home</a>
+      <a href="/about.html">About</a>
+      <a href="/projects.html">Products</a>
+      <a href="/client-work.html">Client Work</a>
+      <a href="/team.html">Team</a>
+      <a href="/blog/" class="active" aria-current="page">Blog</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/quote.html" class="nav-cta">Request a Quote</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero hero-page hero-detail">
+  <div class="container narrow">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/index.html">Home</a> <span aria-hidden="true">/</span> <a href="/blog/">Blog</a> <span aria-hidden="true">/</span> <span aria-current="page">Android Development</span></nav>
+    <div class="detail-meta"><span class="tag tag-dark">Android Development</span></div>
+    <h1 class="article-title">Preparing Your Android App for 16 KB Memory Page Sizes</h1>
+    <p class="article-byline">By Baloch Sahab Technologies team &middot; <time datetime="2026-10-09">9 October 2026</time> &middot; 6 min read</p>
+  </div>
+</section>
+
+<section>
+  <div class="container narrow">
+    <article class="prose article-body">
+<p>For most of Android&#39;s history, devices have used a memory page size of 4 KB. Starting with Android 15, the platform supports devices that use 16 KB pages, and Google Play now requires apps that target recent Android versions to work on them. If your app is written only in Kotlin or Java, you will probably not need to change anything. If your app, or any library inside it, ships native code, you need to check.</p>
+<p>We went through this process for our own short-video app, which depends on several native libraries for video playback, camera effects and real-time streaming. This guide explains what changed, how to find out whether you are affected, and the steps to fix and test it.</p>
+<h2>What a page size is, and why it changed</h2>
+<p>The operating system manages memory in fixed-size blocks called pages. When an app loads a native shared library (a <code>.so</code> file), the system maps its segments into memory at page boundaries. For this to work, the segments inside the library must be aligned to a multiple of the page size.</p>
+<p>Larger pages mean the system tracks fewer pages for the same amount of memory, which reduces overhead. Google has reported improvements in app launch time and battery use on 16 KB devices in its own testing. The trade-off is compatibility: a library built with 4 KB alignment assumptions may fail to load on a device using 16 KB pages, and the app then crashes, often at startup.</p>
+<h2>Are you affected?</h2>
+<p>Ask these questions about your app:</p>
+<ul>
+  <li><strong>Does your project contain C or C++ code</strong> built with the NDK, through CMake or ndk-build?</li>
+  <li><strong>Does any dependency include native libraries?</strong> This is common for video players with custom decoders, camera and beauty-filter SDKs, real-time communication SDKs, image processing, databases with native engines, game engines, and some analytics or security SDKs.</li>
+  <li><strong>Does your native code assume a 4 KB page size</strong>, for example a hard-coded <code>4096</code> used with <code>mmap</code> or memory alignment?</li>
+</ul>
+<p>If the answer to all three is no, your app is already compatible. The easiest way to answer the second question is to open your release APK or app bundle and look for a <code>lib/</code> folder. Any <code>.so</code> file there is native code that must be checked, whatever library it came from.</p>
+<h2>How to check your app</h2>
+<p>Android Studio&#39;s <strong>APK Analyzer</strong> (Build, then Analyze APK) lists the native libraries in each ABI folder. Recent versions of Android Studio also show alignment information and warn when a library is not aligned for 16 KB pages. This is the quickest check, and it covers libraries from third-party SDKs as well as your own.</p>
+<p>There are two separate things to verify:</p>
+<ol>
+  <li><strong>ELF segment alignment</strong> inside each <code>.so</code> file must be 16 KB (2 to the power of 14) or larger.</li>
+  <li><strong>ZIP alignment</strong> of uncompressed native libraries inside the APK must also be 16 KB, so they can be mapped directly from the file.</li>
+</ol>
+<p>For the ZIP alignment, the <code>zipalign</code> tool from the Android SDK build tools can check an APK:</p>
+<pre><code class="language-bash">zipalign -c -P 16 -v 4 app-release.apk</code></pre>
+<p>For ELF alignment, Google&#39;s documentation describes how to inspect libraries with <code>llvm-objdump</code> from the NDK, looking at the alignment of the LOAD segments, and links to a script that checks every library in an APK at once. Run these checks on the APK you actually ship, generated from your app bundle, because that is what users install.</p>
+<h2>How to fix it</h2>
+<h3>Update your build tools</h3>
+<ul>
+  <li><strong>Android Gradle Plugin.</strong> Recent AGP versions (8.5.1 and later) align uncompressed native libraries to 16 KB when packaging. Updating AGP usually fixes the ZIP alignment issue on its own.</li>
+  <li><strong>NDK.</strong> NDK r28 and later compile 16 KB-aligned libraries by default. With NDK r27 you can enable it with the <code>ANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES</code> option. With older NDKs, add the linker flag for a 16 KB maximum page size.</li>
+</ul>
+<p>For a CMake project on an older NDK, the linker flag looks like this:</p>
+<pre><code class="language-cmake">target_link_options(${CMAKE_PROJECT_NAME} PRIVATE &quot;-Wl,-z,max-page-size=16384&quot;)</code></pre>
+<p>Then rebuild and check again. Libraries aligned to 16 KB still work on 4 KB devices, so there is no need to ship two versions.</p>
+<h3>Update third-party SDKs</h3>
+<p>You cannot rebuild a closed-source library yourself. For each SDK that contains <code>.so</code> files, check its release notes for 16 KB support and update to a version that has it. Most actively maintained SDKs have published compatible versions. If a vendor has not, contact them, and consider whether you can replace the SDK. Keep a short list of every native dependency, its version and its 16 KB status; it makes future checks much faster.</p>
+<h3>Fix page size assumptions in your code</h3>
+<p>Search your native code for hard-coded page sizes. Instead of assuming 4096, ask the system at runtime with <code>getpagesize()</code> or <code>sysconf(_SC_PAGESIZE)</code>. Pay attention to code that uses <code>mmap</code>, custom memory allocators, or file offsets that must be page-aligned.</p>
+<h2>How to test</h2>
+<p>A clean alignment check is necessary but not enough. You should also run the app on a 16 KB environment:</p>
+<ul>
+  <li><strong>Emulator.</strong> The Android SDK Manager offers Android 15 and later system images with a 16 KB page size. Create a virtual device with one of them and run your app through its main journeys.</li>
+  <li><strong>Physical devices.</strong> Some recent Pixel devices offer a developer option to boot with 16 KB pages on supported Android versions. Availability changes, so check the current list in the official documentation.</li>
+  <li><strong>Confirm the page size</strong> on the device or emulator before testing:</li>
+</ul>
+<pre><code class="language-bash">adb shell getconf PAGE_SIZE</code></pre>
+<p>A result of <code>16384</code> means you are running with 16 KB pages. Then test the paths that load native code: app start, video playback, camera, filters, live streaming, and anything else using a native SDK. Some libraries are loaded lazily, so a quick launch test can miss a crash that only happens when a feature is first opened.</p>
+<h2>The Google Play requirement</h2>
+<p>Google Play requires new apps and updates that target Android 15 or higher to support 16 KB page sizes on 64-bit devices. The requirement began applying in late 2025, and Play Console shows warnings for app bundles that are not compatible. Because Play&#39;s target API level requirement also moves forward every year, almost every actively updated app is now covered.</p>
+<p>Policies and dates change, and extensions are sometimes offered, so confirm the current rules in the Play Console and in the 16 KB page size guide on <a href="https://developer.android.com/" target="_blank" rel="noopener noreferrer">developer.android.com</a>. Do not wait for a rejected update to find out: run the checks above as part of your release process.</p>
+<h2>Conclusion</h2>
+<p>The 16 KB page size change is a one-time piece of work for most teams. Find every native library in your release APK, update the Android Gradle Plugin and NDK, update or replace third-party SDKs that are not compatible, remove hard-coded page sizes from native code, and test on a 16 KB emulator or device. Add the alignment check to your release checklist so a new dependency cannot quietly break it again. While you are improving release quality, our <a href="/blog/reduce-android-crashes-anrs.html">Android vitals checklist</a> covers the other crash and ANR issues that Play tracks.</p>
+    </article>
+    <div class="back-row"><a href="/blog/" class="btn btn-secondary">&larr; All articles</a></div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="container">
+    <div class="section-head"><span class="kicker">Keep reading</span><h2>More from the blog</h2></div>
+    <div class="grid grid-3">
+<article class="project-card post-card">
+  <div class="post-meta"><span class="tag">Android Development</span><time datetime="2026-10-13">13 October 2026</time></div>
+  <h3><a href="/blog/reduce-android-crashes-anrs.html" class="stretched">Reducing Crashes and ANRs: A Practical Android Vitals Checklist</a></h3>
+  <p>A step-by-step checklist for cutting crashes and ANRs in Android apps - main-thread work, StrictMode, lifecycle, process death, R8 mappings, rollouts.</p>
+  <span class="project-link">Read article <span aria-hidden="true">&rarr;</span></span>
+</article>
+<article class="project-card post-card">
+  <div class="post-meta"><span class="tag">Android Development</span><time datetime="2026-10-06">6 October 2026</time></div>
+  <h3><a href="/blog/jetpack-compose-performance.html" class="stretched">Keeping Jetpack Compose Fast: Recomposition, Stability and Lists</a></h3>
+  <p>Practical techniques to keep Jetpack Compose screens smooth, from stable types and LazyColumn keys to derivedStateOf, deferred reads and baseline profiles.</p>
+  <span class="project-link">Read article <span aria-hidden="true">&rarr;</span></span>
+</article>
+<article class="project-card post-card">
+  <div class="post-meta"><span class="tag">Android Development</span><time datetime="2026-10-02">2 October 2026</time></div>
+  <h3><a href="/blog/kotlin-jetpack-compose-first-screen.html" class="stretched">Building Your First Screen with Kotlin and Jetpack Compose</a></h3>
+  <p>A hands-on introduction to Jetpack Compose, covering composables, state, remember, previews, a simple list screen and Material 3 theming.</p>
+  <span class="project-link">Read article <span aria-hidden="true">&rarr;</span></span>
+</article>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <span class="mark"><img src="/assets/img/logo-mark-128.png" alt="" width="64" height="64" loading="lazy"></span>
+          <strong>BALOCH SAHAB TECHNOLOGIES (SMC-PRIVATE) LIMITED</strong>
+        </div>
+        <p>An SECP-registered software company in Pakistan building its own digital products and engineering software for clients.</p>
+      </div>
+      <div>
+        <h2 class="footer-h">Company</h2>
+        <ul>
+          <li><a href="/about.html">About Us</a></li>
+          <li><a href="/team.html">Team</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Work</h2>
+        <ul>
+          <li><a href="/projects.html">Our Products</a></li>
+          <li><a href="/client-work.html">Client Work</a></li>
+          <li><a href="/quote.html">Request a Quote</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Contact</h2>
+        <ul>
+          <li><a href="mailto:info@balochsahab.com">info@balochsahab.com</a></li>
+          <li><a href="mailto:sales@balochsahab.com">sales@balochsahab.com</a></li>
+          <li><a href="tel:+923218818909">+92 321 8818909</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Baloch Sahab Technologies (SMC-Private) Limited. All rights reserved.</span>
+      <span class="footer-legal"><a href="/privacy.html">Privacy Policy</a> &middot; <a href="/terms.html">Terms</a> &middot; CUIN 0352600 &middot; <a href="https://leap.secp.gov.pk/#/verify-company-info/0352600" target="_blank" rel="noopener noreferrer">Verify with SECP &#8599;</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/nav.js?v=ee872eb8" defer></script>
+
+</body>
+</html>

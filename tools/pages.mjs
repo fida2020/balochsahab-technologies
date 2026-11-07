@@ -1,4 +1,4 @@
-import { SITE, STATUSES, esc } from "./lib.mjs";
+import { SITE, STATUSES, esc, ARTICLE_AUTHOR, markdownToHtml, wordCount } from "./lib.mjs";
 
 const productUrl = p => `/${p.kind === "product" ? "products" : "work"}/${p.slug}.html`;
 const initials = name => name.split(/\s+/).filter(w => /^[A-Za-z0-9]/.test(w)).slice(0, 2).map(w => w[0]).join("").toUpperCase();
@@ -530,5 +530,93 @@ export function detailPage(p) {
 </section>
 
 ${ctaBanner("Interested in working with us?", "Ask about this " + (isProduct ? "product" : "project") + ", or tell us what you&rsquo;d like built.", "/contact.html", "Contact us")}`
+  };
+}
+
+// ---- Blog ----
+export const articleUrl = a => `/blog/${a.slug}.html`;
+const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const fmtDate = d => { const [y, m, day] = d.split("-").map(Number); return `${day} ${MONTHS[m - 1]} ${y}`; };
+const readMinutes = a => Math.max(1, Math.round(wordCount(a.body) / 200));
+
+function articleCard(a) {
+  return `<article class="project-card post-card">
+  <div class="post-meta"><span class="tag">${esc(a.category)}</span><time datetime="${a.date}">${fmtDate(a.date)}</time></div>
+  <h3><a href="${articleUrl(a)}" class="stretched">${esc(a.title)}</a></h3>
+  <p>${esc(a.description)}</p>
+  <span class="project-link">Read article <span aria-hidden="true">&rarr;</span></span>
+</article>`;
+}
+
+export function blogIndexPage(articles) {
+  return {
+    path: "/blog/index.html", nav: "/blog/",
+    title: "Blog — Guides on Apps, Video, Live Streaming and the Web",
+    description: "Practical guides from our engineering team on Android development, short video, live streaming, Firebase, Google Play, account security and web performance.",
+    jsonLd: [breadcrumbLd([["Home", "/"], ["Blog", "/blog/"]]), {
+      "@type": "Blog", name: `${SITE.name} Blog`, url: SITE.origin + "/blog/",
+      publisher: { "@id": SITE.origin + "/#organization" },
+      blogPost: articles.map(a => ({ "@type": "BlogPosting", headline: a.title, url: SITE.origin + articleUrl(a), datePublished: a.date }))
+    }],
+    body: `${pageHero({ eyebrow: "Blog", title: "Guides from <span>our engineering team.</span>", lead: "What we have learned building Android apps, short-video and live streaming products, and websites &mdash; written up as practical, step-by-step guides." })}
+<section>
+  <div class="container">
+    <div class="grid grid-3">
+${articles.map(articleCard).join("\n")}
+    </div>
+  </div>
+</section>
+
+${ctaBanner("Need help with your own app or website?", "We build Android apps, live and video features, backends and websites for clients. Tell us what you need.", "/quote.html", "Request a quote")}`
+  };
+}
+
+export function articlePage(a, all) {
+  const others = all.filter(x => x.slug !== a.slug);
+  const related = [...others.filter(x => x.category === a.category), ...others.filter(x => x.category !== a.category)].slice(0, 3);
+  return {
+    path: articleUrl(a), nav: "/blog/",
+    title: a.title,
+    description: a.description,
+    ogType: "article",
+    jsonLd: [breadcrumbLd([["Home", "/"], ["Blog", "/blog/"], [a.title, articleUrl(a)]]), {
+      "@type": "BlogPosting",
+      headline: a.title,
+      description: a.description,
+      datePublished: a.date,
+      dateModified: a.date,
+      articleSection: a.category,
+      wordCount: wordCount(a.body),
+      author: { "@type": "Organization", name: ARTICLE_AUTHOR, url: SITE.origin + "/about.html" },
+      publisher: { "@id": SITE.origin + "/#organization" },
+      mainEntityOfPage: SITE.origin + articleUrl(a),
+      image: SITE.origin + SITE.ogImage
+    }],
+    body: `<section class="hero hero-page hero-detail">
+  <div class="container narrow">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/index.html">Home</a> <span aria-hidden="true">/</span> <a href="/blog/">Blog</a> <span aria-hidden="true">/</span> <span aria-current="page">${esc(a.category)}</span></nav>
+    <div class="detail-meta"><span class="tag tag-dark">${esc(a.category)}</span></div>
+    <h1 class="article-title">${esc(a.title)}</h1>
+    <p class="article-byline">By ${esc(ARTICLE_AUTHOR)} &middot; <time datetime="${a.date}">${fmtDate(a.date)}</time> &middot; ${readMinutes(a)} min read</p>
+  </div>
+</section>
+
+<section>
+  <div class="container narrow">
+    <article class="prose article-body">
+${markdownToHtml(a.body)}
+    </article>
+    <div class="back-row"><a href="/blog/" class="btn btn-secondary">&larr; All articles</a></div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="container">
+    <div class="section-head"><span class="kicker">Keep reading</span><h2>More from the blog</h2></div>
+    <div class="grid grid-3">
+${related.map(articleCard).join("\n")}
+    </div>
+  </div>
+</section>`
   };
 }

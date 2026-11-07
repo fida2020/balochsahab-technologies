@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="facebook-domain-verification" content="lgj2duxwjfz8lwnwr22ekxneuftn7o" />
+<title>Hosting a Fast Static Website With GitHub Pages and Cloudflare | Baloch Sahab Technologies</title>
+<meta name="description" content="How we host a company website as static HTML on GitHub Pages behind Cloudflare: domain, DNS, HTTPS, caching, build script and rollbacks.">
+<link rel="canonical" href="https://balochsahab.com/blog/static-site-github-pages-cloudflare.html">
+<meta name="theme-color" content="#14144a">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Baloch Sahab Technologies">
+<meta property="og:title" content="Hosting a Fast Static Website With GitHub Pages and Cloudflare | Baloch Sahab Technologies">
+<meta property="og:description" content="How we host a company website as static HTML on GitHub Pages behind Cloudflare: domain, DNS, HTTPS, caching, build script and rollbacks.">
+<meta property="og:url" content="https://balochsahab.com/blog/static-site-github-pages-cloudflare.html">
+<meta property="og:image" content="https://balochsahab.com/assets/img/logo-mark-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hosting a Fast Static Website With GitHub Pages and Cloudflare | Baloch Sahab Technologies">
+<meta name="twitter:description" content="How we host a company website as static HTML on GitHub Pages behind Cloudflare: domain, DNS, HTTPS, caching, build script and rollbacks.">
+<meta name="twitter:image" content="https://balochsahab.com/assets/img/logo-mark-512.png">
+<link rel="icon" href="/assets/img/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/img/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/assets/img/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/style.css?v=ee872eb8">
+<script async data-cfasync="false" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6831828383879093"
+     crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://balochsahab.com/#organization","name":"Baloch Sahab Technologies","legalName":"Baloch Sahab Technologies (SMC-Private) Limited","url":"https://balochsahab.com/","logo":"https://balochsahab.com/assets/img/logo-mark-512.png","email":"info@balochsahab.com","telephone":"+923218818909","foundingDate":"2026-08-27","address":{"@type":"PostalAddress","addressLocality":"Mandi Bahauddin","addressRegion":"Punjab","addressCountry":"PK"},"identifier":{"@type":"PropertyValue","propertyID":"SECP CUIN","value":"0352600"},"sameAs":["https://leap.secp.gov.pk/#/verify-company-info/0352600"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://balochsahab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://balochsahab.com/blog/"},{"@type":"ListItem","position":3,"name":"Hosting a Fast Static Website With GitHub Pages and Cloudflare","item":"https://balochsahab.com/blog/static-site-github-pages-cloudflare.html"}]},{"@type":"BlogPosting","headline":"Hosting a Fast Static Website With GitHub Pages and Cloudflare","description":"How we host a company website as static HTML on GitHub Pages behind Cloudflare: domain, DNS, HTTPS, caching, build script and rollbacks.","datePublished":"2026-11-04","dateModified":"2026-11-04","articleSection":"Web Development","wordCount":1208,"author":{"@type":"Organization","name":"Baloch Sahab Technologies team","url":"https://balochsahab.com/about.html"},"publisher":{"@id":"https://balochsahab.com/#organization"},"mainEntityOfPage":"https://balochsahab.com/blog/static-site-github-pages-cloudflare.html","image":"https://balochsahab.com/assets/img/logo-mark-512.png"}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container nav">
+    <a href="/index.html" class="brand" aria-label="Baloch Sahab Technologies home">
+      <span class="mark"><img src="/assets/img/logo-mark-256.png" alt="" width="108" height="108"></span>
+      <span class="name-stack"><span class="name-main">BALOCH SAHAB</span><span class="name-sub">Technologies (SMC-Private) Limited</span></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+    <nav class="nav-links" id="site-nav" aria-label="Main">
+      <a href="/index.html">Home</a>
+      <a href="/about.html">About</a>
+      <a href="/projects.html">Products</a>
+      <a href="/client-work.html">Client Work</a>
+      <a href="/team.html">Team</a>
+      <a href="/blog/" class="active" aria-current="page">Blog</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/quote.html" class="nav-cta">Request a Quote</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero hero-page hero-detail">
+  <div class="container narrow">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/index.html">Home</a> <span aria-hidden="true">/</span> <a href="/blog/">Blog</a> <span aria-hidden="true">/</span> <span aria-current="page">Web Development</span></nav>
+    <div class="detail-meta"><span class="tag tag-dark">Web Development</span></div>
+    <h1 class="article-title">Hosting a Fast Static Website With GitHub Pages and Cloudflare</h1>
+    <p class="article-byline">By Baloch Sahab Technologies team &middot; <time datetime="2026-11-04">4 November 2026</time> &middot; 6 min read</p>
+  </div>
+</section>
+
+<section>
+  <div class="container narrow">
+    <article class="prose article-body">
+<p>Not every website needs a database, a server or a content management system. A company site, a product page or a portfolio is mostly the same content for every visitor, and serving it as plain HTML files makes it fast, cheap and hard to break. Our own site, balochsahab.com, works this way: static HTML generated by a small script, hosted on GitHub Pages, with Cloudflare in front.</p>
+<p>This guide explains the setup step by step, along with the details that tend to trip people up.</p>
+<h2>Why static hosting works well</h2>
+<p>A static site is a folder of HTML, CSS, JavaScript and image files. The host simply sends those files to the browser. That brings real advantages:</p>
+<ul>
+  <li><strong>Speed.</strong> There is no page to assemble on the server for each visit, and files cache well on a CDN.</li>
+  <li><strong>Security.</strong> With no server-side code, database or admin login, there is far less to attack or keep patched.</li>
+  <li><strong>Cost.</strong> GitHub Pages is free for public repositories, and Cloudflare has a free plan.</li>
+  <li><strong>History.</strong> Every change is a git commit, so you can see who changed what and undo any mistake.</li>
+</ul>
+<p>The trade-off is that dynamic features such as forms, search or user accounts need an external service or a separate backend. For a contact form, a form delivery service that forwards submissions to email is usually enough.</p>
+<h2>Step 1: Put the site in a GitHub repository</h2>
+<p>Create a repository and add your site files, with <code>index.html</code> at the root (or in a <code>docs</code> folder if you prefer). Then, in the repository&#39;s <strong>Settings, Pages</strong> section, choose to deploy from a branch, select your main branch and the folder. GitHub builds and publishes the site, usually within a couple of minutes, at an address like <code>username.github.io/repository</code>.</p>
+<p>Add a <code>404.html</code> file at the root; GitHub Pages serves it automatically for missing pages.</p>
+<h2>Step 2: Connect your custom domain</h2>
+<p>In the same Pages settings, enter your custom domain, for example <code>example.com</code>. GitHub stores it in a file called <code>CNAME</code> at the root of the publishing folder, containing just the domain name. Keep that file in the repository; if a build process deletes it, the custom domain stops working.</p>
+<p>Next, set the DNS records at your DNS provider. For an apex domain (no <code>www</code>), GitHub&#39;s documentation lists a set of A records (and AAAA records for IPv6) pointing to GitHub Pages servers. For <code>www</code>, add a CNAME record pointing to <code>username.github.io</code>. GitHub recommends verifying your domain in your account settings too, which prevents someone else from claiming it on Pages. Because the exact IP addresses can change, copy them from the <a href="https://docs.github.com/en/pages" target="_blank" rel="noopener noreferrer">GitHub Pages documentation</a> rather than from a blog post.</p>
+<h2>Step 3: Put Cloudflare in front</h2>
+<p>To use Cloudflare, add your domain to a Cloudflare account and change the domain&#39;s nameservers at your registrar to the ones Cloudflare gives you. Then recreate the GitHub DNS records inside Cloudflare&#39;s DNS settings.</p>
+<p>Each record has a proxy toggle. With the orange cloud on (proxied), traffic goes through Cloudflare&#39;s network, gaining its caching, compression and protection. With it off (DNS only), Cloudflare just answers DNS queries.</p>
+<p>A practical order that avoids certificate trouble:</p>
+<ol>
+  <li>Add the records in Cloudflare with the proxy <strong>off</strong> at first.</li>
+  <li>Wait for GitHub Pages to issue its HTTPS certificate for your domain, then tick <strong>Enforce HTTPS</strong> in the Pages settings.</li>
+  <li>Turn the Cloudflare proxy <strong>on</strong>.</li>
+</ol>
+<h2>Step 4: Get HTTPS right</h2>
+<p>With Cloudflare proxying, there are two connections: visitor to Cloudflare, and Cloudflare to GitHub. Cloudflare&#39;s SSL/TLS encryption mode controls the second.</p>
+<ul>
+  <li><strong>Flexible</strong> sends traffic from Cloudflare to the origin unencrypted. Combined with GitHub&#39;s HTTPS enforcement, this can cause an endless redirect loop. Avoid it.</li>
+  <li><strong>Full</strong> or <strong>Full (strict)</strong> encrypts both connections. Since GitHub Pages provides a valid certificate for your domain, Full (strict) is the best choice once that certificate exists.</li>
+</ul>
+<p>Also turn on Cloudflare&#39;s &quot;Always Use HTTPS&quot; so visitors who type <code>http://</code> are redirected.</p>
+<h2>Step 5: Caching and cache busting</h2>
+<p>Cloudflare caches static files such as CSS, JavaScript and images at its edge locations by default. HTML is generally not cached by default, which suits a site that changes occasionally.</p>
+<p>The classic problem is a visitor seeing an old stylesheet after you update it. The reliable fix is to change the file&#39;s URL whenever its content changes, for example by adding a short hash of the file&#39;s contents as a query string. Your build script can compute this automatically:</p>
+<pre><code class="language-html">&lt;link rel=&quot;stylesheet&quot; href=&quot;/assets/css/style.css?v=3f2a91c0&quot;&gt;</code></pre>
+<p>When the stylesheet changes, the hash changes, the URL is new, and every browser and cache fetches the fresh file. You rarely need to purge Cloudflare&#39;s cache manually.</p>
+<h2>Step 6: Watch out for Rocket Loader</h2>
+<p>Cloudflare offers an optimisation called Rocket Loader, which delays and rewrites how JavaScript loads to speed up rendering. It can interfere with third-party scripts that expect to run in their normal order, such as advertising or analytics tags. If you use it, you can exclude a specific script by adding the attribute <code>data-cfasync=&quot;false&quot;</code> to its script tag, which tells Rocket Loader to leave that script alone:</p>
+<pre><code class="language-html">&lt;script async data-cfasync=&quot;false&quot; src=&quot;https://example.com/vendor-script.js&quot;&gt;&lt;/script&gt;</code></pre>
+<p>If something breaks after enabling an optimisation, disable it first and test again before debugging anything else.</p>
+<h2>Step 7: Generate pages with a small build script</h2>
+<p>Hand-editing the same header and footer in a dozen HTML files leads to mistakes. We keep page content and shared layout in a few source files and run a small Node.js script with no dependencies that writes every HTML page, plus <code>sitemap.xml</code> and <code>robots.txt</code>. It also validates the content and refuses to build if something is wrong, such as a missing image or a duplicate page title.</p>
+<p>A companion test script checks the output: that every internal link resolves, every page has one heading, a title, a meta description and a canonical URL, and the sitemap lists exactly the indexable pages. A GitHub Actions workflow runs both on every push, so mistakes are caught before visitors see them. You do not need a big framework to get these benefits; a few hundred lines of script go a long way.</p>
+<h2>Step 8: Sitemap and robots.txt</h2>
+<p>A <code>robots.txt</code> file at the root tells crawlers what they may crawl and where your sitemap is. A <code>sitemap.xml</code> lists the canonical address of every page you want indexed. Generate both from the same list of pages your build uses, so they never drift out of date. Then submit the sitemap in <a href="https://search.google.com/search-console/about" target="_blank" rel="noopener noreferrer">Google Search Console</a> after verifying your domain.</p>
+<h2>Step 9: Rolling back</h2>
+<p>Because every change is a commit, undoing a bad change is simple. Use <code>git revert</code> on the commit that caused the problem and push. This creates a new commit that reverses it, keeping history intact and avoiding force-pushes. Before a large redesign, create a git tag on the last good version, so you can always find and restore it.</p>
+<pre><code class="language-bash">git tag backup-before-redesign
+git push origin backup-before-redesign
+git revert --no-edit abc1234
+git push origin main</code></pre>
+<h2>Conclusion</h2>
+<p>GitHub Pages with Cloudflare is a dependable, low-cost home for a company website. Set up the domain and DNS carefully, use Full (strict) encryption, version your asset URLs, be cautious with script optimisations, and generate pages, sitemap and robots.txt from one source with automated checks. The result is a site that loads quickly, rarely breaks, and can always be rolled back. For further speed tips, see our <a href="/blog/web-performance-small-business.html">web performance checklist for small business websites</a>.</p>
+    </article>
+    <div class="back-row"><a href="/blog/" class="btn btn-secondary">&larr; All articles</a></div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="container">
+    <div class="section-head"><span class="kicker">Keep reading</span><h2>More from the blog</h2></div>
+    <div class="grid grid-3">
+<article class="project-card post-card">
+  <div class="post-meta"><span class="tag">Web Development</span><time datetime="2026-11-02">2 November 2026</time></div>
+  <h3><a href="/blog/web-performance-small-business.html" class="stretched">Web Performance for Small Business Websites: A Practical Checklist</a></h3>
+  <p>Core Web Vitals explained simply, plus practical fixes for images, fonts, scripts and caching that make a small business website load fast.</p>
+  <span class="project-link">Read article <span aria-hidden="true">&rarr;</span></span>
+</article>
+<article class="project-card post-card">
+  <div class="post-meta"><span class="tag">Google Play</span><time datetime="2026-11-06">6 November 2026</time></div>
+  <h3><a href="/blog/app-privacy-policy-play-data-safety.html" class="stretched">Writing an App Privacy Policy and the Google Play Data Safety Form</a></h3>
+  <p>How to inventory your app&#39;s data, write a clear privacy policy, complete Google Play&#39;s Data safety form and meet the account deletion rules.</p>
+  <span class="project-link">Read article <span aria-hidden="true">&rarr;</span></span>
+</article>
+<article class="project-card post-card">
+  <div class="post-meta"><span class="tag">Safety &amp; Security</span><time datetime="2026-10-30">30 October 2026</time></div>
+  <h3><a href="/blog/protect-accounts-2fa-passkeys.html" class="stretched">Protecting Your Accounts With Two-Factor Authentication and Passkeys</a></h3>
+  <p>A plain-English guide to password managers, 2FA methods, passkeys, backup codes, SIM-swap risk and checking where you are signed in.</p>
+  <span class="project-link">Read article <span aria-hidden="true">&rarr;</span></span>
+</article>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <span class="mark"><img src="/assets/img/logo-mark-128.png" alt="" width="64" height="64" loading="lazy"></span>
+          <strong>BALOCH SAHAB TECHNOLOGIES (SMC-PRIVATE) LIMITED</strong>
+        </div>
+        <p>An SECP-registered software company in Pakistan building its own digital products and engineering software for clients.</p>
+      </div>
+      <div>
+        <h2 class="footer-h">Company</h2>
+        <ul>
+          <li><a href="/about.html">About Us</a></li>
+          <li><a href="/team.html">Team</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Work</h2>
+        <ul>
+          <li><a href="/projects.html">Our Products</a></li>
+          <li><a href="/client-work.html">Client Work</a></li>
+          <li><a href="/quote.html">Request a Quote</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Contact</h2>
+        <ul>
+          <li><a href="mailto:info@balochsahab.com">info@balochsahab.com</a></li>
+          <li><a href="mailto:sales@balochsahab.com">sales@balochsahab.com</a></li>
+          <li><a href="tel:+923218818909">+92 321 8818909</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Baloch Sahab Technologies (SMC-Private) Limited. All rights reserved.</span>
+      <span class="footer-legal"><a href="/privacy.html">Privacy Policy</a> &middot; <a href="/terms.html">Terms</a> &middot; CUIN 0352600 &middot; <a href="https://leap.secp.gov.pk/#/verify-company-info/0352600" target="_blank" rel="noopener noreferrer">Verify with SECP &#8599;</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/nav.js?v=ee872eb8" defer></script>
+
+</body>
+</html>

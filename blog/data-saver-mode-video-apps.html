@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="facebook-domain-verification" content="lgj2duxwjfz8lwnwr22ekxneuftn7o" />
+<title>Designing a Data Saver Mode for a Video App | Baloch Sahab Technologies</title>
+<meta name="description" content="How to build a data saver mode for a video app using adaptive bitrate, resolution caps, metered network detection and Wi-Fi-only preloading.">
+<link rel="canonical" href="https://balochsahab.com/blog/data-saver-mode-video-apps.html">
+<meta name="theme-color" content="#14144a">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Baloch Sahab Technologies">
+<meta property="og:title" content="Designing a Data Saver Mode for a Video App | Baloch Sahab Technologies">
+<meta property="og:description" content="How to build a data saver mode for a video app using adaptive bitrate, resolution caps, metered network detection and Wi-Fi-only preloading.">
+<meta property="og:url" content="https://balochsahab.com/blog/data-saver-mode-video-apps.html">
+<meta property="og:image" content="https://balochsahab.com/assets/img/logo-mark-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Designing a Data Saver Mode for a Video App | Baloch Sahab Technologies">
+<meta name="twitter:description" content="How to build a data saver mode for a video app using adaptive bitrate, resolution caps, metered network detection and Wi-Fi-only preloading.">
+<meta name="twitter:image" content="https://balochsahab.com/assets/img/logo-mark-512.png">
+<link rel="icon" href="/assets/img/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/img/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/assets/img/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/style.css?v=ee872eb8">
+<script async data-cfasync="false" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6831828383879093"
+     crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://balochsahab.com/#organization","name":"Baloch Sahab Technologies","legalName":"Baloch Sahab Technologies (SMC-Private) Limited","url":"https://balochsahab.com/","logo":"https://balochsahab.com/assets/img/logo-mark-512.png","email":"info@balochsahab.com","telephone":"+923218818909","foundingDate":"2026-08-27","address":{"@type":"PostalAddress","addressLocality":"Mandi Bahauddin","addressRegion":"Punjab","addressCountry":"PK"},"identifier":{"@type":"PropertyValue","propertyID":"SECP CUIN","value":"0352600"},"sameAs":["https://leap.secp.gov.pk/#/verify-company-info/0352600"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://balochsahab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://balochsahab.com/blog/"},{"@type":"ListItem","position":3,"name":"Designing a Data Saver Mode for a Video App","item":"https://balochsahab.com/blog/data-saver-mode-video-apps.html"}]},{"@type":"BlogPosting","headline":"Designing a Data Saver Mode for a Video App","description":"How to build a data saver mode for a video app using adaptive bitrate, resolution caps, metered network detection and Wi-Fi-only preloading.","datePublished":"2026-10-11","dateModified":"2026-10-11","articleSection":"Video & Streaming","wordCount":1138,"author":{"@type":"Organization","name":"Baloch Sahab Technologies team","url":"https://balochsahab.com/about.html"},"publisher":{"@id":"https://balochsahab.com/#organization"},"mainEntityOfPage":"https://balochsahab.com/blog/data-saver-mode-video-apps.html","image":"https://balochsahab.com/assets/img/logo-mark-512.png"}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container nav">
+    <a href="/index.html" class="brand" aria-label="Baloch Sahab Technologies home">
+      <span class="mark"><img src="/assets/img/logo-mark-256.png" alt="" width="108" height="108"></span>
+      <span class="name-stack"><span class="name-main">BALOCH SAHAB</span><span class="name-sub">Technologies (SMC-Private) Limited</span></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+    <nav class="nav-links" id="site-nav" aria-label="Main">
+      <a href="/index.html">Home</a>
+      <a href="/about.html">About</a>
+      <a href="/projects.html">Products</a>
+      <a href="/client-work.html">Client Work</a>
+      <a href="/team.html">Team</a>
+      <a href="/blog/" class="active" aria-current="page">Blog</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/quote.html" class="nav-cta">Request a Quote</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero hero-page hero-detail">
+  <div class="container narrow">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/index.html">Home</a> <span aria-hidden="true">/</span> <a href="/blog/">Blog</a> <span aria-hidden="true">/</span> <span aria-current="page">Video &amp; Streaming</span></nav>
+    <div class="detail-meta"><span class="tag tag-dark">Video &amp; Streaming</span></div>
+    <h1 class="article-title">Designing a Data Saver Mode for a Video App</h1>
+    <p class="article-byline">By Baloch Sahab Technologies team &middot; <time datetime="2026-10-11">11 October 2026</time> &middot; 6 min read</p>
+  </div>
+</section>
+
+<section>
+  <div class="container narrow">
+    <article class="prose article-body">
+<p>Video is by far the heaviest kind of content most apps deliver. For many users, especially those on prepaid mobile packages, every megabyte has a real cost. An app that quietly downloads high-resolution video in the background will be uninstalled, or at least opened less often, by exactly the people who would otherwise use it every day.</p>
+<p>A well designed data saver mode respects those users without ruining the experience for everyone else. This guide walks through the building blocks on Android, from detecting the network to controlling playback quality and uploads.</p>
+<h2>Start with the principle: spend data where the user is looking</h2>
+<p>Most data in a video app is spent in three places: the video the user is watching, the videos the app preloads in advance, and the videos the user uploads. A data saver mode should touch all three, in this order of priority:</p>
+<ol>
+  <li>Stop or reduce downloading things the user may never see, such as preloaded clips.</li>
+  <li>Lower the quality of what they are watching to a level that still looks fine on a phone.</li>
+  <li>Compress uploads before sending them.</li>
+</ol>
+<p>The first step usually saves the most data with the least visible impact, which is why it should come first.</p>
+<h2>Detect metered and constrained networks</h2>
+<p>Android tells you whether the current network is metered, meaning the user may be charged for data. Mobile networks are normally metered, and users can also mark a Wi-Fi hotspot as metered. You can check this with <code>ConnectivityManager</code>.</p>
+<pre><code class="language-kotlin">val cm = context.getSystemService(ConnectivityManager::class.java)
+val metered = cm.isActiveNetworkMetered
+val caps = cm.getNetworkCapabilities(cm.activeNetwork)
+val notMetered = caps?.hasCapability(NetworkCapabilities.NET_CAPABILITY_NOT_METERED) == true</code></pre>
+<p>Android also has a system-wide Data Saver setting. When it is on and your app is not exempted, background data is restricted. You can read the state with <code>cm.restrictBackgroundStatus</code> and treat it as a strong signal that the user cares about data even when your own setting is off.</p>
+<p>Network conditions change while the app is open, for example when a user walks out of Wi-Fi range. Register a <code>ConnectivityManager.NetworkCallback</code> and react to capability changes, rather than checking once at startup. The <a href="https://developer.android.com/develop/connectivity" target="_blank" rel="noopener noreferrer">Android developer documentation</a> covers these APIs and how they behave on different versions.</p>
+<h2>Limit preloading on mobile data</h2>
+<p>Preloading the next few videos is what makes a feed feel instant, as we describe in our article on <a href="/blog/short-video-instant-playback.html">instant playback in short-video feeds</a>. It is also the easiest place to waste data, because some of those clips will be skipped.</p>
+<p>A practical policy:</p>
+<ul>
+  <li>On unmetered Wi-Fi, preload the next clip fully and a small part of the one after it.</li>
+  <li>On metered networks, preload only the first second or two of the next clip, enough for a fast start.</li>
+  <li>With data saver on, do not preload at all beyond the cover image, or preload only a very small amount.</li>
+</ul>
+<p>Cover images are small, so it is usually fine to keep fetching them in every mode. They let the feed look complete even when video is loaded only on demand.</p>
+<h2>Control playback quality with adaptive bitrate and resolution caps</h2>
+<p>If your videos are served as HLS or DASH with several renditions, the player can switch quality based on measured bandwidth. That is adaptive bitrate. On its own, though, it optimises for smooth playback, not for saving data: on a fast mobile connection it will happily pick the highest quality available.</p>
+<p>To save data, cap the quality explicitly. With Media3 you can set track selection parameters on the player.</p>
+<pre><code class="language-kotlin">player.trackSelectionParameters = player.trackSelectionParameters
+    .buildUpon()
+    .setMaxVideoSize(854, 480)
+    .setMaxVideoBitrate(800_000)
+    .build()</code></pre>
+<p>Apply a lower cap when data saver is on and remove it when the user is on Wi-Fi with the setting off. Choose caps by watching your own content on real phones; a talking-head video at a modest resolution can look perfectly good, while fast motion or fine text needs more. The numbers above are an illustration, not a universal target.</p>
+<p>If you serve single progressive MP4 files, you cannot switch quality during playback, but you can still prepare two or three versions at upload time and pick the URL based on the user&#39;s mode before playback starts.</p>
+<h2>Compress uploads before they leave the phone</h2>
+<p>Modern phone cameras record at high resolutions and bitrates that are far beyond what a short-video feed will display. Uploading the original file wastes the user&#39;s data and your storage, and you will re-encode it on the server anyway.</p>
+<p>Compressing on the device before upload, for example with Media3 Transformer, reduces upload time and failed uploads on slow connections. Good practice:</p>
+<ul>
+  <li>Target the maximum resolution and bitrate your app will actually serve, not the camera&#39;s original.</li>
+  <li>Keep the original file on the device until the server confirms the upload, so a failure does not lose the user&#39;s work.</li>
+  <li>Upload in resumable chunks so a dropped connection does not restart the whole file.</li>
+  <li>Let users choose &quot;upload on Wi-Fi only&quot; for drafts that are not urgent, and schedule those uploads with WorkManager using a network constraint.</li>
+</ul>
+<p>On-device compression costs battery and time, so show progress clearly and avoid running it while the user is recording something else.</p>
+<h2>Give users clear, honest controls</h2>
+<p>Automatic behaviour is a good default, but users should be able to see and override it. A typical settings section might include:</p>
+<ul>
+  <li><strong>Data saver</strong> on or off, with a one-line explanation of what it changes.</li>
+  <li><strong>Video quality on mobile data</strong>: automatic, data saver, or higher quality.</li>
+  <li><strong>Preload videos</strong>: on Wi-Fi only, always, or never.</li>
+  <li><strong>Upload over mobile data</strong>: allowed or Wi-Fi only.</li>
+</ul>
+<p>Use plain language. &quot;Uses less mobile data; videos may look softer&quot; is more helpful than technical terms such as bitrate. Also make sure the settings are remembered across app updates and actually applied everywhere video is played, including in live streams, profile grids and direct messages, not only in the main feed.</p>
+<h2>Test with real constraints</h2>
+<p>Data saver features are easy to break without noticing, because developers usually work on fast Wi-Fi. Build a simple test routine:</p>
+<ol>
+  <li>Mark your test Wi-Fi as metered in Android settings and confirm the app treats it as mobile data.</li>
+  <li>Turn on the system Data Saver and check that background work is reduced.</li>
+  <li>Use Android Studio&#39;s network inspector or your server logs to compare the data used in a short session with each mode.</li>
+  <li>Switch networks during playback and confirm the caps change without a stall or crash.</li>
+</ol>
+<p>Record the results for each release. A regression that doubles data use is just as important as a visible bug.</p>
+<h2>Conclusion</h2>
+<p>A good data saver mode is mostly about restraint: preload less on expensive networks, cap quality at what a phone screen needs, compress uploads, and let users decide. None of these changes is difficult on its own, but together they make a video app usable and affordable for a much larger group of people. For users who pay for every megabyte, that respect is a feature they notice.</p>
+    </article>
+    <div class="back-row"><a href="/blog/" class="btn btn-secondary">&larr; All articles</a></div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="container">
+    <div class="section-head"><span class="kicker">Keep reading</span><h2>More from the blog</h2></div>
+    <div class="grid grid-3">
+<article class="project-card post-card">
+  <div class="post-meta"><span class="tag">Video &amp; Streaming</span><time datetime="2026-10-24">24 October 2026</time></div>
+  <h3><a href="/blog/choosing-real-time-video-provider.html" class="stretched">How to Choose a Real-Time Video Provider for a Live App</a></h3>
+  <p>Criteria for evaluating real-time video SDKs for a live streaming app, from network coverage and SDK size to pricing models, plus how to stay able to switch.</p>
+  <span class="project-link">Read article <span aria-hidden="true">&rarr;</span></span>
+</article>
+<article class="project-card post-card">
+  <div class="post-meta"><span class="tag">Video &amp; Streaming</span><time datetime="2026-10-15">15 October 2026</time></div>
+  <h3><a href="/blog/live-streaming-basics-rtc-latency.html" class="stretched">Live Streaming Basics: RTC, HLS and Where Latency Comes From</a></h3>
+  <p>A plain-English guide to live streaming technology, comparing WebRTC, RTMP and HLS, explaining latency, SFUs and jitter buffers, and when real-time matters.</p>
+  <span class="project-link">Read article <span aria-hidden="true">&rarr;</span></span>
+</article>
+<article class="project-card post-card">
+  <div class="post-meta"><span class="tag">Video &amp; Streaming</span><time datetime="2026-10-04">4 October 2026</time></div>
+  <h3><a href="/blog/short-video-instant-playback.html" class="stretched">How Short-Video Feeds Start Playback Instantly</a></h3>
+  <p>Player pooling, preloading, buffer tuning and caching techniques that make a vertical video feed start playing the moment a user swipes.</p>
+  <span class="project-link">Read article <span aria-hidden="true">&rarr;</span></span>
+</article>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <span class="mark"><img src="/assets/img/logo-mark-128.png" alt="" width="64" height="64" loading="lazy"></span>
+          <strong>BALOCH SAHAB TECHNOLOGIES (SMC-PRIVATE) LIMITED</strong>
+        </div>
+        <p>An SECP-registered software company in Pakistan building its own digital products and engineering software for clients.</p>
+      </div>
+      <div>
+        <h2 class="footer-h">Company</h2>
+        <ul>
+          <li><a href="/about.html">About Us</a></li>
+          <li><a href="/team.html">Team</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Work</h2>
+        <ul>
+          <li><a href="/projects.html">Our Products</a></li>
+          <li><a href="/client-work.html">Client Work</a></li>
+          <li><a href="/quote.html">Request a Quote</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Contact</h2>
+        <ul>
+          <li><a href="mailto:info@balochsahab.com">info@balochsahab.com</a></li>
+          <li><a href="mailto:sales@balochsahab.com">sales@balochsahab.com</a></li>
+          <li><a href="tel:+923218818909">+92 321 8818909</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Baloch Sahab Technologies (SMC-Private) Limited. All rights reserved.</span>
+      <span class="footer-legal"><a href="/privacy.html">Privacy Policy</a> &middot; <a href="/terms.html">Terms</a> &middot; CUIN 0352600 &middot; <a href="https://leap.secp.gov.pk/#/verify-company-info/0352600" target="_blank" rel="noopener noreferrer">Verify with SECP &#8599;</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/nav.js?v=ee872eb8" defer></script>
+
+</body>
+</html>
