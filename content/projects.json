@@ -69,6 +69,7 @@
       "featured": true,
       "order": 3,
       "name": "XnaksView",
+      "logo": "/assets/img/xnaksview-logo.png",
       "category": "Mobile App",
       "status": "in-development",
       "tagline": "A short-video and LIVE streaming social app for creators and their audiences.",

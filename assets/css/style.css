@@ -386,3 +386,6 @@ section.alt { background: var(--surface); border-top: 1px solid var(--border); b
 .article-body code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 0.9em; background: var(--surface-2); border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
 .article-body pre { background: var(--navy); color: #e8e8f6; border-radius: 12px; padding: 16px 18px; overflow-x: auto; font-size: 0.88rem; line-height: 1.55; }
 .article-body pre code { background: none; border: 0; padding: 0; color: inherit; font-size: inherit; }
+
+.product-mark.has-logo { background: transparent; box-shadow: none; padding: 0; }
+.product-mark.has-logo img { width: 100%; height: 100%; object-fit: contain; display: block; }

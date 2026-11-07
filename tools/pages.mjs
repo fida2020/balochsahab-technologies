@@ -1,6 +1,9 @@
 import { SITE, STATUSES, esc, ARTICLE_AUTHOR, markdownToHtml, wordCount } from "./lib.mjs";
 
 const productUrl = p => `/${p.kind === "product" ? "products" : "work"}/${p.slug}.html`;
+const mark = (p, lg = "") => p.logo
+  ? `<span class="product-mark has-logo${lg}" aria-hidden="true"><img src="${esc(p.logo)}" alt="" width="88" height="88" loading="lazy"></span>`
+  : `<span class="product-mark${lg}" aria-hidden="true">${esc(initials(p.name))}</span>`;
 const initials = name => name.split(/\s+/).filter(w => /^[A-Za-z0-9]/.test(w)).slice(0, 2).map(w => w[0]).join("").toUpperCase();
 
 function statusBadge(status) {
@@ -10,7 +13,7 @@ function statusBadge(status) {
 function projectCard(p) {
   return `<article class="project-card" data-category="${esc(p.category)}">
   <div class="project-card-top">
-    <span class="product-mark" aria-hidden="true">${esc(initials(p.name))}</span>
+    ${mark(p)}
     ${statusBadge(p.status)}
   </div>
   <h3><a href="${productUrl(p)}" class="stretched">${esc(p.name)}</a></h3>
@@ -484,7 +487,7 @@ export function detailPage(p) {
   <div class="container">
     <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/index.html">Home</a> <span aria-hidden="true">/</span> <a href="${listPath}">${listName}</a> <span aria-hidden="true">/</span> <span aria-current="page">${esc(p.name)}</span></nav>
     <div class="detail-head">
-      <span class="product-mark lg" aria-hidden="true">${esc(initials(p.name))}</span>
+      ${mark(p, " lg")}
       <div>
         <div class="detail-meta">${statusBadge(p.status)}<span class="tag tag-dark">${esc(p.category)}</span>${!isProduct ? `<span class="tag tag-dark">Client: ${esc(p.client)}</span>` : ""}</div>
         <h1>${esc(p.name)}</h1>
