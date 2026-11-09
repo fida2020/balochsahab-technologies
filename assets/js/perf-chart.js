@@ -23,7 +23,7 @@
       var i0 = 0; while (i0 < series.length - 1 && !series[i0].views && !series[i0].clicks && !series[i0].impressions) i0++;
       return series.slice(i0);
     }
-    if (range === "month") { var m = new Date().toISOString().slice(0, 7); return series.filter(function (r) { return r.day.slice(0, 7) === m; }); }
+    if (range === "month") { var m = series.length ? series[series.length - 1].day.slice(0, 7) : ""; return series.filter(function (r) { return r.day.slice(0, 7) === m; }); }
     return series.slice(-Number(range));
   }
 

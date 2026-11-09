@@ -30,7 +30,7 @@
       var sd = {}; s.forEach(function (r) { sd[r.day] = r; });
       var first = (s[0] || g[0] || {}).day || new Date().toISOString().slice(0, 10);
       var span = Math.max(28, Math.round((Date.now() - Date.parse(first)) / 86400000) + 1);
-      var ser = []; for (var i = span - 1; i >= 0; i--) { var id = new Date(Date.now() - i * 86400000).toISOString().slice(0, 10);
+      var ser = []; for (var i = span - 1; i >= 0; i--) { var id = new Date(Date.now() + 5 * 3600000 - i * 86400000).toISOString().slice(0, 10);
         ser.push({ day: id, views: (sd[id] || {}).views || 0, visitors: (sd[id] || {}).visitors || 0, clicks: (gd[id] || {}).clicks || 0, impressions: (gd[id] || {}).impressions || 0 }); }
       chart.hidden = false; window.BSPerf(document.getElementById("stats-perf"), ser);
     }
