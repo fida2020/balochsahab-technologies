@@ -132,6 +132,7 @@ export function staticPages(projects) {
     title: "Baloch Sahab Technologies — Software Products & Development, Pakistan",
     description: "Software company registered in Pakistan and the UK, building its own apps and platforms and developing web and mobile software for clients.",
     jsonLd: [{ "@type": "WebSite", "@id": SITE.origin + "/#website", url: SITE.origin + "/", name: SITE.name, publisher: { "@id": SITE.origin + "/#organization" } }],
+    scripts: ["/assets/js/live-stats.js"],
     body: `<section class="hero hero-home">
   <div class="container">
     <span class="eyebrow">Registered software company &middot; Pakistan &amp; United Kingdom</span>
@@ -151,6 +152,18 @@ export function staticPages(projects) {
       <div><div class="num">${products.length}</div><div class="label">Company-owned products</div></div>
       <div><div class="num">SECP</div><div class="label">Registered &middot; CUIN ${SITE.cuin}</div></div>
       <div><div class="num">UK</div><div class="label">Companies House &middot; No. ${SITE.ukNumber}</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="tight live-stats" id="live-stats" data-api="${SITE.statsGet}?public=1" hidden>
+  <div class="container">
+    <div class="live-head"><span class="live-dot" aria-hidden="true"></span> Live website stats</div>
+    <div class="stats">
+      <div><div class="num" data-k="views">0</div><div class="label">Total page views</div></div>
+      <div><div class="num" data-k="visitors">0</div><div class="label">Visitors</div></div>
+      <div><div class="num" data-k="today">0</div><div class="label">Views today</div></div>
+      <div><div class="num" data-k="googleClicks">0</div><div class="label">Clicks from Google</div></div>
     </div>
   </div>
 </section>
