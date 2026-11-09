@@ -26,17 +26,23 @@
         "Real wallet balances and withdrawals"
       ],
       "technologies": [],
-      "platforms": ["Web"],
+      "platforms": [
+        "Web"
+      ],
       "images": [],
       "links": [
-        { "label": "Visit earn.balochsahab.com", "url": "https://earn.balochsahab.com", "primary": true }
+        {
+          "label": "Visit earn.balochsahab.com",
+          "url": "https://earn.balochsahab.com",
+          "primary": true
+        }
       ],
       "notes": []
     },
     {
       "slug": "earnbox",
       "kind": "product",
-      "published": true,
+      "published": false,
       "featured": true,
       "order": 2,
       "name": "EarnBox",
@@ -54,11 +60,19 @@
         "Daily bonus",
         "Withdrawals to JazzCash, Easypaisa, bank transfer or USDT"
       ],
-      "technologies": ["Android"],
-      "platforms": ["Android"],
+      "technologies": [
+        "Android"
+      ],
+      "platforms": [
+        "Android"
+      ],
       "images": [],
       "links": [
-        { "label": "Download EarnBox", "url": "https://earnbox.balochsahab.com/download", "primary": true }
+        {
+          "label": "Download EarnBox",
+          "url": "https://earnbox.balochsahab.com/download",
+          "primary": true
+        }
       ],
       "notes": []
     },
@@ -67,36 +81,57 @@
       "kind": "product",
       "published": true,
       "featured": true,
-      "order": 3,
+      "order": 2,
       "name": "XnaksView",
       "logo": "/assets/img/xnaksview-logo.png",
       "category": "Mobile App",
-      "status": "in-development",
+      "status": "live",
       "tagline": "A short-video and LIVE streaming social app for creators and their audiences.",
       "summary": "A short-video and LIVE streaming social app with virtual gifts, creator earnings, direct messages and group chats.",
       "overview": [
         "XnaksView is a social video app for Android. Viewers scroll a feed of short videos and join creators in LIVE rooms, where they can chat and send virtual gifts.",
         "Creators can go LIVE, invite guests on stage and earn from gifts received. The app also includes one-to-one direct messages and group chats.",
-        "XnaksView is currently in development and has not yet been publicly released on Google Play."
+        "XnaksView is live on Google Play. Coins can be bought in the app or on our website, where they are 10% cheaper. An iPhone version is coming soon."
       ],
       "features": [
         "Short-video feed with comments",
         "LIVE streaming with multi-guest rooms",
-        "Virtual gifts and in-app coins (Google Play Billing)",
+        "Virtual gifts and coins (Google Play Billing, or 10% cheaper on our website)",
         "Creator earnings with identity verification (KYC) before withdrawal",
         "Direct messages and group chats with GIFs and stickers",
         "Follow system, profiles and notifications"
       ],
-      "technologies": ["Kotlin", "Jetpack Compose", "Firebase Authentication", "Cloud Firestore", "Cloud Functions", "Cloud Storage", "Real-time video (RTC)", "Google Play Billing"],
-      "platforms": ["Android"],
+      "technologies": [
+        "Kotlin",
+        "Jetpack Compose",
+        "Firebase Authentication",
+        "Cloud Firestore",
+        "Cloud Functions",
+        "Cloud Storage",
+        "Real-time video (RTC)",
+        "Google Play Billing"
+      ],
+      "platforms": [
+        "Android"
+      ],
       "images": [],
-      "links": [],
-      "notes": ["Not yet available to download. Public release on Google Play is planned."]
+      "links": [
+        {
+          "label": "Get it on Google Play",
+          "url": "https://play.google.com/store/apps/details?id=com.xnaksview.app",
+          "primary": true
+        },
+        {
+          "label": "Buy coins on the website (10% cheaper)",
+          "url": "https://xnaksview.balochsahab.com/coins"
+        }
+      ],
+      "notes": []
     },
     {
       "slug": "f88-ai-auto-trading-bot",
       "kind": "product",
-      "published": true,
+      "published": false,
       "featured": true,
       "order": 4,
       "name": "F88 AI Auto Trading Bot",
@@ -119,8 +154,19 @@
         "Live balance, equity, positions and trade history with win-rate stats",
         "Broker passwords encrypted at rest"
       ],
-      "technologies": ["Flutter", "Python", "FastAPI", "SQLAlchemy", "MetaTrader 5", "WebSockets", "JWT authentication"],
-      "platforms": ["Windows (backend)", "Flutter app"],
+      "technologies": [
+        "Flutter",
+        "Python",
+        "FastAPI",
+        "SQLAlchemy",
+        "MetaTrader 5",
+        "WebSockets",
+        "JWT authentication"
+      ],
+      "platforms": [
+        "Windows (backend)",
+        "Flutter app"
+      ],
       "images": [],
       "links": [],
       "notes": [

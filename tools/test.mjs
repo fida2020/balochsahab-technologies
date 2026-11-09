@@ -140,9 +140,11 @@ t("products page lists only products; client page lists only client work", () =>
   }
   assert(!prodHtml.includes("/work/"), "client work leaked into products page");
 });
-t("required products present: EarnBox, XnaksView, F88", () => {
+// Owner 9 Nov: only LIVE projects on the site (Earning Platform + XnaksView); EarnBox + F88 unpublished.
+t("required products present: Earning Platform, XnaksView; EarnBox + F88 gone", () => {
   const html = read("projects.html");
-  for (const n of ["EarnBox", "XnaksView", "F88 AI Auto Trading Bot"]) assert(html.includes(n), n + " missing");
+  for (const n of ["Baloch Sahab Earning Platform", "XnaksView"]) assert(html.includes(n), n + " missing");
+  for (const n of ["EarnBox", "F88"]) assert(!html.includes(n), n + " still shown");
 });
 
 // ---- sitemap / robots ----

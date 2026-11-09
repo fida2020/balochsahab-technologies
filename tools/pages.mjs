@@ -136,7 +136,7 @@ export function staticPages(projects) {
   <div class="container">
     <span class="eyebrow">SECP-registered software company &middot; Pakistan</span>
     <h1>We build digital products <span>that people actually use.</span></h1>
-    <p class="lead">From earning platforms and social video apps to automated trading software, we design, build and run our own products, and we bring the same engineering to client projects.</p>
+    <p class="lead">From earning platforms to social video apps, we design, build and run our own products, and we bring the same engineering to client projects.</p>
     <div class="hero-actions">
       <a href="/projects.html" class="btn btn-primary">Explore our products</a>
       <a href="/quote.html" class="btn btn-ghost">Request a quote</a>
@@ -211,7 +211,7 @@ ${ctaBanner("Have a project in mind?", "Whether it&rsquo;s a web platform, a mob
       <div class="prose">
         <h2>Our story</h2>
         <p>Baloch Sahab Technologies began as a single web project: an earning platform for everyday users. As that platform grew, so did the need for a proper company behind it, one that could take on mobile apps, take on client projects, and be accountable under its own legal name.</p>
-        <p>In August 2026 the company was formally incorporated in Pakistan with the Securities and Exchange Commission of Pakistan (SECP) as an SMC-Private Limited company, a single-member company limited by shares. Today it is the parent company behind the Baloch Sahab Earning Platform, the EarnBox Android app, XnaksView, the F88 AI Auto Trading Bot, and the web and app development work we take on for clients.</p>
+        <p>In August 2026 the company was formally incorporated in Pakistan with the Securities and Exchange Commission of Pakistan (SECP) as an SMC-Private Limited company, a single-member company limited by shares. Today it is the parent company behind the Baloch Sahab Earning Platform, XnaksView, and the web and app development work we take on for clients.</p>
       </div>
       <div>
         <h2>Company facts</h2>
@@ -270,7 +270,7 @@ ${ctaBanner("Want to work with us?", "We&rsquo;re always open to conversations a
   const productsPage = {
     path: "/projects.html", nav: "/projects.html",
     title: "Our Products",
-    description: "Company-owned products by Baloch Sahab Technologies: the Baloch Sahab Earning Platform, EarnBox, XnaksView and the F88 AI Auto Trading Bot.",
+    description: "Company-owned products by Baloch Sahab Technologies: the Baloch Sahab Earning Platform and XnaksView.",
     jsonLd: [breadcrumbLd([["Home", "/"], ["Our Products", "/projects.html"]]), {
       "@type": "ItemList", itemListElement: products.map((p, i) => ({ "@type": "ListItem", position: i + 1, url: SITE.origin + productUrl(p), name: p.name }))
     }],
@@ -351,7 +351,7 @@ ${ctaBanner("Have a project brief?", "Send us the details and we&rsquo;ll get ba
       </div>
     </div>
     <div class="note-banner">
-      <p><strong>Already a Baloch Sahab Earning Platform or EarnBox user?</strong> For account, wallet or withdrawal support, please contact us through the platform itself.</p>
+      <p><strong>Already a Baloch Sahab Earning Platform or XnaksView user?</strong> For account, wallet or withdrawal support, please contact us through the platform itself.</p>
       <a href="https://earn.balochsahab.com" class="btn btn-secondary">Go to Earning Platform</a>
     </div>
   </div>
@@ -382,7 +382,7 @@ ${ctaBanner("Have a project brief?", "Send us the details and we&rsquo;ll get ba
     body: `${pageHero({ eyebrow: "Legal", title: "Privacy Policy", lead: `Last updated: ${legalUpdated}` })}
 <section>
   <div class="container narrow prose">
-    <p>This policy explains how ${esc(SITE.legalName)} (&ldquo;we&rdquo;, &ldquo;us&rdquo;) handles personal information on this website, balochsahab.com. Our individual products (such as the Baloch Sahab Earning Platform, EarnBox and XnaksView) have their own privacy policies, which apply when you use them.</p>
+    <p>This policy explains how ${esc(SITE.legalName)} (&ldquo;we&rdquo;, &ldquo;us&rdquo;) handles personal information on this website, balochsahab.com. Our individual products (such as the Baloch Sahab Earning Platform and XnaksView) have their own privacy policies, which apply when you use them.</p>
     <h2>Information we collect</h2>
     <ul>
       <li><strong>Information you send us.</strong> When you use the contact or quote form, or email us, we receive the details you provide, such as your name, email address, company, phone number and message.</li>
@@ -425,9 +425,9 @@ ${ctaBanner("Have a project brief?", "Send us the details and we&rsquo;ll get ba
     <h2>Use of this website</h2>
     <p>You may browse and use this website for lawful purposes only. You must not attempt to disrupt it, gain unauthorised access to it, or send spam or harmful content through its forms.</p>
     <h2>Our products</h2>
-    <p>Information about our products is provided for general information. Each product (for example the Baloch Sahab Earning Platform, EarnBox, XnaksView and the F88 AI Auto Trading Bot) is governed by its own terms when you use it. Products marked &ldquo;In development&rdquo; are not yet generally available and their features may change.</p>
+    <p>Information about our products is provided for general information. Each product (for example the Baloch Sahab Earning Platform and XnaksView) is governed by its own terms when you use it. Products marked &ldquo;In development&rdquo; are not yet generally available and their features may change.</p>
     <h2>No financial advice</h2>
-    <p>Nothing on this website is financial, investment or trading advice. Trading foreign exchange, metals and CFDs carries a high level of risk, and automated trading software does not guarantee profit. You can lose all of your capital.</p>
+    <p>Nothing on this website is financial or investment advice.</p>
     <h2>Quotes and client work</h2>
     <p>A quote or estimate sent in reply to an inquiry is not a binding contract. Client projects are governed by a separate written agreement covering scope, price, timelines and ownership.</p>
     <h2>Intellectual property</h2>
