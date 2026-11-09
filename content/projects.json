@@ -87,19 +87,28 @@
       "category": "Mobile App",
       "status": "live",
       "tagline": "A short-video and LIVE streaming social app for Android and iOS.",
-      "summary": "A short-video and LIVE streaming social app with virtual gifts, creator earnings, direct messages and group chats.",
+      "summary": "A short-video and LIVE streaming social app for Android and iOS, with PK battles, animated virtual gifts, creator earnings, agencies, direct messages and group chats.",
       "overview": [
-        "XnaksView is a social video app for Android and iOS. Viewers scroll a feed of short videos and join creators in LIVE rooms, where they can chat and send virtual gifts.",
-        "Creators can go LIVE, invite guests on stage and earn from gifts received. The app also includes one-to-one direct messages and group chats.",
+        "XnaksView is a social video app for Android and iOS. Viewers scroll a feed of short videos and join creators in LIVE rooms, where they can chat and send animated virtual gifts.",
+        "Creators can go LIVE with as few as 10 followers, invite guests on stage in multi-seat layouts, and challenge other hosts to PK battles where gifts decide the winner. Gifts received turn into diamonds, which creators can exchange for coins or withdraw to their bank after identity verification.",
+        "A built-in video editor lets users trim, change speed, and add music, text, filters and effects before posting. Creators with 1,000 followers and 10,000 views in 28 days can also earn a share of ad revenue on their videos.",
+        "Fans can join a creator's fan team, climb gifter levels and appear on hourly, daily, weekly and monthly rankings. LIVE agencies can bring creators together as a team and grow with them.",
         "XnaksView is live on Google Play for Android, and the iOS (iPhone) app is coming to the App Store. Coins can be bought in the app or on our website, where they are 10% cheaper."
       ],
       "features": [
-        "Short-video feed with comments",
-        "LIVE streaming with multi-guest rooms",
-        "Virtual gifts and coins (Google Play Billing, or 10% cheaper on our website)",
-        "Creator earnings with identity verification (KYC) before withdrawal",
+        "Short-video feed with likes, comments, shares and saves",
+        "Pro video editor: trim, split, speed, music, text, filters and effects",
+        "LIVE streaming with multi-guest rooms (up to 9 seats)",
+        "PK battles between hosts, decided by gifts",
+        "Hundreds of animated (including 3D) virtual gifts",
+        "Coins via Google Play, or 10% cheaper on our website",
+        "Diamonds from gifts: exchange for coins or withdraw to a bank (KYC verified)",
+        "Ad-revenue share for eligible creators",
+        "Fan teams, gifter levels and hourly / daily / weekly / monthly rankings",
+        "LIVE agencies for creator teams",
         "Direct messages and group chats with GIFs and stickers",
-        "Follow system, profiles and notifications"
+        "Follow, friends, profiles and notifications",
+        "Moderation and reporting to keep LIVE rooms safe"
       ],
       "technologies": [
         "Kotlin",
