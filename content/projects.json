@@ -110,19 +110,7 @@
         "Follow, friends, profiles and notifications",
         "Moderation and reporting to keep LIVE rooms safe"
       ],
-      "technologies": [
-        "Kotlin",
-        "Jetpack Compose",
-        "Swift",
-        "SwiftUI",
-        "Firebase Authentication",
-        "Cloud Firestore",
-        "Cloud Functions",
-        "Cloud Storage",
-        "Real-time video (RTC)",
-        "Google Play Billing",
-        "StoreKit"
-      ],
+      "technologies": [],
       "platforms": [
         "Android",
         "iOS"
