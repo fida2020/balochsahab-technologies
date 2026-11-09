@@ -24,6 +24,14 @@
     var gp = {};
     g.forEach(function (r) { var p = r.pages || {}; Object.keys(p).forEach(function (k) { var x = p[k]; var a = gp[x.url] || (gp[x.url] = [0, 0]); a[0] += x.clicks; a[1] += x.impressions; }); });
     var gpr = Object.keys(gp).map(function (u) { return [u.replace("https://", ""), gp[u][0], gp[u][1]]; }).sort(function (a, b) { return b[1] - a[1] || b[2] - a[2]; });
+    var chart = document.getElementById("stats-perf-card");
+    if (chart && window.BSPerf) {
+      var gd = {}; g.forEach(function (r) { gd[r.day] = r; });
+      var sd = {}; s.forEach(function (r) { sd[r.day] = r; });
+      var ser = []; for (var i = 29; i >= 0; i--) { var id = new Date(Date.now() - i * 86400000).toISOString().slice(0, 10);
+        ser.push({ day: id, views: (sd[id] || {}).views || 0, visitors: (sd[id] || {}).visitors || 0, clicks: (gd[id] || {}).clicks || 0, impressions: (gd[id] || {}).impressions || 0 }); }
+      chart.hidden = false; window.BSPerf(document.getElementById("stats-perf"), ser);
+    }
     var tiles = [["Page views", views], ["Visitors (daily unique)", vis], ["Google clicks", clicks], ["Google impressions", impr]];
     out.innerHTML =
       '<div class="stats-tiles">' + tiles.map(function (t) { return '<div class="stats-tile"><div class="num">' + t[1].toLocaleString() + '</div><div class="label">' + t[0] + "</div></div>"; }).join("") + "</div>" +

@@ -132,7 +132,7 @@ export function staticPages(projects) {
     title: "Baloch Sahab Technologies — Software Products & Development, Pakistan",
     description: "Software company registered in Pakistan and the UK, building its own apps and platforms and developing web and mobile software for clients.",
     jsonLd: [{ "@type": "WebSite", "@id": SITE.origin + "/#website", url: SITE.origin + "/", name: SITE.name, publisher: { "@id": SITE.origin + "/#organization" } }],
-    scripts: ["/assets/js/live-stats.js"],
+    scripts: ["/assets/js/perf-chart.js", "/assets/js/live-stats.js"],
     body: `<section class="hero hero-home">
   <div class="container">
     <span class="eyebrow">Registered software company &middot; Pakistan &amp; United Kingdom</span>
@@ -158,12 +158,9 @@ export function staticPages(projects) {
 
 <section class="tight live-stats" id="live-stats" data-api="${SITE.statsGet}?public=1" hidden>
   <div class="container">
-    <div class="live-head"><span class="live-dot" aria-hidden="true"></span> Live website stats</div>
-    <div class="stats">
-      <div><div class="num" data-k="views">0</div><div class="label">Total page views</div></div>
-      <div><div class="num" data-k="visitors">0</div><div class="label">Visitors</div></div>
-      <div><div class="num" data-k="today">0</div><div class="label">Views today</div></div>
-      <div><div class="num" data-k="googleClicks">0</div><div class="label">Clicks from Google</div></div>
+    <div class="perf-card">
+      <div class="perf-head"><span class="live-head"><span class="live-dot" aria-hidden="true"></span> Live website performance</span><span class="perf-sub">Last 28 days &middot; <b id="live-today">0</b> views today &middot; updates every 30 seconds</span></div>
+      <div id="live-perf"></div>
     </div>
   </div>
 </section>
@@ -479,11 +476,12 @@ ${ctaBanner("Have a project brief?", "Send us the details and we&rsquo;ll get ba
     path: "/stats.html", nav: "", noindex: true,
     title: "Website stats",
     description: "Private website statistics for Baloch Sahab Technologies.",
-    scripts: ["/assets/js/stats.js"],
+    scripts: ["/assets/js/perf-chart.js", "/assets/js/stats.js"],
     body: `<section><div class="container" id="stats-app" data-api="${SITE.statsGet}">
   <h1 class="stats-title">Website stats</h1>
   <p class="stats-sub">balochsahab.com + earn.balochsahab.com &middot; views counted on the site, Google clicks from Search Console, ad earnings in AdSense.</p>
   <form id="stats-key-form" class="stats-key"><input id="stats-key" type="password" placeholder="Stats key" autocomplete="current-password"><button class="btn btn-primary" type="submit">Show stats</button></form>
+  <div class="perf-card" id="stats-perf-card" hidden><div id="stats-perf"></div></div>
   <div id="stats-out"></div>
 </div></section>`
   };

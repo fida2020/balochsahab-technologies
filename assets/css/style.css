@@ -422,8 +422,27 @@ section.alt { background: var(--surface); border-top: 1px solid var(--border); b
 .live-stats .live-head { display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 700; color: var(--blue); margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.8rem; }
 .live-dot { width: 10px; height: 10px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 0 rgba(34,197,94,.6); animation: livePulse 1.6s infinite; }
 @keyframes livePulse { 0% { box-shadow: 0 0 0 0 rgba(34,197,94,.6); } 70% { box-shadow: 0 0 0 10px rgba(34,197,94,0); } 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); } }
-.live-stats .stats {
-  background: #fff; border: 1px solid var(--border); border-radius: 20px; box-shadow: var(--shadow); padding: 24px 16px;
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; text-align: center;
-}
-@media (max-width: 720px) { .live-stats .stats { grid-template-columns: repeat(2, 1fr); row-gap: 24px; } }
+
+/* Owner 10 Nov: Google Search Console style performance card */
+.perf-card { background: #fff; border: 1px solid var(--border); border-radius: 16px; box-shadow: var(--shadow); padding: 18px 18px 10px; }
+.perf-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 14px; }
+.perf-head .live-head { margin: 0; }
+.perf-sub { color: var(--text-muted); font-size: 0.85rem; }
+.perf-tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-radius: 10px; overflow: hidden; margin-bottom: 14px; }
+.perf-tile { --c: #4285F4; text-align: left; border: 0; border-top: 4px solid var(--c); background: #fff; color: #3c4043; padding: 12px 14px 14px; cursor: pointer; font: inherit; display: grid; grid-template-columns: 18px 1fr; grid-template-rows: auto auto; column-gap: 6px; }
+.perf-tile.on { background: var(--c); color: #fff; }
+.perf-check { width: 14px; height: 14px; border: 2px solid currentColor; border-radius: 3px; margin-top: 2px; }
+.perf-tile.on .perf-check { background: #fff; box-shadow: inset 0 0 0 2px var(--c); }
+.perf-label { font-size: 0.82rem; font-weight: 600; }
+.perf-num { grid-column: 1 / -1; font-size: 1.9rem; font-weight: 500; margin-top: 4px; }
+.perf-chart { position: relative; height: 260px; padding-bottom: 22px; }
+.perf-chart svg { width: 100%; height: 238px; display: block; }
+.perf-grid { stroke: #e8eaed; stroke-width: 1; vector-effect: non-scaling-stroke; }
+.perf-guide { stroke: #9aa0a6; stroke-width: 1; vector-effect: non-scaling-stroke; }
+.perf-x { position: absolute; left: 0; right: 0; bottom: 0; height: 18px; }
+.perf-x span { position: absolute; transform: translateX(-50%); font-size: 0.75rem; color: #5f6368; white-space: nowrap; }
+.perf-x span:first-child { transform: none; }
+.perf-x span:last-child { transform: translateX(-100%); }
+.perf-tip { display: none; position: absolute; top: 8px; width: 190px; background: #fff; border: 1px solid #dadce0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.15); padding: 8px 10px; font-size: 0.8rem; color: #3c4043; pointer-events: none; }
+.perf-tip i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
+@media (max-width: 720px) { .perf-tiles { grid-template-columns: repeat(2, 1fr); } .perf-num { font-size: 1.5rem; } .perf-chart { height: 200px; } .perf-chart svg { height: 178px; } }
