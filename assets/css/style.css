@@ -446,3 +446,9 @@ section.alt { background: var(--surface); border-top: 1px solid var(--border); b
 .perf-tip { display: none; position: absolute; top: 8px; width: 190px; background: #fff; border: 1px solid #dadce0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.15); padding: 8px 10px; font-size: 0.8rem; color: #3c4043; pointer-events: none; }
 .perf-tip i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
 @media (max-width: 720px) { .perf-tiles { grid-template-columns: repeat(2, 1fr); } .perf-num { font-size: 1.5rem; } .perf-chart { height: 200px; } .perf-chart svg { height: 178px; } }
+
+.perf-ranges { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 12px; }
+.perf-range { border: 1px solid #dadce0; background: #fff; color: #3c4043; border-radius: 999px; padding: 6px 14px; font: inherit; font-size: 0.85rem; font-weight: 600; cursor: pointer; }
+.perf-range:hover { border-color: #1a73e8; color: #1a73e8; }
+.perf-range.on { background: #e8f0fe; border-color: #1a73e8; color: #1a73e8; }
+.perf-span { margin-left: auto; color: #5f6368; font-size: 0.82rem; }

@@ -28,14 +28,16 @@
     if (chart && window.BSPerf) {
       var gd = {}; g.forEach(function (r) { gd[r.day] = r; });
       var sd = {}; s.forEach(function (r) { sd[r.day] = r; });
-      var ser = []; for (var i = 29; i >= 0; i--) { var id = new Date(Date.now() - i * 86400000).toISOString().slice(0, 10);
+      var first = (s[0] || g[0] || {}).day || new Date().toISOString().slice(0, 10);
+      var span = Math.max(28, Math.round((Date.now() - Date.parse(first)) / 86400000) + 1);
+      var ser = []; for (var i = span - 1; i >= 0; i--) { var id = new Date(Date.now() - i * 86400000).toISOString().slice(0, 10);
         ser.push({ day: id, views: (sd[id] || {}).views || 0, visitors: (sd[id] || {}).visitors || 0, clicks: (gd[id] || {}).clicks || 0, impressions: (gd[id] || {}).impressions || 0 }); }
       chart.hidden = false; window.BSPerf(document.getElementById("stats-perf"), ser);
     }
     var tiles = [["Page views", views], ["Visitors (daily unique)", vis], ["Google clicks", clicks], ["Google impressions", impr]];
     out.innerHTML =
       '<div class="stats-tiles">' + tiles.map(function (t) { return '<div class="stats-tile"><div class="num">' + t[1].toLocaleString() + '</div><div class="label">' + t[0] + "</div></div>"; }).join("") + "</div>" +
-      '<p class="stats-note">Last 30 days. Google numbers arrive 2-3 days late. Ad earnings: <a href="https://adsense.google.com/adsense/u/0/pub-6831828383879093/reports" target="_blank" rel="noopener">AdSense reports &#8599;</a></p>' +
+      '<p class="stats-note">Tables: last 400 days. Google numbers arrive 2-3 days late. Ad earnings: <a href="https://adsense.google.com/adsense/u/0/pub-6831828383879093/reports" target="_blank" rel="noopener">AdSense reports &#8599;</a></p>' +
       table("Daily", ["Day", "Views", "Visitors", "balochsahab.com", "earn site"], s.slice().reverse().map(function (r) { return [r.day, r.views || 0, r.visitors || 0, r.site_main || 0, r.site_earn || 0]; })) +
       table("Top pages", ["Page", "Views"], merge(s, "pages").slice(0, 40).map(function (r) { return [page(r[0]), r[1]]; })) +
       table("Google Search (per page)", ["Page", "Clicks", "Impressions"], gpr.slice(0, 40)) +
@@ -45,7 +47,7 @@
   }
   function load(key) {
     out.innerHTML = '<p class="stats-note">Loading&hellip;</p>';
-    fetch(api + "?days=30", { headers: { "x-stats-key": key } }).then(function (r) {
+    fetch(api + "?days=400", { headers: { "x-stats-key": key } }).then(function (r) {
       if (r.status === 403) { try { localStorage.removeItem("bs_stats_key"); } catch (e) {} out.innerHTML = '<p class="stats-note">Wrong key.</p>'; return null; }
       return r.json();
     }).then(function (d) {

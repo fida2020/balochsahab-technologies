@@ -8,7 +8,7 @@
       box.hidden = false;
       // Old server reply (before the chart deploy) has no series: draw today only.
       var series = d.series || [{ day: new Date().toISOString().slice(0, 10), views: d.today || 0, visitors: 0, clicks: 0, impressions: 0 }];
-      window.BSPerf(card, series, { views: d.views, visitors: d.visitors, clicks: d.googleClicks, impressions: d.googleImpressions || 0 });
+      window.BSPerf(card, series);
       var t = document.getElementById("live-today"); if (t) t.textContent = Number(d.today || 0).toLocaleString();
     }).catch(function () {});
   }

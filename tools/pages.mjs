@@ -159,7 +159,7 @@ export function staticPages(projects) {
 <section class="tight live-stats" id="live-stats" data-api="${SITE.statsGet}?public=1" hidden>
   <div class="container">
     <div class="perf-card">
-      <div class="perf-head"><span class="live-head"><span class="live-dot" aria-hidden="true"></span> Live website performance</span><span class="perf-sub">Last 28 days &middot; <b id="live-today">0</b> views today &middot; updates every 30 seconds</span></div>
+      <div class="perf-head"><span class="live-head"><span class="live-dot" aria-hidden="true"></span> Live website performance</span><span class="perf-sub"><b id="live-today">0</b> views today &middot; updates every 30 seconds</span></div>
       <div id="live-perf"></div>
     </div>
   </div>
