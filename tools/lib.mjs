@@ -23,6 +23,8 @@ export const SITE = {
   adsenseClient: "ca-pub-6831828383879093",
   // Owner 10 Nov: manual ad units (AdSense > Ads > By ad unit) on top of Auto ads.
   adSlots: { rail: "8523512254", inArticle: "6350655389" },
+  // Owner 10 Nov: Monetag In-Page Push (small corner banner, no popup/popunder/push permission) while AdSense is in review.
+  monetagInPageZone: "12227141",
   // Owner 10 Nov: own page-view counter + private stats page (XnaksView Firebase project, us-east1 functions).
   statsHit: "https://us-east1-xnaksview.cloudfunctions.net/siteHit",
   statsGet: "https://us-east1-xnaksview.cloudfunctions.net/siteStatsGet",

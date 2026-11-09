@@ -144,6 +144,7 @@ ${page.noindex ? "" : `<div class="container">${adUnit("display")}</div>`}
 </footer>
 
 <script src="/assets/js/nav.js?v=${cssVersion}" defer></script>
+${page.noindex ? "" : `<script data-cfasync="false">(function(s){s.dataset.zone='${SITE.monetagInPageZone}',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>`}
 ${page.noindex ? "" : `<script>(function(){try{var k="bs_seen_"+new Date().toISOString().slice(0,10),n=!localStorage.getItem(k);localStorage.setItem(k,"1");navigator.sendBeacon("${SITE.statsHit}",new Blob([JSON.stringify({p:location.pathname,r:document.referrer,n:n})],{type:"text/plain"}));}catch(e){}})();</script>`}
 ${scripts}
 </body>
