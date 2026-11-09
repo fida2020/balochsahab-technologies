@@ -439,7 +439,7 @@ section.alt { background: var(--surface); border-top: 1px solid var(--border); b
 .perf-chart svg { width: 100%; height: 238px; display: block; }
 .perf-grid { stroke: #e8eaed; stroke-width: 1; vector-effect: non-scaling-stroke; }
 .perf-guide { stroke: #9aa0a6; stroke-width: 1; vector-effect: non-scaling-stroke; }
-.perf-x { position: absolute; left: 0; right: 0; bottom: 0; height: 18px; }
+.perf-x { position: absolute; left: 6px; right: 6px; bottom: 0; height: 18px; }
 .perf-x span { position: absolute; transform: translateX(-50%); font-size: 0.75rem; color: #5f6368; white-space: nowrap; }
 .perf-x span:first-child { transform: none; }
 .perf-x span:last-child { transform: translateX(-100%); }
