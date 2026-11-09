@@ -1,5 +1,5 @@
 ---
-title: "Online Earning: How to Tell Real Platforms From Scams"
+title: Online Earning: How to Tell Real Platforms From Scams
 description: Practical warning signs that separate real online earning platforms from scams, and simple checks to make before you invest time or money.
 date: 2026-11-09
 category: Online Safety
