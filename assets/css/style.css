@@ -399,9 +399,13 @@ section.alt { background: var(--surface); border-top: 1px solid var(--border); b
 .ad-rail-left { left: calc(50% - (var(--max-width) / 2) - 184px); }
 .ad-rail-right { right: calc(50% - (var(--max-width) / 2) - 184px); }
 @media (min-width: 1550px) { .ad-rail { display: block; } }
-.ad-block { margin: 32px auto; text-align: center; min-height: 100px; }
+.ad-block { margin: 0 auto; text-align: center; }
+/* Owner 10 Nov: no empty "Advertisement" boxes while AdSense is in review -- space + label only once Google fills the slot. */
+.ad-block .ad-label { display: none; }
+.ad-block:has(ins[data-ad-status="filled"]) { margin: 32px auto; }
+.ad-block:has(ins[data-ad-status="filled"]) .ad-label { display: block; }
 .ad-label { display: block; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
-.article-body .ad-block { margin: 28px 0; }
+.article-body .ad-block:has(ins[data-ad-status="filled"]) { margin: 28px 0; }
 
 /* Owner 10 Nov: private stats page */
 .stats-title { margin-top: 32px; }
