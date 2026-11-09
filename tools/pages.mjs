@@ -461,7 +461,21 @@ ${ctaBanner("Have a project brief?", "Send us the details and we&rsquo;ll get ba
     body: `${pageHero({ eyebrow: "404", title: "Page <span>not found.</span>", lead: "The page you were looking for doesn&rsquo;t exist or has moved.", actions: `<div class="hero-actions"><a href="/index.html" class="btn btn-primary">Go to homepage</a><a href="/projects.html" class="btn btn-ghost">Our products</a></div>` })}`
   };
 
-  return [home, about, team, productsPage, clientPage, contact, quote, privacy, terms, notFound];
+  // Owner 10 Nov: private stats page (not in menu or sitemap; data needs the owner's key).
+  const stats = {
+    path: "/stats.html", nav: "", noindex: true,
+    title: "Website stats",
+    description: "Private website statistics for Baloch Sahab Technologies.",
+    scripts: ["/assets/js/stats.js"],
+    body: `<section><div class="container" id="stats-app" data-api="${SITE.statsGet}">
+  <h1 class="stats-title">Website stats</h1>
+  <p class="stats-sub">balochsahab.com + earn.balochsahab.com &middot; views counted on the site, Google clicks from Search Console, ad earnings in AdSense.</p>
+  <form id="stats-key-form" class="stats-key"><input id="stats-key" type="password" placeholder="Stats key" autocomplete="current-password"><button class="btn btn-primary" type="submit">Show stats</button></form>
+  <div id="stats-out"></div>
+</div></section>`
+  };
+
+  return [home, about, team, productsPage, clientPage, contact, quote, privacy, terms, notFound, stats];
 }
 
 export function detailPage(p) {

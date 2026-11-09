@@ -402,3 +402,18 @@ section.alt { background: var(--surface); border-top: 1px solid var(--border); b
 .ad-block { margin: 32px auto; text-align: center; min-height: 100px; }
 .ad-label { display: block; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
 .article-body .ad-block { margin: 28px 0; }
+
+/* Owner 10 Nov: private stats page */
+.stats-title { margin-top: 32px; }
+.stats-sub, .stats-note { color: var(--text-muted); font-size: 0.92rem; }
+.stats-key { display: flex; gap: 10px; margin: 18px 0; max-width: 460px; }
+.stats-key input { flex: 1; padding: 10px 14px; border: 1px solid var(--border); border-radius: 10px; font: inherit; }
+.stats-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin: 20px 0 8px; }
+.stats-tile { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px; }
+.stats-tile .num { font-size: 1.8rem; font-weight: 800; color: var(--blue); }
+.stats-tile .label { color: var(--text-muted); font-size: 0.85rem; }
+.stats-card { margin: 26px 0; overflow-x: auto; }
+.stats-card h2 { font-size: 1.1rem; margin-bottom: 8px; }
+.stats-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.stats-table th, .stats-table td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); word-break: break-all; }
+.stats-table th { color: var(--text-muted); font-weight: 600; }
