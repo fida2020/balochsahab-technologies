@@ -86,12 +86,12 @@
       "logo": "/assets/img/xnaksview-logo.png",
       "category": "Mobile App",
       "status": "live",
-      "tagline": "A short-video and LIVE streaming social app for creators and their audiences.",
+      "tagline": "A short-video and LIVE streaming social app for Android and iOS.",
       "summary": "A short-video and LIVE streaming social app with virtual gifts, creator earnings, direct messages and group chats.",
       "overview": [
-        "XnaksView is a social video app for Android. Viewers scroll a feed of short videos and join creators in LIVE rooms, where they can chat and send virtual gifts.",
+        "XnaksView is a social video app for Android and iOS. Viewers scroll a feed of short videos and join creators in LIVE rooms, where they can chat and send virtual gifts.",
         "Creators can go LIVE, invite guests on stage and earn from gifts received. The app also includes one-to-one direct messages and group chats.",
-        "XnaksView is live on Google Play. Coins can be bought in the app or on our website, where they are 10% cheaper. An iPhone version is coming soon."
+        "XnaksView is live on Google Play for Android, and the iOS (iPhone) app is coming to the App Store. Coins can be bought in the app or on our website, where they are 10% cheaper."
       ],
       "features": [
         "Short-video feed with comments",
@@ -104,15 +104,19 @@
       "technologies": [
         "Kotlin",
         "Jetpack Compose",
+        "Swift",
+        "SwiftUI",
         "Firebase Authentication",
         "Cloud Firestore",
         "Cloud Functions",
         "Cloud Storage",
         "Real-time video (RTC)",
-        "Google Play Billing"
+        "Google Play Billing",
+        "StoreKit"
       ],
       "platforms": [
-        "Android"
+        "Android",
+        "iOS"
       ],
       "images": [],
       "links": [
