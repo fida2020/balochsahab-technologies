@@ -68,8 +68,9 @@ h1, h2, h3 { line-height: 1.2; letter-spacing: -0.015em; }
 
 .nav-links { display: flex; gap: 2px; align-items: center; }
 .nav-links a { color: var(--text-muted); font-size: 0.93rem; font-weight: 600; padding: 8px 12px; border-radius: 8px; white-space: nowrap; transition: color .15s, background .15s; }
-.nav-links a:hover { color: var(--text); background: var(--surface); }
-.nav-links a.active { color: var(--blue); background: var(--surface); }
+/* Owner 9 Nov: the clicked / current menu item shows in pink. */
+.nav-links a:hover { color: var(--pink); background: rgba(236, 24, 140, 0.06); }
+.nav-links a:active, .nav-links a.active { color: var(--pink); background: rgba(236, 24, 140, 0.10); }
 .nav-links .nav-cta { background: var(--pink); color: #fff; margin-left: 12px; padding: 10px 20px; border-radius: 999px; }
 .nav-links .nav-cta:hover, .nav-links .nav-cta.active { background: var(--pink-dark); color: #fff; }
 
