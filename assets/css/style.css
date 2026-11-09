@@ -393,3 +393,12 @@ section.alt { background: var(--surface); border-top: 1px solid var(--border); b
 /* Owner 9 Nov: Pakistan + UK company lines */
 .fact-h { font-size: 0.95rem; color: var(--pink); text-transform: uppercase; letter-spacing: 0.08em; margin: 18px 0 6px; }
 .footer-entities { font-size: 0.82rem; opacity: 0.8; margin-top: 10px; line-height: 1.6; }
+
+/* Owner 10 Nov: ads. Side rails only where there is room beside the content (no overlap). */
+.ad-rail { position: fixed; top: 110px; width: 160px; height: 600px; z-index: 5; display: none; }
+.ad-rail-left { left: calc(50% - (var(--max-width) / 2) - 184px); }
+.ad-rail-right { right: calc(50% - (var(--max-width) / 2) - 184px); }
+@media (min-width: 1550px) { .ad-rail { display: block; } }
+.ad-block { margin: 32px auto; text-align: center; min-height: 100px; }
+.ad-label { display: block; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
+.article-body .ad-block { margin: 28px 0; }

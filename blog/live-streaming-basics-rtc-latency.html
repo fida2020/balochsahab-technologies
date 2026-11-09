@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/style.css?v=9ba7cc84">
+<link rel="stylesheet" href="/assets/css/style.css?v=cfed61da">
 <script async data-cfasync="false" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6831828383879093"
      crossorigin="anonymous"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://balochsahab.com/#organization","name":"Baloch Sahab Technologies","legalName":"Baloch Sahab Technologies (SMC-Private) Limited","url":"https://balochsahab.com/","logo":"https://balochsahab.com/assets/img/logo-mark-512.png","email":"info@balochsahab.com","telephone":"+923218818909","foundingDate":"2026-08-27","address":{"@type":"PostalAddress","addressLocality":"Mandi Bahauddin","addressRegion":"Punjab","addressCountry":"PK"},"identifier":{"@type":"PropertyValue","propertyID":"SECP CUIN","value":"0352600"},"sameAs":["https://leap.secp.gov.pk/#/verify-company-info/0352600","https://find-and-update.company-information.service.gov.uk/company/17557848"],"subOrganization":{"@type":"Organization","legalName":"Baloch Sahab Technologies Ltd","url":"https://balochsahab.com/","address":{"@type":"PostalAddress","addressLocality":"London","addressCountry":"GB"},"identifier":{"@type":"PropertyValue","propertyID":"Companies House number","value":"17557848"},"sameAs":["https://find-and-update.company-information.service.gov.uk/company/17557848"]}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://balochsahab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://balochsahab.com/blog/"},{"@type":"ListItem","position":3,"name":"Live Streaming Basics: RTC, HLS and Where Latency Comes From","item":"https://balochsahab.com/blog/live-streaming-basics-rtc-latency.html"}]},{"@type":"BlogPosting","headline":"Live Streaming Basics: RTC, HLS and Where Latency Comes From","description":"A plain-English guide to live streaming technology, comparing WebRTC, RTMP and HLS, explaining latency, SFUs and jitter buffers, and when real-time matters.","datePublished":"2026-10-15","dateModified":"2026-10-15","articleSection":"Video & Streaming","wordCount":1226,"author":{"@type":"Organization","name":"Baloch Sahab Technologies team","url":"https://balochsahab.com/about.html"},"publisher":{"@id":"https://balochsahab.com/#organization"},"mainEntityOfPage":"https://balochsahab.com/blog/live-streaming-basics-rtc-latency.html","image":"https://balochsahab.com/assets/img/logo-mark-512.png"}]}</script>
@@ -52,6 +52,8 @@
   </div>
 </header>
 
+<aside class="ad-rail ad-rail-left" aria-label="Advertisement"><ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-6831828383879093" data-ad-slot="8523512254"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+<aside class="ad-rail ad-rail-right" aria-label="Advertisement"><ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-6831828383879093" data-ad-slot="8523512254"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
 <main id="main">
 <section class="hero hero-page hero-detail">
   <div class="container narrow">
@@ -67,6 +69,7 @@
     <article class="prose article-body">
 <p>&quot;Live&quot; can mean very different things. A sports broadcast that reaches viewers half a minute late still feels live to most people. A video call with a one-second delay feels broken. When you add live streaming to an app, the first decision is how live it needs to be, because that choice drives the technology, the cost and the experience.</p>
 <p>This article explains the main approaches in plain language: what RTMP, HLS and WebRTC-style real-time communication are, where latency actually comes from, and how to decide which one your product needs.</p>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
 <h2>The three common building blocks</h2>
 <h3>RTMP for ingest</h3>
 <p>RTMP is an older protocol that is still widely used to send a stream from a broadcaster to a server. Streaming software and many encoders support it, which is why platforms often accept RTMP as the way in. It is rarely used to deliver video to viewers today, because browsers no longer play it directly. Newer alternatives such as SRT are also used for ingest, especially over unreliable networks.</p>
@@ -88,6 +91,7 @@
   <li><strong>Decoding and display.</strong> Usually small, but not zero.</li>
 </ol>
 <p>In HLS-based streaming, steps 4 and 6 dominate. In RTC, the network itself and the jitter buffer are usually the main factors.</p>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
 <h2>SFUs and jitter buffers</h2>
 <p>Two terms come up constantly in real-time streaming.</p>
 <p>An <strong>SFU</strong>, or selective forwarding unit, is a server that receives each participant&#39;s stream and forwards it to the others without decoding and re-encoding it. This keeps delay low and lets one broadcaster reach many viewers. Broadcasters often send the same video at several qualities at once, a technique called simulcast, so the SFU can forward a lower quality to viewers on weak connections.</p>
@@ -104,6 +108,7 @@
   <li><strong>Co-hosting, guests and battles</strong>, where two or more people talk on stream: you need real-time communication between the people on screen. Viewers can sometimes receive a slightly delayed version, but the speakers cannot.</li>
 </ul>
 <p>In our own short-video and LIVE app, co-hosting and real-time interaction were the reasons to build on RTC rather than segment-based streaming. Many platforms use a hybrid: RTC among the people on stage, and a cheaper delivery method for large passive audiences.</p>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
 <h2>Practical tips before you build</h2>
 <ul>
   <li><strong>Test on the networks your users have.</strong> A stream that is perfect on office fibre can struggle on a busy mobile cell. Test with real phones, ideally in the regions you serve.</li>
@@ -115,6 +120,7 @@
 <p>Our follow-up article on <a href="/blog/choosing-real-time-video-provider.html">choosing a real-time video provider</a> covers how to evaluate the services that provide this infrastructure.</p>
 <h2>Conclusion</h2>
 <p>Live streaming is a spectrum, from cheap and scalable segment-based delivery with a delay of several seconds or more, to real-time communication that feels like a conversation but costs more to run. Understand where latency comes from, match the technology to what your audience actually does during a stream, and test on real devices and networks. That choice, made early, will shape everything else about your live features.</p>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
     </article>
     <div class="back-row"><a href="/blog/" class="btn btn-secondary">&larr; All articles</a></div>
   </div>
@@ -145,6 +151,7 @@
     </div>
   </div>
 </section>
+<div class="container"><div class="ad-block ad-display" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6831828383879093" data-ad-slot="8523512254" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></div>
 </main>
 
 <footer class="site-footer">
@@ -191,7 +198,7 @@
   </div>
 </footer>
 
-<script src="/assets/js/nav.js?v=9ba7cc84" defer></script>
+<script src="/assets/js/nav.js?v=cfed61da" defer></script>
 
 </body>
 </html>

@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/style.css?v=9ba7cc84">
+<link rel="stylesheet" href="/assets/css/style.css?v=cfed61da">
 <script async data-cfasync="false" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6831828383879093"
      crossorigin="anonymous"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://balochsahab.com/#organization","name":"Baloch Sahab Technologies","legalName":"Baloch Sahab Technologies (SMC-Private) Limited","url":"https://balochsahab.com/","logo":"https://balochsahab.com/assets/img/logo-mark-512.png","email":"info@balochsahab.com","telephone":"+923218818909","foundingDate":"2026-08-27","address":{"@type":"PostalAddress","addressLocality":"Mandi Bahauddin","addressRegion":"Punjab","addressCountry":"PK"},"identifier":{"@type":"PropertyValue","propertyID":"SECP CUIN","value":"0352600"},"sameAs":["https://leap.secp.gov.pk/#/verify-company-info/0352600","https://find-and-update.company-information.service.gov.uk/company/17557848"],"subOrganization":{"@type":"Organization","legalName":"Baloch Sahab Technologies Ltd","url":"https://balochsahab.com/","address":{"@type":"PostalAddress","addressLocality":"London","addressCountry":"GB"},"identifier":{"@type":"PropertyValue","propertyID":"Companies House number","value":"17557848"},"sameAs":["https://find-and-update.company-information.service.gov.uk/company/17557848"]}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://balochsahab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://balochsahab.com/blog/"},{"@type":"ListItem","position":3,"name":"How to Read and Act on Google Play Pre-launch Reports","item":"https://balochsahab.com/blog/google-play-pre-launch-reports.html"}]},{"@type":"BlogPosting","headline":"How to Read and Act on Google Play Pre-launch Reports","description":"How to read Google Play pre-launch reports - stability, performance, accessibility and security findings - and set up test logins, Robo scripts and deep links.","datePublished":"2026-10-21","dateModified":"2026-10-21","articleSection":"Google Play","wordCount":1256,"author":{"@type":"Organization","name":"Baloch Sahab Technologies team","url":"https://balochsahab.com/about.html"},"publisher":{"@id":"https://balochsahab.com/#organization"},"mainEntityOfPage":"https://balochsahab.com/blog/google-play-pre-launch-reports.html","image":"https://balochsahab.com/assets/img/logo-mark-512.png"}]}</script>
@@ -52,6 +52,8 @@
   </div>
 </header>
 
+<aside class="ad-rail ad-rail-left" aria-label="Advertisement"><ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-6831828383879093" data-ad-slot="8523512254"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+<aside class="ad-rail ad-rail-right" aria-label="Advertisement"><ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-6831828383879093" data-ad-slot="8523512254"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
 <main id="main">
 <section class="hero hero-page hero-detail">
   <div class="container narrow">
@@ -67,12 +69,14 @@
     <article class="prose article-body">
 <p>Every time you upload a release to a testing track in Google Play Console, Google can automatically install it on a set of real devices, explore it, and report what happened. This is the <strong>pre-launch report</strong>. It costs nothing, needs no extra code, and regularly finds crashes and display problems on devices you do not own.</p>
 <p>Many developers glance at it, see a list of warnings, and move on. That wastes one of the most useful free tools in Play Console. This guide explains each part of the report, how to separate real problems from noise, and how to configure the test so the crawler reaches the important screens of your app.</p>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
 <h2>How the report is generated</h2>
 <p>When you publish a release to an internal, closed or open testing track, Play runs it on a range of physical devices with different manufacturers, screen sizes and Android versions. An automated crawler, often called the Robo test, opens the app and interacts with it: tapping buttons, filling text fields, scrolling and navigating. It records screenshots, logs, crashes and performance data along the way.</p>
 <p>Results usually appear within an hour or so. You will find them in Play Console under <strong>Test and release, then Testing, then Pre-launch report</strong>, where you can pick the release you want to inspect. Pre-launch reports are enabled by default; check the settings page if you do not see results.</p>
 <h2>The overview</h2>
 <p>The overview summarises issues by category and highlights those Play considers most important. Start with the errors, then warnings, then minor issues. Each issue links to the affected devices, with screenshots and, for crashes, a stack trace.</p>
 <p>Do not try to reach zero items on every list. The goal is to fix what affects real users and to understand the rest.</p>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
 <h2>Stability: crashes and ANRs</h2>
 <p>This is the most valuable section. It lists crashes and ANRs the crawler triggered, with stack traces and the devices where they happened.</p>
 <p>How to work through it:</p>
@@ -100,6 +104,7 @@
   <li><strong>Duplicate or unclear labels</strong>, such as several buttons all described as &quot;button&quot;.</li>
 </ul>
 <p>These are usually quick to fix and improve the app for everyone. Some findings may be false positives, for example a decorative element flagged as low contrast, so judge each one.</p>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
 <h2>Security and trust</h2>
 <p>This section warns about known vulnerabilities in your app or its libraries, unsafe configurations, and use of outdated libraries with security problems. Take these seriously. The usual fix is updating the affected library to a newer version. If a warning concerns code you do not use, confirm that before dismissing it.</p>
 <h2>Screenshots</h2>
@@ -113,6 +118,7 @@
 </ul>
 <p>If your app uses one-time codes sent by SMS or email, consider a test-only path for a specific test account, controlled on your server, so automated testing can complete sign-in. Make sure it cannot be abused in production.</p>
 <p>You can also opt out of pre-launch reports for specific tracks or exclude certain screens if crawling them causes side effects, such as sending real messages or making purchases. Make sure test accounts cannot trigger real-world actions.</p>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
 <h2>Making it part of your release routine</h2>
 <p>The report is most useful when it is checked every time:</p>
 <ol>
@@ -124,6 +130,7 @@
 <p>For new personal accounts, the pre-launch report also gives you concrete evidence of improvements to mention when you apply for production after <a href="/blog/google-play-closed-testing-personal-accounts.html">closed testing</a>.</p>
 <h2>Conclusion</h2>
 <p>Google Play&#39;s pre-launch report gives you automated testing on real devices for every testing release. Focus on stability first, use performance data to compare releases, fix the accessibility and security findings that apply, and scan the screenshots for layout problems. Give the crawler test credentials, a Robo script or deep links so it reaches your important screens. Checked as a routine step, it catches problems before your users do. The official guidance is in <a href="https://support.google.com/googleplay/android-developer/" target="_blank" rel="noopener noreferrer">Play Console Help</a>.</p>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
     </article>
     <div class="back-row"><a href="/blog/" class="btn btn-secondary">&larr; All articles</a></div>
   </div>
@@ -154,6 +161,7 @@
     </div>
   </div>
 </section>
+<div class="container"><div class="ad-block ad-display" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6831828383879093" data-ad-slot="8523512254" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></div>
 </main>
 
 <footer class="site-footer">
@@ -200,7 +208,7 @@
   </div>
 </footer>
 
-<script src="/assets/js/nav.js?v=9ba7cc84" defer></script>
+<script src="/assets/js/nav.js?v=cfed61da" defer></script>
 
 </body>
 </html>

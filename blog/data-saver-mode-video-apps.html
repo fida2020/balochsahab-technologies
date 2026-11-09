@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/style.css?v=9ba7cc84">
+<link rel="stylesheet" href="/assets/css/style.css?v=cfed61da">
 <script async data-cfasync="false" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6831828383879093"
      crossorigin="anonymous"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://balochsahab.com/#organization","name":"Baloch Sahab Technologies","legalName":"Baloch Sahab Technologies (SMC-Private) Limited","url":"https://balochsahab.com/","logo":"https://balochsahab.com/assets/img/logo-mark-512.png","email":"info@balochsahab.com","telephone":"+923218818909","foundingDate":"2026-08-27","address":{"@type":"PostalAddress","addressLocality":"Mandi Bahauddin","addressRegion":"Punjab","addressCountry":"PK"},"identifier":{"@type":"PropertyValue","propertyID":"SECP CUIN","value":"0352600"},"sameAs":["https://leap.secp.gov.pk/#/verify-company-info/0352600","https://find-and-update.company-information.service.gov.uk/company/17557848"],"subOrganization":{"@type":"Organization","legalName":"Baloch Sahab Technologies Ltd","url":"https://balochsahab.com/","address":{"@type":"PostalAddress","addressLocality":"London","addressCountry":"GB"},"identifier":{"@type":"PropertyValue","propertyID":"Companies House number","value":"17557848"},"sameAs":["https://find-and-update.company-information.service.gov.uk/company/17557848"]}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://balochsahab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://balochsahab.com/blog/"},{"@type":"ListItem","position":3,"name":"Designing a Data Saver Mode for a Video App","item":"https://balochsahab.com/blog/data-saver-mode-video-apps.html"}]},{"@type":"BlogPosting","headline":"Designing a Data Saver Mode for a Video App","description":"How to build a data saver mode for a video app using adaptive bitrate, resolution caps, metered network detection and Wi-Fi-only preloading.","datePublished":"2026-10-11","dateModified":"2026-10-11","articleSection":"Video & Streaming","wordCount":1138,"author":{"@type":"Organization","name":"Baloch Sahab Technologies team","url":"https://balochsahab.com/about.html"},"publisher":{"@id":"https://balochsahab.com/#organization"},"mainEntityOfPage":"https://balochsahab.com/blog/data-saver-mode-video-apps.html","image":"https://balochsahab.com/assets/img/logo-mark-512.png"}]}</script>
@@ -52,6 +52,8 @@
   </div>
 </header>
 
+<aside class="ad-rail ad-rail-left" aria-label="Advertisement"><ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-6831828383879093" data-ad-slot="8523512254"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+<aside class="ad-rail ad-rail-right" aria-label="Advertisement"><ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-6831828383879093" data-ad-slot="8523512254"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
 <main id="main">
 <section class="hero hero-page hero-detail">
   <div class="container narrow">
@@ -67,6 +69,7 @@
     <article class="prose article-body">
 <p>Video is by far the heaviest kind of content most apps deliver. For many users, especially those on prepaid mobile packages, every megabyte has a real cost. An app that quietly downloads high-resolution video in the background will be uninstalled, or at least opened less often, by exactly the people who would otherwise use it every day.</p>
 <p>A well designed data saver mode respects those users without ruining the experience for everyone else. This guide walks through the building blocks on Android, from detecting the network to controlling playback quality and uploads.</p>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
 <h2>Start with the principle: spend data where the user is looking</h2>
 <p>Most data in a video app is spent in three places: the video the user is watching, the videos the app preloads in advance, and the videos the user uploads. A data saver mode should touch all three, in this order of priority:</p>
 <ol>
@@ -83,6 +86,7 @@ val caps = cm.getNetworkCapabilities(cm.activeNetwork)
 val notMetered = caps?.hasCapability(NetworkCapabilities.NET_CAPABILITY_NOT_METERED) == true</code></pre>
 <p>Android also has a system-wide Data Saver setting. When it is on and your app is not exempted, background data is restricted. You can read the state with <code>cm.restrictBackgroundStatus</code> and treat it as a strong signal that the user cares about data even when your own setting is off.</p>
 <p>Network conditions change while the app is open, for example when a user walks out of Wi-Fi range. Register a <code>ConnectivityManager.NetworkCallback</code> and react to capability changes, rather than checking once at startup. The <a href="https://developer.android.com/develop/connectivity" target="_blank" rel="noopener noreferrer">Android developer documentation</a> covers these APIs and how they behave on different versions.</p>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
 <h2>Limit preloading on mobile data</h2>
 <p>Preloading the next few videos is what makes a feed feel instant, as we describe in our article on <a href="/blog/short-video-instant-playback.html">instant playback in short-video feeds</a>. It is also the easiest place to waste data, because some of those clips will be skipped.</p>
 <p>A practical policy:</p>
@@ -112,6 +116,7 @@ val notMetered = caps?.hasCapability(NetworkCapabilities.NET_CAPABILITY_NOT_METE
   <li>Let users choose &quot;upload on Wi-Fi only&quot; for drafts that are not urgent, and schedule those uploads with WorkManager using a network constraint.</li>
 </ul>
 <p>On-device compression costs battery and time, so show progress clearly and avoid running it while the user is recording something else.</p>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
 <h2>Give users clear, honest controls</h2>
 <p>Automatic behaviour is a good default, but users should be able to see and override it. A typical settings section might include:</p>
 <ul>
@@ -132,6 +137,7 @@ val notMetered = caps?.hasCapability(NetworkCapabilities.NET_CAPABILITY_NOT_METE
 <p>Record the results for each release. A regression that doubles data use is just as important as a visible bug.</p>
 <h2>Conclusion</h2>
 <p>A good data saver mode is mostly about restraint: preload less on expensive networks, cap quality at what a phone screen needs, compress uploads, and let users decide. None of these changes is difficult on its own, but together they make a video app usable and affordable for a much larger group of people. For users who pay for every megabyte, that respect is a feature they notice.</p>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
     </article>
     <div class="back-row"><a href="/blog/" class="btn btn-secondary">&larr; All articles</a></div>
   </div>
@@ -162,6 +168,7 @@ val notMetered = caps?.hasCapability(NetworkCapabilities.NET_CAPABILITY_NOT_METE
     </div>
   </div>
 </section>
+<div class="container"><div class="ad-block ad-display" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6831828383879093" data-ad-slot="8523512254" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></div>
 </main>
 
 <footer class="site-footer">
@@ -208,7 +215,7 @@ val notMetered = caps?.hasCapability(NetworkCapabilities.NET_CAPABILITY_NOT_METE
   </div>
 </footer>
 
-<script src="/assets/js/nav.js?v=9ba7cc84" defer></script>
+<script src="/assets/js/nav.js?v=cfed61da" defer></script>
 
 </body>
 </html>

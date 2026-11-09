@@ -21,6 +21,8 @@ export const SITE = {
   region: "Punjab",
   country: "PK",
   adsenseClient: "ca-pub-6831828383879093",
+  // Owner 10 Nov: manual ad units (AdSense > Ads > By ad unit) on top of Auto ads.
+  adSlots: { rail: "8523512254", inArticle: "6350655389" },
   ogImage: "/assets/img/logo-mark-512.png",
   // Form delivery (FormSubmit AJAX endpoint). Each address must be activated once
   // from the activation email FormSubmit sends on the first submission.
@@ -199,4 +201,22 @@ export function validateArticles(list, today = new Date().toISOString().slice(0,
 
 export function sortArticles(list) {
   return [...list].sort((a, b) => b.date.localeCompare(a.date) || a.title.localeCompare(b.title));
+}
+
+// Owner 10 Nov: ad blocks. rail = vertical 160x600 side rails; inArticle = native in-article; display = responsive block.
+export function adUnit(kind) {
+  const c = SITE.adsenseClient;
+  if (kind === "inArticle") return `<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="${c}" data-ad-slot="${SITE.adSlots.inArticle}"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>`;
+  if (kind === "rail") return `<ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="${c}" data-ad-slot="${SITE.adSlots.rail}"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>`;
+  return `<div class="ad-block ad-display" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block" data-ad-client="${c}" data-ad-slot="${SITE.adSlots.rail}" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>`;
+}
+
+// In-article ads: after the 2nd paragraph, then before every 3rd h2 heading, and at the end.
+export function withArticleAds(html) {
+  let p = 0, h = 0;
+  const out = html.replace(/<\/p>|<h2[ >]/g, (m) => {
+    if (m === "</p>") { p++; return p === 2 ? m + "\n" + adUnit("inArticle") : m; }
+    h++; return (h > 1 && h % 3 === 0 ? adUnit("inArticle") + "\n" : "") + m;
+  });
+  return out + "\n" + adUnit("inArticle");
 }

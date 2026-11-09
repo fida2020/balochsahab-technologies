@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/style.css?v=9ba7cc84">
+<link rel="stylesheet" href="/assets/css/style.css?v=cfed61da">
 <script async data-cfasync="false" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6831828383879093"
      crossorigin="anonymous"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://balochsahab.com/#organization","name":"Baloch Sahab Technologies","legalName":"Baloch Sahab Technologies (SMC-Private) Limited","url":"https://balochsahab.com/","logo":"https://balochsahab.com/assets/img/logo-mark-512.png","email":"info@balochsahab.com","telephone":"+923218818909","foundingDate":"2026-08-27","address":{"@type":"PostalAddress","addressLocality":"Mandi Bahauddin","addressRegion":"Punjab","addressCountry":"PK"},"identifier":{"@type":"PropertyValue","propertyID":"SECP CUIN","value":"0352600"},"sameAs":["https://leap.secp.gov.pk/#/verify-company-info/0352600","https://find-and-update.company-information.service.gov.uk/company/17557848"],"subOrganization":{"@type":"Organization","legalName":"Baloch Sahab Technologies Ltd","url":"https://balochsahab.com/","address":{"@type":"PostalAddress","addressLocality":"London","addressCountry":"GB"},"identifier":{"@type":"PropertyValue","propertyID":"Companies House number","value":"17557848"},"sameAs":["https://find-and-update.company-information.service.gov.uk/company/17557848"]}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://balochsahab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://balochsahab.com/blog/"},{"@type":"ListItem","position":3,"name":"How Short-Video Feeds Start Playback Instantly","item":"https://balochsahab.com/blog/short-video-instant-playback.html"}]},{"@type":"BlogPosting","headline":"How Short-Video Feeds Start Playback Instantly","description":"Player pooling, preloading, buffer tuning and caching techniques that make a vertical video feed start playing the moment a user swipes.","datePublished":"2026-10-04","dateModified":"2026-10-04","articleSection":"Video & Streaming","wordCount":1274,"author":{"@type":"Organization","name":"Baloch Sahab Technologies team","url":"https://balochsahab.com/about.html"},"publisher":{"@id":"https://balochsahab.com/#organization"},"mainEntityOfPage":"https://balochsahab.com/blog/short-video-instant-playback.html","image":"https://balochsahab.com/assets/img/logo-mark-512.png"}]}</script>
@@ -52,6 +52,8 @@
   </div>
 </header>
 
+<aside class="ad-rail ad-rail-left" aria-label="Advertisement"><ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-6831828383879093" data-ad-slot="8523512254"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+<aside class="ad-rail ad-rail-right" aria-label="Advertisement"><ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-6831828383879093" data-ad-slot="8523512254"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
 <main id="main">
 <section class="hero hero-page hero-detail">
   <div class="container narrow">
@@ -67,6 +69,7 @@
     <article class="prose article-body">
 <p>In a vertical short-video feed, people decide within a moment whether a clip is worth watching. If they swipe and see a spinner, many of them simply swipe again, and the clip never gets a fair chance. That makes startup speed one of the most important qualities of the whole app, more important than many visible features.</p>
 <p>This guide explains the techniques we use and recommend for Android apps built on ExoPlayer, which is now part of the Jetpack Media3 library. The same ideas apply on iOS with AVPlayer, even though the APIs differ.</p>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
 <h2>Why a feed is different from a normal video player</h2>
 <p>A classic video app plays one long video. The user waits a second or two, then watches for minutes, so a little startup delay is acceptable. A short-video feed is the opposite: dozens of short clips per session, each one watched for seconds, with the next one always predictable. The user is going to swipe down, so the app knows what they will watch next before they do.</p>
 <p>That predictability is the key. Almost every technique below is about doing work for the next clip while the current clip is playing, so that when the swipe happens there is nothing left to wait for.</p>
@@ -79,6 +82,7 @@
   <li>Release all players when the feed screen itself is destroyed, not on every swipe.</li>
 </ul>
 <p>Keep the pool small. Each prepared player holds buffered video in memory and may hold a hardware decoder, so a pool of ten players will cause more problems than it solves.</p>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
 <h2>Preload the next clips</h2>
 <p>Preparing a player for the next clip means it starts downloading and buffering immediately, while the user is still watching the current one. By the time they swipe, the first second or two of video is already in memory and the first frame can be rendered straight away.</p>
 <p>Preloading has a cost: it uses bandwidth for clips the user may never watch. A reasonable balance for most feeds is to fully prepare only the next clip and, at most, download a small amount of the one after it into a disk cache. Recent Media3 versions also include a preload manager designed for exactly this list-style use case; check the current <a href="https://developer.android.com/media/media3" target="_blank" rel="noopener noreferrer">Media3 documentation</a> to see what your version supports.</p>
@@ -108,6 +112,7 @@ val cacheFactory = CacheDataSource.Factory()
     .setCache(cache)
     .setUpstreamDataSourceFactory(DefaultHttpDataSource.Factory())</code></pre>
 <p>Create the cache once for the whole app, because only one <code>SimpleCache</code> instance may use a given folder at a time. Put it in the cache directory so the system can reclaim space if the device runs low, and choose a size limit that is respectful of users with small storage.</p>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
 <h2>Choose a delivery format that starts fast</h2>
 <p>How you encode and serve your videos affects startup as much as player settings do.</p>
 <ul>
@@ -127,8 +132,10 @@ val cacheFactory = CacheDataSource.Factory()
 <h2>Measure time to first frame</h2>
 <p>You cannot improve what you do not measure. The most useful metric for a feed is <strong>time to first frame</strong>: the time between the page becoming visible and <code>onRenderedFirstFrame</code> being called. Record it per clip, along with the network type and whether the clip was preloaded or served from cache.</p>
 <p>Look at the slow end of the distribution, not only the average. A feed that is fast for most users but slow for people on weak mobile networks will still feel broken to them. Also track how often playback stalls after it has started, because overly aggressive buffer settings can trade startup time for stalls.</p>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
 <h2>Conclusion</h2>
 <p>Instant playback in a short-video feed is not one trick but a set of small decisions working together: a small pool of reused players, preloading the next clip, buffer settings tuned for short media, a disk cache, files encoded to start quickly, and a cover image that hides the last few milliseconds. In our own short-video app these are the areas we revisit whenever playback feels slow. Measure time to first frame on real devices, change one thing at a time, and keep the user&#39;s data plan in mind while you do it.</p>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
     </article>
     <div class="back-row"><a href="/blog/" class="btn btn-secondary">&larr; All articles</a></div>
   </div>
@@ -159,6 +166,7 @@ val cacheFactory = CacheDataSource.Factory()
     </div>
   </div>
 </section>
+<div class="container"><div class="ad-block ad-display" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6831828383879093" data-ad-slot="8523512254" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></div>
 </main>
 
 <footer class="site-footer">
@@ -205,7 +213,7 @@ val cacheFactory = CacheDataSource.Factory()
   </div>
 </footer>
 
-<script src="/assets/js/nav.js?v=9ba7cc84" defer></script>
+<script src="/assets/js/nav.js?v=cfed61da" defer></script>
 
 </body>
 </html>

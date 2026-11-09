@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/style.css?v=9ba7cc84">
+<link rel="stylesheet" href="/assets/css/style.css?v=cfed61da">
 <script async data-cfasync="false" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6831828383879093"
      crossorigin="anonymous"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://balochsahab.com/#organization","name":"Baloch Sahab Technologies","legalName":"Baloch Sahab Technologies (SMC-Private) Limited","url":"https://balochsahab.com/","logo":"https://balochsahab.com/assets/img/logo-mark-512.png","email":"info@balochsahab.com","telephone":"+923218818909","foundingDate":"2026-08-27","address":{"@type":"PostalAddress","addressLocality":"Mandi Bahauddin","addressRegion":"Punjab","addressCountry":"PK"},"identifier":{"@type":"PropertyValue","propertyID":"SECP CUIN","value":"0352600"},"sameAs":["https://leap.secp.gov.pk/#/verify-company-info/0352600","https://find-and-update.company-information.service.gov.uk/company/17557848"],"subOrganization":{"@type":"Organization","legalName":"Baloch Sahab Technologies Ltd","url":"https://balochsahab.com/","address":{"@type":"PostalAddress","addressLocality":"London","addressCountry":"GB"},"identifier":{"@type":"PropertyValue","propertyID":"Companies House number","value":"17557848"},"sameAs":["https://find-and-update.company-information.service.gov.uk/company/17557848"]}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://balochsahab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://balochsahab.com/blog/"},{"@type":"ListItem","position":3,"name":"Building Your First Screen with Kotlin and Jetpack Compose","item":"https://balochsahab.com/blog/kotlin-jetpack-compose-first-screen.html"}]},{"@type":"BlogPosting","headline":"Building Your First Screen with Kotlin and Jetpack Compose","description":"A hands-on introduction to Jetpack Compose, covering composables, state, remember, previews, a simple list screen and Material 3 theming.","datePublished":"2026-10-02","dateModified":"2026-10-02","articleSection":"Android Development","wordCount":1114,"author":{"@type":"Organization","name":"Baloch Sahab Technologies team","url":"https://balochsahab.com/about.html"},"publisher":{"@id":"https://balochsahab.com/#organization"},"mainEntityOfPage":"https://balochsahab.com/blog/kotlin-jetpack-compose-first-screen.html","image":"https://balochsahab.com/assets/img/logo-mark-512.png"}]}</script>
@@ -52,6 +52,8 @@
   </div>
 </header>
 
+<aside class="ad-rail ad-rail-left" aria-label="Advertisement"><ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-6831828383879093" data-ad-slot="8523512254"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+<aside class="ad-rail ad-rail-right" aria-label="Advertisement"><ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-6831828383879093" data-ad-slot="8523512254"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
 <main id="main">
 <section class="hero hero-page hero-detail">
   <div class="container narrow">
@@ -67,6 +69,7 @@
     <article class="prose article-body">
 <p>Jetpack Compose is now the standard way to build Android user interfaces. Instead of describing screens in XML layouts and then wiring them up from Kotlin, you write Kotlin functions that describe what the screen should look like for the current data. When the data changes, Compose redraws only the parts that depend on it.</p>
 <p>If you have built Android apps with views before, the change in thinking takes a few days to settle. If you are new to Android, Compose is actually the easier place to start. This guide walks through the ideas you need for a first real screen: composable functions, state, <code>remember</code>, previews, a scrolling list and Material 3 theming. It is the same foundation we use when we start a new screen in our own apps.</p>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
 <h2>Setting up the project</h2>
 <p>The quickest route is Android Studio&#39;s <strong>New Project</strong> wizard with the <strong>Empty Activity</strong> template. Current templates create a Compose project by default, with the Compose compiler plugin, the Compose Bill of Materials (BOM) and Material 3 already added to the module&#39;s build file.</p>
 <p>The BOM is worth understanding. Compose is split into many libraries (runtime, foundation, material3, ui-tooling and so on), and the BOM pins them to versions that are tested together. You declare the BOM once and then add the individual libraries without version numbers:</p>
@@ -92,6 +95,7 @@ fun Greeting(name: String) {
   <li><strong>Accept a <code>modifier</code> parameter.</strong> By convention, reusable composables take <code>modifier: Modifier = Modifier</code> and apply it to their outer element, so callers can control padding, size and click behaviour.</li>
 </ul>
 <p>Layout is done with a small set of building blocks. <code>Column</code> stacks children vertically, <code>Row</code> places them horizontally, and <code>Box</code> layers them on top of each other. Modifiers such as <code>padding</code>, <code>fillMaxWidth</code>, <code>size</code> and <code>clickable</code> adjust each element. Modifier order matters: padding applied before a background is outside the coloured area, while padding applied after it is inside.</p>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
 <h2>State and remember</h2>
 <p>A screen that never changes is not very useful. In Compose, UI is a function of state. When a state value that a composable reads changes, Compose schedules that composable to run again with the new value. This is called recomposition.</p>
 <p>The simplest state holder is <code>mutableStateOf</code>, wrapped in <code>remember</code> so the value survives recomposition:</p>
@@ -140,6 +144,7 @@ fun NoteCard(note: Note, onClick: () -&gt; Unit) {
 }</code></pre>
 <p>Two details in this example matter more than they look. The <code>key</code> parameter gives each item a stable identity, so when the list changes Compose can move items instead of rebuilding them, and scroll position stays correct. And <code>contentPadding</code> adds space around the list without clipping items as they scroll, which a plain padding modifier would do.</p>
 <p>To complete the screen, wrap the list in a <code>Scaffold</code>. It provides slots for a top app bar, a floating action button and a snackbar host, and passes inner padding that you apply to the content so it does not sit under the bars.</p>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
 <h2>Material 3 theming</h2>
 <p>The project template generates a theme function, usually named after your app, that wraps <code>MaterialTheme</code> with a colour scheme, typography and shapes. Every Material component reads from it, so you change the look of the whole app in one place.</p>
 <p>Good practices for theming:</p>
@@ -151,6 +156,7 @@ fun NoteCard(note: Note, onClick: () -&gt; Unit) {
 </ul>
 <h2>Conclusion</h2>
 <p>Your first Compose screen needs only a handful of ideas: composable functions that draw what they are given, state that triggers recomposition, <code>remember</code> to keep values between runs, previews to check your work, <code>LazyColumn</code> for lists, and a Material 3 theme to keep everything consistent. Once these feel natural, move on to navigation between screens and to performance. Our guide to <a href="/blog/jetpack-compose-performance.html">keeping Jetpack Compose fast</a> covers what to watch as your screens grow, and the official Compose documentation on <a href="https://developer.android.com/" target="_blank" rel="noopener noreferrer">developer.android.com</a> is the best reference for every API used here.</p>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
     </article>
     <div class="back-row"><a href="/blog/" class="btn btn-secondary">&larr; All articles</a></div>
   </div>
@@ -181,6 +187,7 @@ fun NoteCard(note: Note, onClick: () -&gt; Unit) {
     </div>
   </div>
 </section>
+<div class="container"><div class="ad-block ad-display" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6831828383879093" data-ad-slot="8523512254" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></div>
 </main>
 
 <footer class="site-footer">
@@ -227,7 +234,7 @@ fun NoteCard(note: Note, onClick: () -&gt; Unit) {
   </div>
 </footer>
 
-<script src="/assets/js/nav.js?v=9ba7cc84" defer></script>
+<script src="/assets/js/nav.js?v=cfed61da" defer></script>
 
 </body>
 </html>

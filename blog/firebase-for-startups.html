@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/style.css?v=9ba7cc84">
+<link rel="stylesheet" href="/assets/css/style.css?v=cfed61da">
 <script async data-cfasync="false" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6831828383879093"
      crossorigin="anonymous"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://balochsahab.com/#organization","name":"Baloch Sahab Technologies","legalName":"Baloch Sahab Technologies (SMC-Private) Limited","url":"https://balochsahab.com/","logo":"https://balochsahab.com/assets/img/logo-mark-512.png","email":"info@balochsahab.com","telephone":"+923218818909","foundingDate":"2026-08-27","address":{"@type":"PostalAddress","addressLocality":"Mandi Bahauddin","addressRegion":"Punjab","addressCountry":"PK"},"identifier":{"@type":"PropertyValue","propertyID":"SECP CUIN","value":"0352600"},"sameAs":["https://leap.secp.gov.pk/#/verify-company-info/0352600","https://find-and-update.company-information.service.gov.uk/company/17557848"],"subOrganization":{"@type":"Organization","legalName":"Baloch Sahab Technologies Ltd","url":"https://balochsahab.com/","address":{"@type":"PostalAddress","addressLocality":"London","addressCountry":"GB"},"identifier":{"@type":"PropertyValue","propertyID":"Companies House number","value":"17557848"},"sameAs":["https://find-and-update.company-information.service.gov.uk/company/17557848"]}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://balochsahab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://balochsahab.com/blog/"},{"@type":"ListItem","position":3,"name":"Firebase for Startups: What to Use on Day One","item":"https://balochsahab.com/blog/firebase-for-startups.html"}]},{"@type":"BlogPosting","headline":"Firebase for Startups: What to Use on Day One","description":"Which Firebase services a startup app really needs at launch, how to keep costs predictable, and the signs that it is time to add other tools.","datePublished":"2026-10-19","dateModified":"2026-10-19","articleSection":"Firebase","wordCount":1171,"author":{"@type":"Organization","name":"Baloch Sahab Technologies team","url":"https://balochsahab.com/about.html"},"publisher":{"@id":"https://balochsahab.com/#organization"},"mainEntityOfPage":"https://balochsahab.com/blog/firebase-for-startups.html","image":"https://balochsahab.com/assets/img/logo-mark-512.png"}]}</script>
@@ -52,6 +52,8 @@
   </div>
 </header>
 
+<aside class="ad-rail ad-rail-left" aria-label="Advertisement"><ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-6831828383879093" data-ad-slot="8523512254"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+<aside class="ad-rail ad-rail-right" aria-label="Advertisement"><ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-6831828383879093" data-ad-slot="8523512254"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
 <main id="main">
 <section class="hero hero-page hero-detail">
   <div class="container narrow">
@@ -67,6 +69,7 @@
     <article class="prose article-body">
 <p>Firebase lets a small team ship an app with sign-in, a database, file storage and server code without running a single server. That is a big advantage when you are two or three people trying to launch. It is also easy to switch on every product in the console and end up with a setup nobody fully understands, or a bill that surprises you.</p>
 <p>This guide describes a practical day-one Firebase setup for a startup mobile app, the habits that keep costs under control, and the signals that you have outgrown parts of it. Product names and pricing change over time, so check the <a href="https://firebase.google.com/docs" target="_blank" rel="noopener noreferrer">Firebase documentation</a> for current details.</p>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
 <h2>The core: Authentication, Firestore and Storage</h2>
 <h3>Firebase Authentication</h3>
 <p>Do not build your own password system. Firebase Authentication handles email and password, phone number verification, and sign-in with providers such as Google and Apple, along with secure token handling. Your app gets a user ID that the rest of Firebase understands, which is what makes security rules possible.</p>
@@ -90,6 +93,7 @@
   <li>Make functions idempotent, meaning that running them twice has the same effect as once, because triggers can occasionally run more than once.</li>
   <li>Use the Admin SDK in functions for fields that clients must never write directly.</li>
 </ol>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
 <h2>Quality and control: Crashlytics, Remote Config and App Check</h2>
 <h3>Crashlytics</h3>
 <p>Crashlytics collects crash reports and non-fatal errors with stack traces and device details. Add it before your first public release. Google Play&#39;s Android vitals tell you that your app is crashing; Crashlytics usually tells you why. Upload your mapping files if you use code shrinking, so stack traces are readable. Our article on <a href="/blog/reduce-android-crashes-anrs.html">reducing crashes and ANRs</a> covers how to act on the reports.</p>
@@ -117,6 +121,7 @@
   <li><strong>Very high write rates on single documents</strong>, such as a global counter updated by many users at once. These need patterns like distributed counters or a different store.</li>
 </ul>
 <p>Adding these does not mean leaving Firebase. Most growing apps keep Firebase for authentication, app data and configuration, and connect other services where they fit better.</p>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
 <h2>A simple day-one checklist</h2>
 <ol>
   <li>Create separate development and production projects.</li>
@@ -130,6 +135,7 @@
 </ol>
 <h2>Conclusion</h2>
 <p>For a startup, Firebase&#39;s value is focus: you can spend your time on the product instead of on servers. Use a small, deliberate set of services, understand how each one is billed, protect them with rules and App Check, and add monitoring from the first release. Treat it as a foundation you build on, adding specialised tools only when a real need appears.</p>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
     </article>
     <div class="back-row"><a href="/blog/" class="btn btn-secondary">&larr; All articles</a></div>
   </div>
@@ -160,6 +166,7 @@
     </div>
   </div>
 </section>
+<div class="container"><div class="ad-block ad-display" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6831828383879093" data-ad-slot="8523512254" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></div>
 </main>
 
 <footer class="site-footer">
@@ -206,7 +213,7 @@
   </div>
 </footer>
 
-<script src="/assets/js/nav.js?v=9ba7cc84" defer></script>
+<script src="/assets/js/nav.js?v=cfed61da" defer></script>
 
 </body>
 </html>

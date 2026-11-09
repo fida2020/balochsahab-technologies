@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/style.css?v=9ba7cc84">
+<link rel="stylesheet" href="/assets/css/style.css?v=cfed61da">
 <script async data-cfasync="false" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6831828383879093"
      crossorigin="anonymous"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://balochsahab.com/#organization","name":"Baloch Sahab Technologies","legalName":"Baloch Sahab Technologies (SMC-Private) Limited","url":"https://balochsahab.com/","logo":"https://balochsahab.com/assets/img/logo-mark-512.png","email":"info@balochsahab.com","telephone":"+923218818909","foundingDate":"2026-08-27","address":{"@type":"PostalAddress","addressLocality":"Mandi Bahauddin","addressRegion":"Punjab","addressCountry":"PK"},"identifier":{"@type":"PropertyValue","propertyID":"SECP CUIN","value":"0352600"},"sameAs":["https://leap.secp.gov.pk/#/verify-company-info/0352600","https://find-and-update.company-information.service.gov.uk/company/17557848"],"subOrganization":{"@type":"Organization","legalName":"Baloch Sahab Technologies Ltd","url":"https://balochsahab.com/","address":{"@type":"PostalAddress","addressLocality":"London","addressCountry":"GB"},"identifier":{"@type":"PropertyValue","propertyID":"Companies House number","value":"17557848"},"sameAs":["https://find-and-update.company-information.service.gov.uk/company/17557848"]}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://balochsahab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://balochsahab.com/blog/"},{"@type":"ListItem","position":3,"name":"Preparing Your Android App for 16 KB Memory Page Sizes","item":"https://balochsahab.com/blog/android-16kb-page-size.html"}]},{"@type":"BlogPosting","headline":"Preparing Your Android App for 16 KB Memory Page Sizes","description":"What the move to 16 KB memory pages means for Android apps, who is affected, and how to check, fix and test native libraries before Play rejects an update.","datePublished":"2026-10-09","dateModified":"2026-10-09","articleSection":"Android Development","wordCount":1179,"author":{"@type":"Organization","name":"Baloch Sahab Technologies team","url":"https://balochsahab.com/about.html"},"publisher":{"@id":"https://balochsahab.com/#organization"},"mainEntityOfPage":"https://balochsahab.com/blog/android-16kb-page-size.html","image":"https://balochsahab.com/assets/img/logo-mark-512.png"}]}</script>
@@ -52,6 +52,8 @@
   </div>
 </header>
 
+<aside class="ad-rail ad-rail-left" aria-label="Advertisement"><ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-6831828383879093" data-ad-slot="8523512254"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+<aside class="ad-rail ad-rail-right" aria-label="Advertisement"><ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-6831828383879093" data-ad-slot="8523512254"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
 <main id="main">
 <section class="hero hero-page hero-detail">
   <div class="container narrow">
@@ -67,6 +69,7 @@
     <article class="prose article-body">
 <p>For most of Android&#39;s history, devices have used a memory page size of 4 KB. Starting with Android 15, the platform supports devices that use 16 KB pages, and Google Play now requires apps that target recent Android versions to work on them. If your app is written only in Kotlin or Java, you will probably not need to change anything. If your app, or any library inside it, ships native code, you need to check.</p>
 <p>We went through this process for our own short-video app, which depends on several native libraries for video playback, camera effects and real-time streaming. This guide explains what changed, how to find out whether you are affected, and the steps to fix and test it.</p>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
 <h2>What a page size is, and why it changed</h2>
 <p>The operating system manages memory in fixed-size blocks called pages. When an app loads a native shared library (a <code>.so</code> file), the system maps its segments into memory at page boundaries. For this to work, the segments inside the library must be aligned to a multiple of the page size.</p>
 <p>Larger pages mean the system tracks fewer pages for the same amount of memory, which reduces overhead. Google has reported improvements in app launch time and battery use on 16 KB devices in its own testing. The trade-off is compatibility: a library built with 4 KB alignment assumptions may fail to load on a device using 16 KB pages, and the app then crashes, often at startup.</p>
@@ -78,6 +81,7 @@
   <li><strong>Does your native code assume a 4 KB page size</strong>, for example a hard-coded <code>4096</code> used with <code>mmap</code> or memory alignment?</li>
 </ul>
 <p>If the answer to all three is no, your app is already compatible. The easiest way to answer the second question is to open your release APK or app bundle and look for a <code>lib/</code> folder. Any <code>.so</code> file there is native code that must be checked, whatever library it came from.</p>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
 <h2>How to check your app</h2>
 <p>Android Studio&#39;s <strong>APK Analyzer</strong> (Build, then Analyze APK) lists the native libraries in each ABI folder. Recent versions of Android Studio also show alignment information and warn when a library is not aligned for 16 KB pages. This is the quickest check, and it covers libraries from third-party SDKs as well as your own.</p>
 <p>There are two separate things to verify:</p>
@@ -110,11 +114,13 @@
 </ul>
 <pre><code class="language-bash">adb shell getconf PAGE_SIZE</code></pre>
 <p>A result of <code>16384</code> means you are running with 16 KB pages. Then test the paths that load native code: app start, video playback, camera, filters, live streaming, and anything else using a native SDK. Some libraries are loaded lazily, so a quick launch test can miss a crash that only happens when a feature is first opened.</p>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
 <h2>The Google Play requirement</h2>
 <p>Google Play requires new apps and updates that target Android 15 or higher to support 16 KB page sizes on 64-bit devices. The requirement began applying in late 2025, and Play Console shows warnings for app bundles that are not compatible. Because Play&#39;s target API level requirement also moves forward every year, almost every actively updated app is now covered.</p>
 <p>Policies and dates change, and extensions are sometimes offered, so confirm the current rules in the Play Console and in the 16 KB page size guide on <a href="https://developer.android.com/" target="_blank" rel="noopener noreferrer">developer.android.com</a>. Do not wait for a rejected update to find out: run the checks above as part of your release process.</p>
 <h2>Conclusion</h2>
 <p>The 16 KB page size change is a one-time piece of work for most teams. Find every native library in your release APK, update the Android Gradle Plugin and NDK, update or replace third-party SDKs that are not compatible, remove hard-coded page sizes from native code, and test on a 16 KB emulator or device. Add the alignment check to your release checklist so a new dependency cannot quietly break it again. While you are improving release quality, our <a href="/blog/reduce-android-crashes-anrs.html">Android vitals checklist</a> covers the other crash and ANR issues that Play tracks.</p>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
     </article>
     <div class="back-row"><a href="/blog/" class="btn btn-secondary">&larr; All articles</a></div>
   </div>
@@ -145,6 +151,7 @@
     </div>
   </div>
 </section>
+<div class="container"><div class="ad-block ad-display" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6831828383879093" data-ad-slot="8523512254" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></div>
 </main>
 
 <footer class="site-footer">
@@ -191,7 +198,7 @@
   </div>
 </footer>
 
-<script src="/assets/js/nav.js?v=9ba7cc84" defer></script>
+<script src="/assets/js/nav.js?v=cfed61da" defer></script>
 
 </body>
 </html>

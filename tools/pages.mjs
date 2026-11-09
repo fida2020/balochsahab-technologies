@@ -1,4 +1,4 @@
-import { SITE, STATUSES, esc, ARTICLE_AUTHOR, markdownToHtml, wordCount } from "./lib.mjs";
+import { SITE, STATUSES, esc, ARTICLE_AUTHOR, markdownToHtml, wordCount, withArticleAds } from "./lib.mjs";
 
 const productUrl = p => `/${p.kind === "product" ? "products" : "work"}/${p.slug}.html`;
 const mark = (p, lg = "") => p.logo
@@ -617,7 +617,7 @@ export function articlePage(a, all) {
 <section>
   <div class="container narrow">
     <article class="prose article-body">
-${markdownToHtml(a.body)}
+${withArticleAds(markdownToHtml(a.body))}
     </article>
     <div class="back-row"><a href="/blog/" class="btn btn-secondary">&larr; All articles</a></div>
   </div>

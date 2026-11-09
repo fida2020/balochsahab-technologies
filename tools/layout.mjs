@@ -1,4 +1,4 @@
-import { SITE, esc } from "./lib.mjs";
+import { SITE, esc, adUnit } from "./lib.mjs";
 
 const NAV = [
   ["/index.html", "Home"],
@@ -92,8 +92,11 @@ export function layout(page, cssVersion) {
   </div>
 </header>
 
+${page.noindex ? "" : `<aside class="ad-rail ad-rail-left" aria-label="Advertisement">${adUnit("rail")}</aside>
+<aside class="ad-rail ad-rail-right" aria-label="Advertisement">${adUnit("rail")}</aside>`}
 <main id="main">
 ${page.body.trim()}
+${page.noindex ? "" : `<div class="container">${adUnit("display")}</div>`}
 </main>
 
 <footer class="site-footer">

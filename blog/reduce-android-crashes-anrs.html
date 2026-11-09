@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/style.css?v=9ba7cc84">
+<link rel="stylesheet" href="/assets/css/style.css?v=cfed61da">
 <script async data-cfasync="false" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6831828383879093"
      crossorigin="anonymous"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://balochsahab.com/#organization","name":"Baloch Sahab Technologies","legalName":"Baloch Sahab Technologies (SMC-Private) Limited","url":"https://balochsahab.com/","logo":"https://balochsahab.com/assets/img/logo-mark-512.png","email":"info@balochsahab.com","telephone":"+923218818909","foundingDate":"2026-08-27","address":{"@type":"PostalAddress","addressLocality":"Mandi Bahauddin","addressRegion":"Punjab","addressCountry":"PK"},"identifier":{"@type":"PropertyValue","propertyID":"SECP CUIN","value":"0352600"},"sameAs":["https://leap.secp.gov.pk/#/verify-company-info/0352600","https://find-and-update.company-information.service.gov.uk/company/17557848"],"subOrganization":{"@type":"Organization","legalName":"Baloch Sahab Technologies Ltd","url":"https://balochsahab.com/","address":{"@type":"PostalAddress","addressLocality":"London","addressCountry":"GB"},"identifier":{"@type":"PropertyValue","propertyID":"Companies House number","value":"17557848"},"sameAs":["https://find-and-update.company-information.service.gov.uk/company/17557848"]}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://balochsahab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://balochsahab.com/blog/"},{"@type":"ListItem","position":3,"name":"Reducing Crashes and ANRs: A Practical Android Vitals Checklist","item":"https://balochsahab.com/blog/reduce-android-crashes-anrs.html"}]},{"@type":"BlogPosting","headline":"Reducing Crashes and ANRs: A Practical Android Vitals Checklist","description":"A step-by-step checklist for cutting crashes and ANRs in Android apps - main-thread work, StrictMode, lifecycle, process death, R8 mappings, rollouts.","datePublished":"2026-10-13","dateModified":"2026-10-13","articleSection":"Android Development","wordCount":1082,"author":{"@type":"Organization","name":"Baloch Sahab Technologies team","url":"https://balochsahab.com/about.html"},"publisher":{"@id":"https://balochsahab.com/#organization"},"mainEntityOfPage":"https://balochsahab.com/blog/reduce-android-crashes-anrs.html","image":"https://balochsahab.com/assets/img/logo-mark-512.png"}]}</script>
@@ -52,6 +52,8 @@
   </div>
 </header>
 
+<aside class="ad-rail ad-rail-left" aria-label="Advertisement"><ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-6831828383879093" data-ad-slot="8523512254"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+<aside class="ad-rail ad-rail-right" aria-label="Advertisement"><ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-6831828383879093" data-ad-slot="8523512254"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
 <main id="main">
 <section class="hero hero-page hero-detail">
   <div class="container narrow">
@@ -67,6 +69,7 @@
     <article class="prose article-body">
 <p>Crashes and &quot;App Not Responding&quot; (ANR) errors are the two quality problems users notice most, and the two that Google Play watches most closely. Play Console&#39;s Android vitals section reports the share of users who experience them, and apps that exceed Play&#39;s bad behaviour thresholds can be shown less prominently in the store and may display a warning on their listing. More importantly, every crash is a person who gave up on your app.</p>
 <p>This checklist collects the practices we apply to our own apps before every release. None of them are exotic. Together they remove most of the crashes and ANRs that real apps ship with.</p>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
 <h2>Understand what Play measures</h2>
 <p>Start in Play Console under <strong>Quality, then Android vitals</strong>. The overview shows the user-perceived crash rate and ANR rate, broken down by app version, Android version and device. A few points are worth knowing:</p>
 <ul>
@@ -96,6 +99,7 @@
     )
 }</code></pre>
 <p>Put this in your <code>Application.onCreate</code>. Review the log regularly; some third-party SDKs will appear there too, which tells you where to look.</p>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
 <h2>Make startup light</h2>
 <p>Startup is a common source of both ANRs and crashes because so much happens at once. Audit what runs in <code>Application.onCreate</code> and in content providers that libraries register. Initialise SDKs lazily when the feature that uses them is opened, or move their setup to a background thread if the SDK allows it. The App Startup library helps you control the order and timing of initialisers.</p>
 <h2>Respect the lifecycle</h2>
@@ -111,6 +115,7 @@
 <p>To test, put the app in the background, then run:</p>
 <pre><code class="language-bash">adb shell am kill com.example.app</code></pre>
 <p>Then return to the app from the recents screen. Every screen should restore correctly. Keep small UI state in <code>SavedStateHandle</code> in your ViewModels, store important data in a database or DataStore, and reload anything else from its source.</p>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
 <h2>Use Kotlin&#39;s null-safety honestly</h2>
 <p>Kotlin prevents many null pointer exceptions, but only if you let it. Treat every <code>!!</code> as a possible crash and replace it with a safe call, an early return or a clear default. Be careful at the boundaries with Java code and JSON parsing, where values declared non-null can still arrive as null. Validate data from the network before it reaches the UI.</p>
 <h2>Make crash reports readable</h2>
@@ -123,8 +128,10 @@
 </ul>
 <h2>Release in stages</h2>
 <p>Even with all of the above, some problems only appear on real devices at scale. Play&#39;s <strong>staged rollout</strong> releases an update to a percentage of users first. Start small, watch crash and ANR rates in Android vitals and your crash tool for a day or two, and only then increase the rollout. If a serious problem appears, halt the rollout and fix it before it reaches everyone. Before any rollout, use the testing tracks and the <a href="/blog/google-play-pre-launch-reports.html">pre-launch report</a> to catch problems on a range of devices.</p>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
 <h2>Conclusion</h2>
 <p>Most crashes and ANRs come from a short list of causes: work on the main thread, heavy startup, code that ignores the lifecycle, assumptions that break after process death, unsafe null handling, and native library problems such as the <a href="/blog/android-16kb-page-size.html">16 KB page size change</a>. Use StrictMode during development, test process death, upload mapping files, and release in stages while watching Android vitals. Make this checklist part of every release, and stability becomes a habit rather than an emergency.</p>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
     </article>
     <div class="back-row"><a href="/blog/" class="btn btn-secondary">&larr; All articles</a></div>
   </div>
@@ -155,6 +162,7 @@
     </div>
   </div>
 </section>
+<div class="container"><div class="ad-block ad-display" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6831828383879093" data-ad-slot="8523512254" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></div>
 </main>
 
 <footer class="site-footer">
@@ -201,7 +209,7 @@
   </div>
 </footer>
 
-<script src="/assets/js/nav.js?v=9ba7cc84" defer></script>
+<script src="/assets/js/nav.js?v=cfed61da" defer></script>
 
 </body>
 </html>

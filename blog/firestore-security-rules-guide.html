@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/style.css?v=9ba7cc84">
+<link rel="stylesheet" href="/assets/css/style.css?v=cfed61da">
 <script async data-cfasync="false" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6831828383879093"
      crossorigin="anonymous"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://balochsahab.com/#organization","name":"Baloch Sahab Technologies","legalName":"Baloch Sahab Technologies (SMC-Private) Limited","url":"https://balochsahab.com/","logo":"https://balochsahab.com/assets/img/logo-mark-512.png","email":"info@balochsahab.com","telephone":"+923218818909","foundingDate":"2026-08-27","address":{"@type":"PostalAddress","addressLocality":"Mandi Bahauddin","addressRegion":"Punjab","addressCountry":"PK"},"identifier":{"@type":"PropertyValue","propertyID":"SECP CUIN","value":"0352600"},"sameAs":["https://leap.secp.gov.pk/#/verify-company-info/0352600","https://find-and-update.company-information.service.gov.uk/company/17557848"],"subOrganization":{"@type":"Organization","legalName":"Baloch Sahab Technologies Ltd","url":"https://balochsahab.com/","address":{"@type":"PostalAddress","addressLocality":"London","addressCountry":"GB"},"identifier":{"@type":"PropertyValue","propertyID":"Companies House number","value":"17557848"},"sameAs":["https://find-and-update.company-information.service.gov.uk/company/17557848"]}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://balochsahab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://balochsahab.com/blog/"},{"@type":"ListItem","position":3,"name":"Writing Firestore Security Rules That Actually Protect Your Data","item":"https://balochsahab.com/blog/firestore-security-rules-guide.html"}]},{"@type":"BlogPosting","headline":"Writing Firestore Security Rules That Actually Protect Your Data","description":"A practical guide to Cloud Firestore security rules covering default deny, ownership checks, field validation, server-only fields and emulator testing.","datePublished":"2026-10-28","dateModified":"2026-10-28","articleSection":"Firebase","wordCount":1089,"author":{"@type":"Organization","name":"Baloch Sahab Technologies team","url":"https://balochsahab.com/about.html"},"publisher":{"@id":"https://balochsahab.com/#organization"},"mainEntityOfPage":"https://balochsahab.com/blog/firestore-security-rules-guide.html","image":"https://balochsahab.com/assets/img/logo-mark-512.png"}]}</script>
@@ -52,6 +52,8 @@
   </div>
 </header>
 
+<aside class="ad-rail ad-rail-left" aria-label="Advertisement"><ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-6831828383879093" data-ad-slot="8523512254"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
+<aside class="ad-rail ad-rail-right" aria-label="Advertisement"><ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-6831828383879093" data-ad-slot="8523512254"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></aside>
 <main id="main">
 <section class="hero hero-page hero-detail">
   <div class="container narrow">
@@ -67,6 +69,7 @@
     <article class="prose article-body">
 <p>With Cloud Firestore, your app talks to the database directly. There is no server in between checking every request, which is what makes Firestore fast to build with. It also means that your security rules are the only thing standing between your data and anyone who extracts your project configuration from the app, which is not difficult to do. Rules are not an optional extra; they are your backend&#39;s access control.</p>
 <p>This guide walks through how to write rules that hold up: start from deny, require sign-in, check ownership, validate data, keep sensitive fields server-only, and test everything. The full language reference is in the <a href="https://firebase.google.com/docs/firestore/security/get-started" target="_blank" rel="noopener noreferrer">Firebase documentation</a>.</p>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
 <h2>Start from default deny</h2>
 <p>Rules are evaluated per request. If no rule allows a request, it is denied. Make that explicit and build up from nothing, rather than starting with open access and trying to close holes later.</p>
 <pre><code class="language-js">rules_version = &#39;2&#39;;
@@ -96,6 +99,7 @@ match /posts/{postId} {
 }</code></pre>
 <p>Notice the two different variables. <code>resource.data</code> is the document as it currently exists in the database. <code>request.resource.data</code> is what the document will look like if the write succeeds. For creating, check the new data; for updating or deleting, check the existing owner, and also make sure an update cannot change the owner field to someone else.</p>
 <p>Split <code>write</code> into <code>create</code>, <code>update</code> and <code>delete</code> whenever they need different conditions. It makes the rules clearer and avoids accidentally allowing deletes.</p>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
 <h2>Validate the data being written</h2>
 <p>Rules can and should check the shape of incoming data. Without validation, a user can write any fields with any values, such as a huge string, an unexpected type, or a field your app treats as trusted.</p>
 <pre><code class="language-js">function validPost() {
@@ -126,6 +130,7 @@ match /posts/{postId} {
 <p>A frequent surprise is that a query fails even though the user can read some of the matching documents. Firestore does not filter results by your rules. Instead, it checks whether the query could possibly return a document the user is not allowed to read, and rejects the entire query if so.</p>
 <p>The fix is to make your queries match your rules. If the rule says users can only read their own orders, the query must include a condition such as <code>where(&quot;ownerId&quot;, &quot;==&quot;, currentUserId)</code>. This is a feature: it means a rule cannot be bypassed simply by asking for everything.</p>
 <p>Also remember that reading a document returns all of its fields. Rules cannot hide individual fields, so private data such as an email address or phone number should live in a separate document with stricter rules, not alongside public profile fields.</p>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
 <h2>Test rules with the emulator</h2>
 <p>Rules are code and deserve tests. The Firebase Local Emulator Suite runs Firestore and your rules on your own computer, and the <code>@firebase/rules-unit-testing</code> library lets you write tests that act as different users.</p>
 <p>A good test suite checks both directions:</p>
@@ -148,6 +153,7 @@ match /posts/{postId} {
 </ul>
 <h2>Conclusion</h2>
 <p>Good Firestore security rules follow a simple philosophy: deny by default, allow narrowly, validate everything clients send, and keep anything valuable under server control. Write them early, keep queries consistent with them, and test them like any other critical code. Combined with App Check and the setup described in our <a href="/blog/firebase-for-startups.html">Firebase for startups</a> guide, they give a small team a backend that is both fast to build and genuinely secure.</p>
+<div class="ad-block ad-inarticle" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6831828383879093" data-ad-slot="6350655389"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
     </article>
     <div class="back-row"><a href="/blog/" class="btn btn-secondary">&larr; All articles</a></div>
   </div>
@@ -178,6 +184,7 @@ match /posts/{postId} {
     </div>
   </div>
 </section>
+<div class="container"><div class="ad-block ad-display" aria-label="Advertisement"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6831828383879093" data-ad-slot="8523512254" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></div>
 </main>
 
 <footer class="site-footer">
@@ -224,7 +231,7 @@ match /posts/{postId} {
   </div>
 </footer>
 
-<script src="/assets/js/nav.js?v=9ba7cc84" defer></script>
+<script src="/assets/js/nav.js?v=cfed61da" defer></script>
 
 </body>
 </html>
