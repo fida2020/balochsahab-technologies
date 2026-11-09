@@ -79,7 +79,7 @@ export function layout(page, cssVersion) {
   <div class="container nav">
     <a href="/index.html" class="brand" aria-label="${esc(SITE.name)} home">
       <span class="mark"><img src="/assets/img/logo-mark-256.png" alt="" width="108" height="108"></span>
-      <span class="name-stack"><span class="name-main">BALOCH SAHAB</span><span class="name-sub">Technologies (SMC-Private) Limited</span></span>
+      <span class="name-stack"><span class="name-main">Baloch Sahab</span><span class="name-sub">Technologies (SMC-Private) Limited</span></span>
     </a>
     <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
     <nav class="nav-links" id="site-nav" aria-label="Main">

@@ -56,20 +56,21 @@ h1, h2, h3 { line-height: 1.2; letter-spacing: -0.015em; }
   -webkit-backdrop-filter: saturate(180%) blur(12px);
   border-bottom: 1px solid var(--border);
 }
-.nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 12px 24px; }
+.nav { display: flex; align-items: center; justify-content: space-between; gap: 28px; padding: 14px 24px; min-height: 76px; }
 
-.brand { display: flex; align-items: center; gap: 14px; min-width: 0; }
-.brand .mark { width: 108px; height: 108px; flex-shrink: 0; display: flex; }
+/* Brand: one clean line for the name, a quiet legal line under it (owner 9 Nov: balanced + professional). */
+.brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.brand .mark { width: 56px; height: 56px; flex-shrink: 0; display: flex; }
 .brand .mark img { width: 100%; height: 100%; object-fit: contain; }
-.brand .name-stack { display: flex; flex-direction: column; gap: 2px; line-height: 1.15; min-width: 0; }
-.brand .name-main { color: var(--blue); font-size: 2rem; font-weight: 800; letter-spacing: 0.01em; }
-.brand .name-sub { color: var(--text); font-size: 0.86rem; font-weight: 600; }
+.brand .name-stack { display: flex; flex-direction: column; gap: 3px; line-height: 1.1; min-width: 0; }
+.brand .name-main { color: var(--blue); font-size: 1.4rem; font-weight: 800; letter-spacing: 0.02em; white-space: nowrap; }
+.brand .name-sub { color: var(--text-muted); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; }
 
-.nav-links { display: flex; gap: 6px; align-items: center; }
-.nav-links a { color: var(--text-muted); font-size: 0.94rem; font-weight: 600; padding: 8px 12px; border-radius: 8px; transition: color .15s, background .15s; }
+.nav-links { display: flex; gap: 2px; align-items: center; }
+.nav-links a { color: var(--text-muted); font-size: 0.93rem; font-weight: 600; padding: 8px 12px; border-radius: 8px; white-space: nowrap; transition: color .15s, background .15s; }
 .nav-links a:hover { color: var(--text); background: var(--surface); }
-.nav-links a.active { color: var(--blue); }
-.nav-links .nav-cta { background: var(--pink); color: #fff; margin-left: 8px; padding: 10px 18px; border-radius: 999px; }
+.nav-links a.active { color: var(--blue); background: var(--surface); }
+.nav-links .nav-cta { background: var(--pink); color: #fff; margin-left: 12px; padding: 10px 20px; border-radius: 999px; }
 .nav-links .nav-cta:hover, .nav-links .nav-cta.active { background: var(--pink-dark); color: #fff; }
 
 .nav-toggle { display: none; width: 44px; height: 44px; border: 1px solid var(--border); border-radius: 10px; background: #fff; cursor: pointer; padding: 0; flex-direction: column; justify-content: center; align-items: center; gap: 5px; }
@@ -78,13 +79,11 @@ h1, h2, h3 { line-height: 1.2; letter-spacing: -0.015em; }
 .nav-toggle.open span:nth-child(2) { opacity: 0; }
 .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-@media (max-width: 1100px) {
-  .brand .mark { width: 64px; height: 64px; }
-  .brand .name-main { font-size: 1.4rem; }
-  .brand .name-sub { font-size: 0.78rem; }
+@media (max-width: 1180px) {
   .nav-links a { padding: 8px 9px; font-size: 0.9rem; }
+  .nav-links .nav-cta { margin-left: 8px; padding: 9px 16px; }
 }
-@media (max-width: 960px) {
+@media (max-width: 1040px) {
   .nav-toggle { display: flex; }
   .nav-links {
     position: absolute; top: 100%; left: 0; right: 0;
@@ -100,9 +99,9 @@ h1, h2, h3 { line-height: 1.2; letter-spacing: -0.015em; }
   .nav { padding: 10px 16px; gap: 12px; }
   .container { padding: 0 18px; }
   .brand { gap: 10px; }
-  .brand .mark { width: 48px; height: 48px; }
-  .brand .name-main { font-size: 1.12rem; }
-  .brand .name-sub { font-size: 0.68rem; }
+  .brand .mark { width: 44px; height: 44px; }
+  .brand .name-main { font-size: 1.1rem; }
+  .brand .name-sub { font-size: 0.56rem; letter-spacing: 0.05em; }
 }
 
 /* Hero */
