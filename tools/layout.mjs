@@ -27,7 +27,10 @@ function orgJsonLd() {
     foundingDate: "2026-08-27",
     address: { "@type": "PostalAddress", addressLocality: SITE.locality, addressRegion: SITE.region, addressCountry: SITE.country },
     identifier: { "@type": "PropertyValue", propertyID: "SECP CUIN", value: SITE.cuin },
-    sameAs: [SITE.secpVerify]
+    sameAs: [SITE.secpVerify, SITE.ukVerify],
+    subOrganization: { "@type": "Organization", legalName: SITE.ukLegalName, url: SITE.origin + "/",
+      address: { "@type": "PostalAddress", addressLocality: "London", addressCountry: "GB" },
+      identifier: { "@type": "PropertyValue", propertyID: "Companies House number", value: SITE.ukNumber }, sameAs: [SITE.ukVerify] }
   };
 }
 
@@ -79,7 +82,7 @@ export function layout(page, cssVersion) {
   <div class="container nav">
     <a href="/index.html" class="brand" aria-label="${esc(SITE.name)} home">
       <span class="mark"><img src="/assets/img/logo-mark-256.png" alt="" width="108" height="108"></span>
-      <span class="name-stack"><span class="name-main">Baloch Sahab</span><span class="name-sub">Technologies (SMC-Private) Limited</span></span>
+      <span class="name-stack"><span class="name-main">Baloch Sahab</span><span class="name-sub">Technologies &middot; Pakistan &amp; UK</span></span>
     </a>
     <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
     <nav class="nav-links" id="site-nav" aria-label="Main">
@@ -99,9 +102,10 @@ ${page.body.trim()}
       <div>
         <div class="footer-brand">
           <span class="mark"><img src="/assets/img/logo-mark-128.png" alt="" width="64" height="64" loading="lazy"></span>
-          <strong>BALOCH SAHAB TECHNOLOGIES (SMC-PRIVATE) LIMITED</strong>
+          <strong>BALOCH SAHAB TECHNOLOGIES</strong>
         </div>
-        <p>An SECP-registered software company in Pakistan building its own digital products and engineering software for clients.</p>
+        <p>A software company registered in Pakistan and the United Kingdom, building its own digital products and engineering software for clients.</p>
+        <p class="footer-entities">${esc(SITE.legalName)} &middot; SECP CUIN ${SITE.cuin}<br>${esc(SITE.ukLegalName)} &middot; Companies House ${SITE.ukNumber}</p>
       </div>
       <div>
         <h2 class="footer-h">Company</h2>
@@ -130,8 +134,8 @@ ${page.body.trim()}
       </div>
     </div>
     <div class="footer-bottom">
-      <span>&copy; 2026 ${esc(SITE.legalName)}. All rights reserved.</span>
-      <span class="footer-legal"><a href="/privacy.html">Privacy Policy</a> &middot; <a href="/terms.html">Terms</a> &middot; CUIN ${SITE.cuin} &middot; <a href="${SITE.secpVerify}" target="_blank" rel="noopener noreferrer">Verify with SECP &#8599;</a></span>
+      <span>&copy; 2026 ${esc(SITE.legalName)} &amp; ${esc(SITE.ukLegalName)}. All rights reserved.</span>
+      <span class="footer-legal"><a href="/privacy.html">Privacy Policy</a> &middot; <a href="/terms.html">Terms</a> &middot; <a href="${SITE.secpVerify}" target="_blank" rel="noopener noreferrer">Verify with SECP &#8599;</a> &middot; <a href="${SITE.ukVerify}" target="_blank" rel="noopener noreferrer">Verify with Companies House &#8599;</a></span>
     </div>
   </div>
 </footer>

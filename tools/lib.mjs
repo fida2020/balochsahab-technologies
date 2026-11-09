@@ -11,6 +11,11 @@ export const SITE = {
   phoneHref: "tel:+923218818909",
   whatsapp: "https://wa.me/923218818909",
   cuin: "0352600",
+  // Owner 9 Nov: the UK company too (Companies House, incorporated 2 Nov 2026).
+  ukLegalName: "Baloch Sahab Technologies Ltd",
+  ukNumber: "17557848",
+  ukVerify: "https://find-and-update.company-information.service.gov.uk/company/17557848",
+  ukOffice: "182-184 High Street North, East Ham, London E6 2JA, United Kingdom",
   secpVerify: "https://leap.secp.gov.pk/#/verify-company-info/0352600",
   locality: "Mandi Bahauddin",
   region: "Punjab",

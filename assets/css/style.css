@@ -389,3 +389,7 @@ section.alt { background: var(--surface); border-top: 1px solid var(--border); b
 
 .product-mark.has-logo { background: transparent; box-shadow: none; padding: 0; }
 .product-mark.has-logo img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+/* Owner 9 Nov: Pakistan + UK company lines */
+.fact-h { font-size: 0.95rem; color: var(--pink); text-transform: uppercase; letter-spacing: 0.08em; margin: 18px 0 6px; }
+.footer-entities { font-size: 0.82rem; opacity: 0.8; margin-top: 10px; line-height: 1.6; }

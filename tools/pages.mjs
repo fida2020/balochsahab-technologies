@@ -130,11 +130,11 @@ export function staticPages(projects) {
   const home = {
     path: "/index.html", nav: "/index.html",
     title: "Baloch Sahab Technologies — Software Products & Development, Pakistan",
-    description: "SECP-registered software company in Pakistan building its own apps and platforms, and developing web and mobile software for clients.",
+    description: "Software company registered in Pakistan and the UK, building its own apps and platforms and developing web and mobile software for clients.",
     jsonLd: [{ "@type": "WebSite", "@id": SITE.origin + "/#website", url: SITE.origin + "/", name: SITE.name, publisher: { "@id": SITE.origin + "/#organization" } }],
     body: `<section class="hero hero-home">
   <div class="container">
-    <span class="eyebrow">SECP-registered software company &middot; Pakistan</span>
+    <span class="eyebrow">Registered software company &middot; Pakistan &amp; United Kingdom</span>
     <h1>We build digital products <span>that people actually use.</span></h1>
     <p class="lead">From earning platforms to social video apps, we design, build and run our own products, and we bring the same engineering to client projects.</p>
     <div class="hero-actions">
@@ -150,7 +150,7 @@ export function staticPages(projects) {
       <div><div class="num">2026</div><div class="label">Year founded</div></div>
       <div><div class="num">${products.length}</div><div class="label">Company-owned products</div></div>
       <div><div class="num">SECP</div><div class="label">Registered &middot; CUIN ${SITE.cuin}</div></div>
-      <div><div class="num">PK</div><div class="label">Headquartered in Pakistan</div></div>
+      <div><div class="num">UK</div><div class="label">Companies House &middot; No. ${SITE.ukNumber}</div></div>
     </div>
   </div>
 </section>
@@ -189,7 +189,7 @@ ${featured.map(projectCard).join("\n")}
     </div>
     <div class="grid grid-3">
       <div class="card"><div class="icon" aria-hidden="true">&#127919;</div><h3>We run our own products</h3><p>We operate live platforms and apps ourselves, so we know what production actually demands.</p></div>
-      <div class="card"><div class="icon" aria-hidden="true">&#128274;</div><h3>Registered company</h3><p>${esc(SITE.legalName)} is registered with SECP, Pakistan &mdash; not an informal freelance setup.</p></div>
+      <div class="card"><div class="icon" aria-hidden="true">&#128274;</div><h3>Registered company</h3><p>${esc(SITE.legalName)} is registered with SECP in Pakistan, and ${esc(SITE.ukLegalName)} with Companies House in the UK &mdash; not an informal freelance setup.</p></div>
       <div class="card"><div class="icon" aria-hidden="true">&#128172;</div><h3>Direct communication</h3><p>You talk directly to the people building your project, with no account managers in between.</p></div>
     </div>
   </div>
@@ -201,7 +201,7 @@ ${ctaBanner("Have a project in mind?", "Whether it&rsquo;s a web platform, a mob
   const about = {
     path: "/about.html", nav: "/about.html",
     title: "About Us",
-    description: "The story and company facts of Baloch Sahab Technologies (SMC-Private) Limited, an SECP-registered software company in Mandi Bahauddin, Pakistan.",
+    description: "The story and company facts of Baloch Sahab Technologies (SMC-Private) Limited, a software company registered in Pakistan (SECP) and the United Kingdom (Companies House).",
     jsonLd: [breadcrumbLd([["Home", "/"], ["About", "/about.html"]])],
     body: `${pageHero({ eyebrow: "About Us", title: "A technology company, <span>built product by product.</span>", lead: "Baloch Sahab Technologies started with a single earning website and grew into a company building web platforms, mobile apps and software for clients." })}
 
@@ -211,10 +211,11 @@ ${ctaBanner("Have a project in mind?", "Whether it&rsquo;s a web platform, a mob
       <div class="prose">
         <h2>Our story</h2>
         <p>Baloch Sahab Technologies began as a single web project: an earning platform for everyday users. As that platform grew, so did the need for a proper company behind it, one that could take on mobile apps, take on client projects, and be accountable under its own legal name.</p>
-        <p>In August 2026 the company was formally incorporated in Pakistan with the Securities and Exchange Commission of Pakistan (SECP) as an SMC-Private Limited company, a single-member company limited by shares. Today it is the parent company behind the Baloch Sahab Earning Platform, XnaksView, and the web and app development work we take on for clients.</p>
+        <p>In August 2026 the company was formally incorporated in Pakistan with the Securities and Exchange Commission of Pakistan (SECP) as an SMC-Private Limited company, a single-member company limited by shares. In November 2026 we also registered ${esc(SITE.ukLegalName)} in England and Wales with Companies House, so we can serve international clients and app stores directly. Together the two companies are behind the Baloch Sahab Earning Platform, XnaksView, and the web and app development work we take on for clients.</p>
       </div>
       <div>
         <h2>Company facts</h2>
+        <h3 class="fact-h">Pakistan</h3>
         <ul class="fact-list">
           <li><span>Legal name</span><span>${esc(SITE.legalName)}</span></li>
           <li><span>Company type</span><span>Single Member Company, Limited by Shares</span></li>
@@ -224,6 +225,15 @@ ${ctaBanner("Have a project in mind?", "Whether it&rsquo;s a web platform, a mob
           <li><span>Regulator</span><span>SECP Pakistan</span></li>
           <li><span>Date of incorporation</span><span>27 August 2026</span></li>
           <li><span>Registered at</span><span>Mandi Bahauddin, Punjab, Pakistan</span></li>
+        </ul>
+        <h3 class="fact-h">United Kingdom</h3>
+        <ul class="fact-list">
+          <li><span>Legal name</span><span>${esc(SITE.ukLegalName)}</span></li>
+          <li><span>Company type</span><span>Private limited company</span></li>
+          <li><span>Company number</span><span><a href="${SITE.ukVerify}" target="_blank" rel="noopener noreferrer">${SITE.ukNumber} &#8599;</a></span></li>
+          <li><span>Registered with</span><span>Companies House, England and Wales</span></li>
+          <li><span>Date of incorporation</span><span>2 November 2026</span></li>
+          <li><span>Registered office</span><span>${esc(SITE.ukOffice)}</span></li>
         </ul>
       </div>
     </div>
@@ -421,7 +431,7 @@ ${ctaBanner("Have a project brief?", "Send us the details and we&rsquo;ll get ba
     body: `${pageHero({ eyebrow: "Legal", title: "Terms and Conditions", lead: `Last updated: ${legalUpdated}` })}
 <section>
   <div class="container narrow prose">
-    <p>These terms apply to your use of balochsahab.com, operated by ${esc(SITE.legalName)}, a company registered with SECP, Pakistan (CUIN ${SITE.cuin}). By using this website you agree to them.</p>
+    <p>These terms apply to your use of balochsahab.com, operated by ${esc(SITE.legalName)}, a company registered with SECP, Pakistan (CUIN ${SITE.cuin}), together with ${esc(SITE.ukLegalName)}, registered in England and Wales (company number ${SITE.ukNumber}). By using this website you agree to them.</p>
     <h2>Use of this website</h2>
     <p>You may browse and use this website for lawful purposes only. You must not attempt to disrupt it, gain unauthorised access to it, or send spam or harmful content through its forms.</p>
     <h2>Our products</h2>
