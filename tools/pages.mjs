@@ -47,7 +47,6 @@ const ctaBanner = (h, p, href, label) => `<section>
 const SERVICES = [
   ["&#127760;", "Web Development", "Marketing sites, dashboards and full web platforms: designed, built and deployed."],
   ["&#128241;", "Mobile App Development", "Android applications, from idea through to release on Google Play."],
-  ["&#128176;", "Earning Platform &amp; Ad-Tech Consulting", "Offerwalls, PTC ad networks, postback integrations and reward systems, drawn from running our own platform."],
   ["&#128203;", "Admin Panels &amp; Dashboards", "Internal tools to manage users, payments and content, built around how your team works."],
   ["&#128737;", "Backend &amp; API Development", "APIs, databases and backend services that power web and mobile apps."],
   ["&#128295;", "Maintenance &amp; Support", "Ongoing updates, bug fixes and support for products already in production."]
@@ -57,7 +56,7 @@ const serviceGrid = () => `<div class="grid grid-3">
 ${SERVICES.map(([i, h, p]) => `  <div class="card"><div class="icon" aria-hidden="true">${i}</div><h3>${h}</h3><p>${p}</p></div>`).join("\n")}
 </div>`;
 
-const SERVICE_OPTIONS = ["Web Development", "Mobile App Development", "Earning Platform / Ad-Tech", "Admin Panel / Dashboard", "Backend / API", "Maintenance & Support", "Other"];
+const SERVICE_OPTIONS = ["Web Development", "Mobile App Development", "Admin Panel / Dashboard", "Backend / API", "Maintenance & Support", "Other"];
 
 function field(id, label, input, hint = "") {
   return `<div class="field">
@@ -137,7 +136,7 @@ export function staticPages(projects) {
   <div class="container">
     <span class="eyebrow">Registered software company &middot; Pakistan &amp; United Kingdom</span>
     <h1>We build digital products <span>that people actually use.</span></h1>
-    <p class="lead">From earning platforms to social video apps, we design, build and run our own products, and we bring the same engineering to client projects.</p>
+    <p class="lead">From social video apps to client websites, we design, build and run our own products, and we bring the same engineering to client projects.</p>
     <div class="hero-actions">
       <a href="/projects.html" class="btn btn-primary">Explore our products</a>
       <a href="/quote.html" class="btn btn-ghost">Request a quote</a>
@@ -265,7 +264,7 @@ ${ctaBanner("Want to know more?", "Read about our team, browse our products, or 
   };
 
   const team = {
-    path: "/team.html", nav: "/team.html",
+    path: "/team.html", nav: "/team.html", noindex: true,
     title: "Team",
     description: "Meet the team behind Baloch Sahab Technologies, led by founder and CEO Fida Hussain.",
     jsonLd: [breadcrumbLd([["Home", "/"], ["Team", "/team.html"]]), { "@type": "Person", name: "Fida Hussain", jobTitle: "Founder & CEO", worksFor: { "@id": SITE.origin + "/#organization" } }],
@@ -290,7 +289,7 @@ ${ctaBanner("Want to work with us?", "We&rsquo;re always open to conversations a
   const productsPage = {
     path: "/projects.html", nav: "/projects.html",
     title: "Our Products",
-    description: "Company-owned products by Baloch Sahab Technologies: the Baloch Sahab Earning Platform and XnaksView.",
+    description: "Company-owned products by Baloch Sahab Technologies, including XnaksView, our short-video and LIVE streaming app.",
     jsonLd: [breadcrumbLd([["Home", "/"], ["Our Products", "/projects.html"]]), {
       "@type": "ItemList", itemListElement: products.map((p, i) => ({ "@type": "ListItem", position: i + 1, url: SITE.origin + productUrl(p), name: p.name }))
     }],
@@ -371,15 +370,14 @@ ${ctaBanner("Have a project brief?", "Send us the details and we&rsquo;ll get ba
       </div>
     </div>
     <div class="note-banner">
-      <p><strong>Already a Baloch Sahab Earning Platform or XnaksView user?</strong> For account, wallet or withdrawal support, please contact us through the platform itself.</p>
-      <a href="https://earn.balochsahab.com" class="btn btn-secondary">Go to Earning Platform</a>
+      <p><strong>Already an XnaksView user?</strong> For account, wallet or withdrawal support, please contact us through the platform itself.</p>
     </div>
   </div>
 </section>`
   };
 
   const quote = {
-    path: "/quote.html", nav: "/quote.html",
+    path: "/quote.html", nav: "/quote.html", noindex: true,
     title: "Request a Quote",
     description: "Request a quote from Baloch Sahab Technologies for web development, mobile apps, backend/API work, dashboards or ad-tech integrations.",
     jsonLd: [breadcrumbLd([["Home", "/"], ["Request a Quote", "/quote.html"]])],

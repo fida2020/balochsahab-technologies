@@ -36,7 +36,7 @@ t("validator rejects non-https link", () => { const d = clone(); d.projects[0].l
 t("validator rejects unknown status", () => { const d = clone(); d.projects[0].status = "awesome"; assert(validateProjects(d).some(e => e.includes("status")), "not rejected"); });
 t("validator rejects missing image file", () => { const d = clone(); d.projects[0].images = [{ src: "/assets/img/nope.png", alt: "x" }]; assert(validateProjects(d, () => false).some(e => e.includes("not found")), "not rejected"); });
 t("validator blocks unauthorized client work", () => {
-  const d = clone(); d.projects.push({ ...d.projects[0], slug: "acme-site", kind: "client", client: "Acme" });
+  const d = clone(); d.projects.push({ ...d.projects[0], slug: "acme-site", kind: "client", client: "Acme", published: true });
   assert(validateProjects(d).some(e => e.includes("clientAuthorized")), "not blocked");
 });
 
@@ -141,10 +141,11 @@ t("products page lists only products; client page lists only client work", () =>
   assert(!prodHtml.includes("/work/"), "client work leaked into products page");
 });
 // Owner 9 Nov: only LIVE projects on the site (Earning Platform + XnaksView); EarnBox + F88 unpublished.
-t("required products present: Earning Platform, XnaksView; EarnBox + F88 gone", () => {
+// Owner 18 Nov (AdSense "low value content"): the PTC earning platform is no longer shown on this site.
+t("required products present: XnaksView; Earning Platform, EarnBox + F88 gone", () => {
   const html = read("projects.html");
-  for (const n of ["Baloch Sahab Earning Platform", "XnaksView"]) assert(html.includes(n), n + " missing");
-  for (const n of ["EarnBox", "F88"]) assert(!html.includes(n), n + " still shown");
+  for (const n of ["XnaksView"]) assert(html.includes(n), n + " missing");
+  for (const n of ["Baloch Sahab Earning Platform", "EarnBox", "F88"]) assert(!html.includes(n), n + " still shown");
 });
 
 // ---- sitemap / robots ----
