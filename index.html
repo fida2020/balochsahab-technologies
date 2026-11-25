@@ -78,7 +78,7 @@
   </div>
 </section>
 
-<section class="tight live-stats" id="live-stats" data-api="https://us-east1-xnaksview.cloudfunctions.net/siteStatsGet?public=1" hidden>
+<section class="tight live-stats" id="live-stats" data-api="https://api.balochsahab.com/siteStatsGet?public=1" hidden>
   <div class="container">
     <div class="perf-card">
       <div class="perf-head"><span class="live-head"><span class="live-dot" aria-hidden="true"></span> Live website performance</span><span class="perf-sub"><b id="live-today">0</b> views today &middot; updates every 30 seconds</span></div>
@@ -199,7 +199,7 @@
 </footer>
 
 <script src="/assets/js/nav.js?v=cecd8d35" defer></script>
-<script>(function(){try{var k="bs_seen_"+new Date().toISOString().slice(0,10),n=!localStorage.getItem(k);localStorage.setItem(k,"1");navigator.sendBeacon("https://us-east1-xnaksview.cloudfunctions.net/siteHit",new Blob([JSON.stringify({p:location.pathname,r:document.referrer,n:n})],{type:"text/plain"}));}catch(e){}})();</script>
+<script>(function(){try{var k="bs_seen_"+new Date().toISOString().slice(0,10),n=!localStorage.getItem(k);localStorage.setItem(k,"1");navigator.sendBeacon("https://api.balochsahab.com/siteHit",new Blob([JSON.stringify({p:location.pathname,r:document.referrer,n:n})],{type:"text/plain"}));}catch(e){}})();</script>
 <script src="/assets/js/perf-chart.js?v=cecd8d35" defer></script>
 <script src="/assets/js/live-stats.js?v=cecd8d35" defer></script>
 </body>
